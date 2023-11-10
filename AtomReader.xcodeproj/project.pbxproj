@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		2DAA20492AFEC39F0098222E /* AtomReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20482AFEC39F0098222E /* AtomReaderTests.swift */; };
 		2DAA20532AFEC39F0098222E /* AtomReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20522AFEC39F0098222E /* AtomReaderUITests.swift */; };
 		2DAA20552AFEC39F0098222E /* AtomReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20542AFEC39F0098222E /* AtomReaderUITestsLaunchTests.swift */; };
+		2DAA20632AFEC5EA0098222E /* AtomParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2DAA20622AFEC5EA0098222E /* AtomParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DAA20632AFEC5EA0098222E /* AtomParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +147,9 @@
 			dependencies = (
 			);
 			name = AtomReader;
+			packageProductDependencies = (
+				2DAA20622AFEC5EA0098222E /* AtomParser */,
+			);
 			productName = AtomReader;
 			productReference = 2DAA20332AFEC39D0098222E /* AtomReader.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +222,9 @@
 				Base,
 			);
 			mainGroup = 2DAA202A2AFEC39D0098222E;
+			packageReferences = (
+				2DAA20612AFEC5EA0098222E /* XCLocalSwiftPackageReference "../AtomParser" */,
+			);
 			productRefGroup = 2DAA20342AFEC39D0098222E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -617,6 +625,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		2DAA20612AFEC5EA0098222E /* XCLocalSwiftPackageReference "../AtomParser" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../AtomParser;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2DAA20622AFEC5EA0098222E /* AtomParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AtomParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DAA202B2AFEC39D0098222E /* Project object */;
 }
