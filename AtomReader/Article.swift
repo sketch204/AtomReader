@@ -13,6 +13,8 @@ struct Article: Equatable {
     let articleUrl: URL
     let publishedAt: Date
     let authors: [String]
+    
+    let feedId: Feed.ID
 }
 
 extension Article: Identifiable {

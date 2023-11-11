@@ -9,7 +9,7 @@ import Foundation
 
 protocol StoreDataProvider {
     func feed(at url: URL) async throws -> Feed
-//    func articles(for feed: Feed) async throws -> [Article]
+    func articles(for feed: Feed) async throws -> [Article]
 }
 
 protocol StorePersistenceManager {
@@ -55,11 +55,20 @@ extension Store {
         guard !feeds.contains(where: { $0.id == feed.id }) else { return }
         feeds.append(feed)
         persistenceManager?.save(feeds)
+        Task {
+            do {
+                try await refreshArticles()
+            } catch {
+                print("ERROR: \(error)")
+            }
+        }
     }
     
     func removeFeed(_ feed: Feed) {
         feeds.removeAll(where: { $0.id == feed.id })
+        articles.removeAll(where: { $0.feedId == feed.id })
         persistenceManager?.save(feeds)
+        persistenceManager?.save(articles)
     }
 }
 
@@ -67,5 +76,30 @@ extension Store {
     func addFeed(at url: URL) async throws {
         let feed = try await dataProvider.feed(at: url)
         addFeed(feed)
+    }
+}
+
+extension Store {
+    func refreshFeeds() async throws {
+        var feeds = [Feed]()
+        for feed in self.feeds {
+            feeds.append(try await dataProvider.feed(at: feed.atomFeedUrl))
+        }
+        self.feeds = feeds
+        persistenceManager?.save(feeds)
+    }
+    
+    func refreshArticles() async throws {
+        var articles = [Article]()
+        for feed in self.feeds {
+            articles.append(contentsOf: try await dataProvider.articles(for: feed))
+        }
+        self.articles = articles
+        persistenceManager?.save(articles)
+    }
+    
+    func refresh() async throws {
+        try await refreshFeeds()
+        try await refreshArticles()
     }
 }
