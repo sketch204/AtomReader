@@ -91,6 +91,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D4D67F42AFF2F7300C8EFAA /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				2DAA20642AFEFB320098222E /* Article.swift */,
+				2DAA20662AFEFB900098222E /* Feed.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		2D4D67F52AFF2F8200C8EFAA /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				2DAA20682AFEFD1C0098222E /* Store.swift */,
+				2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */,
+				2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
 		2DAA202A2AFEC39D0098222E = {
 			isa = PBXGroup;
 			children = (
@@ -115,13 +134,10 @@
 		2DAA20352AFEC39D0098222E /* AtomReader */ = {
 			isa = PBXGroup;
 			children = (
+				2D4D67F42AFF2F7300C8EFAA /* Entities */,
+				2D4D67F52AFF2F8200C8EFAA /* Business */,
 				2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */,
 				2DAA20382AFEC39D0098222E /* ContentView.swift */,
-				2DAA20682AFEFD1C0098222E /* Store.swift */,
-				2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */,
-				2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */,
-				2DAA20642AFEFB320098222E /* Article.swift */,
-				2DAA20662AFEFB900098222E /* Feed.swift */,
 				2DAA203A2AFEC39F0098222E /* Assets.xcassets */,
 				2DAA203C2AFEC39F0098222E /* AtomReader.entitlements */,
 				2DAA203D2AFEC39F0098222E /* Preview Content */,
