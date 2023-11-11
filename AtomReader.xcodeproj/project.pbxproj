@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2D2EE08C2AFF0600006C4E14 /* StorePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */; };
 		2D2EE08E2AFF0611006C4E14 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */; };
+		2D4D67EF2AFF231E00C8EFAA /* FeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */; };
+		2D4D67F12AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */; };
+		2D4D67F32AFF2A5900C8EFAA /* FeedProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 /* Begin PBXFileReference section */
 		2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePersistenceTests.swift; sourceTree = "<group>"; };
 		2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
+		2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProvider.swift; sourceTree = "<group>"; };
+		2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionBasedNetworkInterface.swift; sourceTree = "<group>"; };
+		2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderTests.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 				2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */,
 				2DAA20382AFEC39D0098222E /* ContentView.swift */,
 				2DAA20682AFEFD1C0098222E /* Store.swift */,
+				2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */,
+				2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */,
 				2DAA20642AFEFB320098222E /* Article.swift */,
 				2DAA20662AFEFB900098222E /* Feed.swift */,
 				2DAA203A2AFEC39F0098222E /* Assets.xcassets */,
@@ -134,6 +142,7 @@
 			children = (
 				2DAA206A2AFEFF110098222E /* StoreTests.swift */,
 				2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */,
+				2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */,
 				2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */,
 			);
 			path = AtomReaderTests;
@@ -288,6 +297,8 @@
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
 				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,
 				2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */,
+				2D4D67F12AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift in Sources */,
+				2D4D67EF2AFF231E00C8EFAA /* FeedProvider.swift in Sources */,
 				2DAA20652AFEFB320098222E /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D4D67F32AFF2A5900C8EFAA /* FeedProviderTests.swift in Sources */,
 				2DAA206B2AFEFF110098222E /* StoreTests.swift in Sources */,
 				2D2EE08E2AFF0611006C4E14 /* TestingUtils.swift in Sources */,
 				2D2EE08C2AFF0600006C4E14 /* StorePersistenceTests.swift in Sources */,

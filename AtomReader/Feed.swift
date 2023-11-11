@@ -9,7 +9,7 @@ import Foundation
 
 struct Feed: Equatable {
     let name: String
-    let description: String // subtitle
+    let description: String? // subtitle
     
     let iconUrl: URL?
     
