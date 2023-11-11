@@ -15,6 +15,8 @@
 		2DAA20532AFEC39F0098222E /* AtomReaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20522AFEC39F0098222E /* AtomReaderUITests.swift */; };
 		2DAA20552AFEC39F0098222E /* AtomReaderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20542AFEC39F0098222E /* AtomReaderUITestsLaunchTests.swift */; };
 		2DAA20632AFEC5EA0098222E /* AtomParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2DAA20622AFEC5EA0098222E /* AtomParser */; };
+		2DAA20652AFEFB320098222E /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20642AFEFB320098222E /* Article.swift */; };
+		2DAA20672AFEFB900098222E /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20662AFEFB900098222E /* Feed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		2DAA204E2AFEC39F0098222E /* AtomReaderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AtomReaderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20522AFEC39F0098222E /* AtomReaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderUITests.swift; sourceTree = "<group>"; };
 		2DAA20542AFEC39F0098222E /* AtomReaderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2DAA20642AFEFB320098222E /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		2DAA20662AFEFB900098222E /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */,
 				2DAA20382AFEC39D0098222E /* ContentView.swift */,
+				2DAA20642AFEFB320098222E /* Article.swift */,
+				2DAA20662AFEFB900098222E /* Feed.swift */,
 				2DAA203A2AFEC39F0098222E /* Assets.xcassets */,
 				2DAA203C2AFEC39F0098222E /* AtomReader.entitlements */,
 				2DAA203D2AFEC39F0098222E /* Preview Content */,
@@ -268,7 +274,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
+				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,
 				2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */,
+				2DAA20652AFEFB320098222E /* Article.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
