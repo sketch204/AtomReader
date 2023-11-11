@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2EE08C2AFF0600006C4E14 /* StorePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */; };
+		2D2EE08E2AFF0611006C4E14 /* TestingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePersistenceTests.swift; sourceTree = "<group>"; };
+		2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingUtils.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				2DAA206A2AFEFF110098222E /* StoreTests.swift */,
+				2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */,
+				2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */,
 			);
 			path = AtomReaderTests;
 			sourceTree = "<group>";
@@ -291,6 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DAA206B2AFEFF110098222E /* StoreTests.swift in Sources */,
+				2D2EE08E2AFF0611006C4E14 /* TestingUtils.swift in Sources */,
+				2D2EE08C2AFF0600006C4E14 /* StorePersistenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

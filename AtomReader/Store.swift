@@ -9,9 +9,13 @@ import Foundation
 
 protocol StoreDataProvider {
     func feed(at url: URL) async throws -> Feed
+//    func articles(for feed: Feed) async throws -> [Article]
 }
 
 protocol StorePersistenceManager {
+    var feeds: [Feed] { get async }
+    var articles: [Article] { get async }
+    
     func save(_ feeds: [Feed])
     func save(_ articles: [Article])
 }
@@ -26,14 +30,23 @@ final class Store {
     
     init(
         dataProvider: StoreDataProvider,
-        persistenceManager: StorePersistenceManager? = nil,
         feeds: [Feed] = [],
         articles: [Article] = []
     ) {
         self.feeds = feeds
         self.articles = articles
         self.dataProvider = dataProvider
+        self.persistenceManager = nil
+    }
+    
+    init(dataProvider: StoreDataProvider, persistenceManager: StorePersistenceManager) {
+        self.dataProvider = dataProvider
         self.persistenceManager = persistenceManager
+        
+        Task {
+            feeds = await persistenceManager.feeds
+            articles = await persistenceManager.articles
+        }
     }
 }
 
