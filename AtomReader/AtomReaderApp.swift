@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct AtomReaderApp: App {
+    private let store = Store(
+        dataProvider: FeedProvider(
+            networkInterface: URLSessionBasedNetworkInterface()
+        )
+    )
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .environment(store)
     }
 }
