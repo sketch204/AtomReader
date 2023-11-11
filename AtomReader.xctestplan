@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "F83081E6-E013-40C4-9E71-ED305E058F44",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:AtomReader.xcodeproj",
+      "identifier" : "2DAA20322AFEC39D0098222E",
+      "name" : "AtomReader"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AtomReader.xcodeproj",
+        "identifier" : "2DAA20432AFEC39F0098222E",
+        "name" : "AtomReaderTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AtomReader.xcodeproj",
+        "identifier" : "2DAA204D2AFEC39F0098222E",
+        "name" : "AtomReaderUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Feed {
+struct Feed: Equatable {
     let name: String
     let description: String // subtitle
     

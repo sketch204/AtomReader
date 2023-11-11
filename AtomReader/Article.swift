@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Article {
+struct Article: Equatable {
     let title: String
     let excerpt: String?
     let articleUrl: URL
