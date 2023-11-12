@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct ArticleDTO: Codable, DTOWrapper {
-    typealias Wrapped = Article
-    
+struct ArticleDTO: Codable {
     let title: String
     let excerpt: String?
     let articleUrl: URL
@@ -27,9 +25,7 @@ struct ArticleDTO: Codable, DTOWrapper {
     }
 }
 
-extension Article: DTOWrapped {
-    typealias Wrapper = ArticleDTO
-    
+extension Article {
     init(from dto: ArticleDTO) {
         self.title = dto.title
         self.excerpt = dto.excerpt

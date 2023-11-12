@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct FeedDTO: Codable, DTOWrapper {
-    typealias Wrapped = Feed
-    
+struct FeedDTO: Codable {
     let name: String
     let description: String?
     let iconUrl: URL?
@@ -25,9 +23,7 @@ struct FeedDTO: Codable, DTOWrapper {
     }
 }
 
-extension Feed: DTOWrapped {
-    typealias Wrapper = FeedDTO
-    
+extension Feed {
     init(from dto: FeedDTO) {
         self.name = dto.name
         self.description = dto.description
