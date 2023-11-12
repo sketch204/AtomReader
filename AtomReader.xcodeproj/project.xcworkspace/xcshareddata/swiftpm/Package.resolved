@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "atomparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sketch204/AtomParser",
+      "state" : {
+        "revision" : "611d14bf647e102b4cf427070c4c739b6a4a6f0b",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "webview",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sketch204/WebView/",
