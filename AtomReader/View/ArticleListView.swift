@@ -40,6 +40,8 @@ struct ArticleListView: View {
                 }
             }
             .disabled(viewModel.isLoading)
+            .keyboardShortcut("r")
+            .help("Refresh all channels (⌘ R)")
             #endif
         }
     }
