@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ArticleFilterView: View {
-    
-    @Binding var filter: ArticleFilter
+    @Binding var filter: ArticleFilter?
     
     var body: some View {
         List(selection: $filter) {
@@ -26,7 +25,7 @@ struct ArticleFilterView: View {
 
 #Preview {
     struct TestView: View {
-        @State private var filter: ArticleFilter = .none
+        @State private var filter: ArticleFilter? = ArticleFilter.none
         
         var body: some View {
             ArticleFilterView(filter: $filter)

@@ -37,7 +37,7 @@ struct AddFeedView: View {
             }
             .disabled(feedUrl == nil)
             
-            Section("Popular Feed") {
+            Section("Popular Feeds") {
                 Button("Donny Wals") {
                     feedUrlString = "https://donnywals.com/feed"
                     addFeed()
@@ -54,7 +54,9 @@ struct AddFeedView: View {
                 }
             }
         }
+        #if os(macOS)
         .padding()
+        #endif
     }
     
     func addFeed() {

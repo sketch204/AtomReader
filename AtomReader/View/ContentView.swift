@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(AppActions.self) private var appActions
     @Environment(Store.self) private var store
     
-    @State private var filter: ArticleFilter = .none
+    @State private var filter: ArticleFilter? = ArticleFilter.none
     @State private var navigationPath = NavigationPath()
     
     var body: some View {
@@ -26,14 +26,16 @@ struct ContentView: View {
                     }
                 }
                 .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+                .navigationTitle("Feeds")
         } detail: {
             NavigationStack(path: $navigationPath) {
                 ArticleListView(
                     viewModel: ArticleListViewModel(
                         store: store,
-                        filter: filter
+                        filter: filter ?? .none
                     )
                 )
+                .navigationTitle("Articles")
             }
             .handleOpenArticleAction(navigationPath: $navigationPath)
         }

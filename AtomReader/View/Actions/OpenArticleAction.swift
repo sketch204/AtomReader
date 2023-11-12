@@ -45,6 +45,8 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
             }
             .navigationDestination(for: OpenArticleAction.self) { action in
                 WebView(url: action.article.articleUrl)
+                    .ignoresSafeArea(.container, edges: .bottom)
+                    .navigationBarTitleDisplayMode(.inline)
             }
     }
     
