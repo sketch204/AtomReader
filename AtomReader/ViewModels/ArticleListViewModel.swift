@@ -15,12 +15,14 @@ final class ArticleListViewModel {
     private(set) var isLoading: Bool = false
     
     var articles: [Article] {
-        switch filter {
-        case .none:
-            store.articles
-        case .feed(let feedId):
-            store.articles(for: feedId)
-        }
+        let output =
+            switch filter {
+            case .none:
+                store.articles
+            case .feed(let feedId):
+                store.articles(for: feedId)
+            }
+        return output.sorted(using: KeyPathComparator(\Article.publishedAt, order: .reverse))
     }
     
     init(store: Store, filter: ArticleFilter = .none) {
