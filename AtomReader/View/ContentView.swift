@@ -19,9 +19,7 @@ struct ContentView: View {
             ArticleFilterView(filter: $filter)
                 .toolbar {
                     ToolbarItem {
-                        Button {
-                            appActions.perform(AddFeedAction())
-                        } label: {
+                        AppActionButton(actionProvider: AddFeedAction()) {
                             Label("Add Feed", systemImage: "plus")
                         }
                     }
