@@ -34,6 +34,7 @@
 		2D4D68322B01457400C8EFAA /* MockDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68312B01457400C8EFAA /* MockDataProvider.swift */; };
 		2D4D68342B01458F00C8EFAA /* Entities+CustomStringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68332B01458F00C8EFAA /* Entities+CustomStringConvertable.swift */; };
 		2D4D68362B0145B000C8EFAA /* DelayedDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68352B0145B000C8EFAA /* DelayedDataProvider.swift */; };
+		2D4D68382B014AD000C8EFAA /* AppActionPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68372B014AD000C8EFAA /* AppActionPipeline.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		2D4D68312B01457400C8EFAA /* MockDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataProvider.swift; sourceTree = "<group>"; };
 		2D4D68332B01458F00C8EFAA /* Entities+CustomStringConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entities+CustomStringConvertable.swift"; sourceTree = "<group>"; };
 		2D4D68352B0145B000C8EFAA /* DelayedDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelayedDataProvider.swift; sourceTree = "<group>"; };
+		2D4D68372B014AD000C8EFAA /* AppActionPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActionPipeline.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D68152B0134D100C8EFAA /* ArticleFilter.swift */,
+				2D4D68372B014AD000C8EFAA /* AppActionPipeline.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				2D4D68052B00669E00C8EFAA /* AddFeedView.swift in Sources */,
 				2D4D68222B01383500C8EFAA /* Feed+Preview.swift in Sources */,
 				2D4D67FE2AFF31B100C8EFAA /* ArticleListView.swift in Sources */,
+				2D4D68382B014AD000C8EFAA /* AppActionPipeline.swift in Sources */,
 				2D4D68282B013A3100C8EFAA /* View+PreviewStore.swift in Sources */,
 				2D4D680A2B00790100C8EFAA /* FeedDTO.swift in Sources */,
 				2DAA20692AFEFD1C0098222E /* Store.swift in Sources */,
