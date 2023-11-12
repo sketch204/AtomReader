@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ArticleFilterView: View {
-    @Environment(Store.self) private var store
     
     @Binding var filter: ArticleFilter
     
@@ -17,7 +16,7 @@ struct ArticleFilterView: View {
             Text("All")
                 .tag(ArticleFilter.none)
             
-            ForEach(store.feeds) { feed in
+            ForEachFeed { feed in
                 Text(feed.name)
                     .tag(ArticleFilter.feed(feed.id))
             }
