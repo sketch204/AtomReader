@@ -15,7 +15,7 @@ let mockFeed1Old = Feed(
     description: "",
     iconUrl: nil,
     websiteUrl: mockFeed1.websiteUrl,
-    atomFeedUrl: mockFeed1.feedUrl
+    feedUrl: mockFeed1.feedUrl
 )
 
 let mockFeed1 = Feed(
@@ -23,7 +23,7 @@ let mockFeed1 = Feed(
     description: "Feed for hello",
     iconUrl: nil,
     websiteUrl: URL(string: "https://hello.mock")!,
-    atomFeedUrl: URL(string: "https://hello.mock")!
+    feedUrl: URL(string: "https://hello.mock")!
 )
 let mockFeed1Article1 = Article(
     title: "Hello Feed Article 1",
@@ -78,7 +78,7 @@ let mockFeed2 = Feed(
     description: "Feed for goodbye",
     iconUrl: nil,
     websiteUrl: URL(string: "https://goodbye.mock")!,
-    atomFeedUrl: URL(string: "https://goodbye.mock")!
+    feedUrl: URL(string: "https://goodbye.mock")!
 )
 let mockFeed2Article1 = Article(
     title: "Goodbye Feed Article 1",
