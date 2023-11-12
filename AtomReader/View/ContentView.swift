@@ -9,6 +9,8 @@ import SwiftUI
 import AtomParser
 
 struct ContentView: View {
+    @Environment(Store.self) private var store
+    
     @State private var filter: ArticleFilter = .none
     
     @State private var isAddingFeed: Bool = false
@@ -27,7 +29,12 @@ struct ContentView: View {
                 }
         } detail: {
             NavigationStack {
-                ArticleListView(filter: filter)
+                ArticleListView(
+                    viewModel: ArticleListViewModel(
+                        store: store,
+                        filter: filter
+                    )
+                )
             }
         }
         .sheet(isPresented: $isAddingFeed) {

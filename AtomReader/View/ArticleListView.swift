@@ -10,21 +10,11 @@ import WebView
 
 struct ArticleListView: View {
     @Environment(\.openURL) private var openUrl
-    @Environment(Store.self) private var store
     
-    var filter: ArticleFilter = .none
-    
-    private var articles: [Article] {
-        switch filter {
-        case .none:
-            store.articles
-        case .feed(let feedId):
-            store.articles(for: feedId)
-        }
-    }
+    let viewModel: ArticleListViewModel
     
     var body: some View {
-        List(articles) { article in
+        List(viewModel.articles) { article in
 //            Button {
 //                openUrl(article.articleUrl)
 //            } label: {
@@ -42,6 +32,10 @@ struct ArticleListView: View {
 }
 
 #Preview {
-    ArticleListView()
-        .previewStore()
+    ArticleListView(
+        viewModel: ArticleListViewModel(
+            store: .preview()
+        )
+    )
+    .previewStore()
 }
