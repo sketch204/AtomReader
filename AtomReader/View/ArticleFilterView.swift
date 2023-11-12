@@ -15,9 +15,11 @@ struct ArticleFilterView: View {
             Text("All")
                 .tag(ArticleFilter.none)
             
-            ForEachFeed { feed in
-                Text(feed.name)
-                    .tag(ArticleFilter.feed(feed.id))
+            Section {
+                ForEachFeed { feed in
+                    Text(feed.name)
+                        .tag(ArticleFilter.feed(feed.id))
+                }
             }
         }
     }
