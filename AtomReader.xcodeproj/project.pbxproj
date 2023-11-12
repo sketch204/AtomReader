@@ -198,6 +198,16 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		2D4D682C2B01420300C8EFAA /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				2DAA206A2AFEFF110098222E /* StoreTests.swift */,
+				2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */,
+				2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
 		2DAA202A2AFEC39D0098222E = {
 			isa = PBXGroup;
 			children = (
@@ -252,9 +262,7 @@
 		2DAA20472AFEC39F0098222E /* AtomReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				2DAA206A2AFEFF110098222E /* StoreTests.swift */,
-				2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */,
-				2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */,
+				2D4D682C2B01420300C8EFAA /* Business */,
 				2D2EE08D2AFF0611006C4E14 /* TestingUtils.swift */,
 			);
 			path = AtomReaderTests;
