@@ -13,7 +13,7 @@ struct ArticleRowView: View {
     
     private var dateString: String {
         article.publishedAt
-            .formatted(.dateTime.day().month().hour().minute())
+            .formatted(.relative(presentation: .named))
     }
     
     var body: some View {
