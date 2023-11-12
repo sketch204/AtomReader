@@ -24,16 +24,29 @@ final class FeedProvider {
 }
 
 extension FeedProvider: StoreDataProvider {
+    struct UnrecognizedFeedFormat: Error {}
+    
     func feed(at url: URL) async throws -> Feed {
         let data = try await networkInterface.data(from: url)
-        let parsedFeed = try AtomParser.Feed(data: data)
+        let parser = try FeedParser(data: data)
+        let parsedFeed = try parser.parse()
         
-        let (feed, articles) = try self.data(from: parsedFeed)
+        let results: (feed: Feed, articles: [Article])
         
-        self.feeds[feed.id] = feed
-        self.articles[feed.id] = articles
+        if let parsedFeed = parsedFeed as? AtomParser.Feed {
+            results = try self.data(from: parsedFeed, feedUrl: url)
+        }
+        else if let parsedFeed = parsedFeed as? AtomParser.RSS {
+            results = try self.data(from: parsedFeed, feedUrl: url)
+        }
+        else {
+            throw UnrecognizedFeedFormat()
+        }
         
-        return feed
+        self.feeds[results.feed.id] = results.feed
+        self.articles[results.feed.id] = results.articles
+        
+        return results.feed
     }
     
     func articles(for feed: Feed) async throws -> [Article] {
@@ -46,24 +59,57 @@ extension FeedProvider: StoreDataProvider {
     }
 }
 
+extension FeedProvider {
+    func data(from rss: AtomParser.RSS, feedUrl: URL) throws -> (feed: Feed, articles: [Article]) {
+        let channel = rss.channel
+        
+        let feed = Feed(
+            name: channel.title,
+            description: channel.description,
+            iconUrl: channel.image?.url,
+            websiteUrl: channel.link,
+            atomFeedUrl: feedUrl
+        )
+        
+        let articles = channel.items.compactMap { item -> Article? in
+            #warning("TODO: Optional fields")
+            guard let link = item.link,
+                  let publishedAt = item.pubDate
+            else { return nil }
+            
+            return Article(
+                title: item.title ?? "Untitled",
+                excerpt: item.description,
+                articleUrl: link,
+                publishedAt: publishedAt,
+                authors: [item.author].compactMap({ $0 }),
+                feedId: feed.id
+            )
+        }
+        
+        return (feed, articles)
+    }
+}
+
 
 extension FeedProvider {
     struct RequiredLinksNotFound: Error {}
     
-    func data(from parsedFeed: AtomParser.Feed) throws -> (feed: Feed, articles: [Article]) {
-        guard let atomFeedLink = parsedFeed.links.first(where: { $0.relationship == .`self` }),
-              let websiteLink = parsedFeed.links.first(where: { $0.relationship == .alternate })
+    func data(from parsedFeed: AtomParser.Feed, feedUrl: URL) throws -> (feed: Feed, articles: [Article]) {
+        guard let websiteLink = parsedFeed.links.first(where: { $0.relationship == .alternate })
         else {
             throw RequiredLinksNotFound()
         }
+        
         let feed = Feed(
             name: parsedFeed.title.content,
             description: parsedFeed.subtitle?.content,
             // FIXME: iconUrl
             iconUrl: nil,//parsedFeed.icon?.path,
             websiteUrl: websiteLink.url,
-            atomFeedUrl: atomFeedLink.url
+            atomFeedUrl: feedUrl
         )
+        
         let articles = parsedFeed.entries
             .map { entry in
                 Article(
