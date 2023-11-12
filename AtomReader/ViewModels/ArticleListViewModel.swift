@@ -27,4 +27,18 @@ final class ArticleListViewModel {
         self.store = store
         self.filter = filter
     }
+    
+    @MainActor
+    func refresh() async {
+        isLoading = true
+        defer {
+            isLoading = false
+        }
+        
+        do {
+            try await store.refresh()
+        } catch {
+            print("ERROR: Failed to refresh store -- \(error)")
+        }
+    }
 }

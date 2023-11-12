@@ -28,7 +28,28 @@ struct ArticleListView: View {
         .navigationDestination(for: URL.self) { url in
             WebView(url: url)
         }
+        .refreshable {
+            await viewModel.refresh()
+        }
+        .toolbar {
+            #if os(macOS)
+            Button {
+                Task {
+                    await viewModel.refresh()
+                }
+            } label: {
+                if viewModel.isLoading {
+                    ProgressView()
+                } else {
+                    Label("Refresh", systemImage: "arrow.clockwise")
+                }
+            }
+            .disabled(viewModel.isLoading)
+            #endif
+        }
     }
+    
+    
 }
 
 #Preview {
