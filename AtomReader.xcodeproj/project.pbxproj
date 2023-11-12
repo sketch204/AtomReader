@@ -103,6 +103,7 @@
 		2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenArticleAction.swift; sourceTree = "<group>"; };
 		2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFeedAction.swift; sourceTree = "<group>"; };
 		2D4D68422B016A0000C8EFAA /* AppActions+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppActions+Preview.swift"; sourceTree = "<group>"; };
+		2D4D684A2B017A6E00C8EFAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -262,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				2D52E61D2AFF02410089294A /* AtomReader.xctestplan */,
+				2D4D684A2B017A6E00C8EFAA /* README.md */,
 				2DAA20352AFEC39D0098222E /* AtomReader */,
 				2DAA20472AFEC39F0098222E /* AtomReaderTests */,
 				2DAB72822AFF02CB00D33B58 /* AtomReaderUITests */,
