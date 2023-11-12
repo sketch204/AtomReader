@@ -25,6 +25,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                .navigationSplitViewColumnWidth(min: 180, ideal: 200)
         } detail: {
             NavigationStack(path: $navigationPath) {
                 ArticleListView(
@@ -42,4 +43,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .previewStore()
+        .previewAppActions()
 }
