@@ -21,6 +21,7 @@ struct AtomReaderApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .handleAddFeedAction()
         }
         .environment(store)
         .environment(appActions)

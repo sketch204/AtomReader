@@ -9,11 +9,10 @@ import SwiftUI
 import AtomParser
 
 struct ContentView: View {
+    @Environment(AppActions.self) private var appActions
     @Environment(Store.self) private var store
     
     @State private var filter: ArticleFilter = .none
-    
-    @State private var isAddingFeed: Bool = false
     
     var body: some View {
         NavigationSplitView {
@@ -21,7 +20,7 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItem {
                         Button {
-                            isAddingFeed = true
+                            appActions.submit(AddFeedAction())
                         } label: {
                             Label("Add Feed", systemImage: "plus")
                         }
@@ -36,9 +35,6 @@ struct ContentView: View {
                     )
                 )
             }
-        }
-        .sheet(isPresented: $isAddingFeed) {
-            AddFeedView()
         }
     }
 }
