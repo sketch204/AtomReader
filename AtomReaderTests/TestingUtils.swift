@@ -15,7 +15,7 @@ let mockFeed1Old = Feed(
     description: "",
     iconUrl: nil,
     websiteUrl: mockFeed1.websiteUrl,
-    atomFeedUrl: mockFeed1.atomFeedUrl
+    atomFeedUrl: mockFeed1.feedUrl
 )
 
 let mockFeed1 = Feed(
@@ -112,9 +112,9 @@ let mockFeed2Data = mockFeed2DataString.data(using: .utf8)!
 struct MockDataProvider: StoreDataProvider {
     func feed(at url: URL) async throws -> Feed {
         switch url {
-        case mockFeed1.atomFeedUrl:
+        case mockFeed1.feedUrl:
             mockFeed1
-        case mockFeed2.atomFeedUrl:
+        case mockFeed2.feedUrl:
             mockFeed2
         default:
             throw CocoaError(CocoaError.Code(rawValue: 0))
@@ -133,7 +133,7 @@ struct MockDataProvider: StoreDataProvider {
 
 extension Feed: CustomStringConvertible {
     public var description: String {
-        "\(name) - \(atomFeedUrl)"
+        "\(name) - \(feedUrl)"
     }
 }
 

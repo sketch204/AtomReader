@@ -16,7 +16,7 @@ final class FeedProviderTests: XCTestCase {
     }
     
     func test_feedAt_returnsFeed() async throws {
-        let feed = try await sut.feed(at: mockFeed1.atomFeedUrl)
+        let feed = try await sut.feed(at: mockFeed1.feedUrl)
         
         XCTAssertEqual(feed, mockFeed1)
     }
@@ -32,8 +32,8 @@ final class FeedProviderTests: XCTestCase {
 struct MockFeedProviderNetworkInterface: FeedProviderNetworkInterface {
     func data(from url: URL) async throws -> Data {
         switch url {
-        case mockFeed1.atomFeedUrl: mockFeed1Data
-        case mockFeed2.atomFeedUrl: mockFeed2Data
+        case mockFeed1.feedUrl: mockFeed1Data
+        case mockFeed2.feedUrl: mockFeed2Data
         default: throw CocoaError(CocoaError.Code(rawValue: 0))
         }
     }

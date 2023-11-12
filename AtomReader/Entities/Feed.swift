@@ -14,7 +14,7 @@ struct Feed: Equatable {
     let iconUrl: URL?
     
     let websiteUrl: URL
-    let atomFeedUrl: URL
+    let feedUrl: URL
 }
 
 extension Feed: Identifiable {
@@ -26,7 +26,7 @@ extension Feed: Identifiable {
         }
         
         init(feed: Feed) {
-            self.init(atomFeedUrl: feed.atomFeedUrl)
+            self.init(atomFeedUrl: feed.feedUrl)
         }
     }
     

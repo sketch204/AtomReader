@@ -54,7 +54,7 @@ extension StoreTests {
     func test_addFeedAt_whenAddingFeedWithURL_addsFeed() async throws {
         let sut = Store(dataProvider: MockDataProvider())
         
-        let url = mockFeed1.atomFeedUrl
+        let url = mockFeed1.feedUrl
         try await sut.addFeed(at: url)
         
         XCTAssertEqual(sut.feeds, [mockFeed1])

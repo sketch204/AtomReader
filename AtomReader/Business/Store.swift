@@ -83,7 +83,7 @@ extension Store {
     func refreshFeeds() async throws {
         var feeds = [Feed]()
         for feed in self.feeds {
-            feeds.append(try await dataProvider.feed(at: feed.atomFeedUrl))
+            feeds.append(try await dataProvider.feed(at: feed.feedUrl))
         }
         self.feeds = feeds
         persistenceManager?.save(feeds)

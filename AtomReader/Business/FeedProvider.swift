@@ -54,7 +54,7 @@ extension FeedProvider: StoreDataProvider {
             return articles
         }
         
-        let _ = try await self.feed(at: feed.atomFeedUrl)
+        let _ = try await self.feed(at: feed.feedUrl)
         return self.articles[feed.id] ?? []
     }
 }
@@ -68,7 +68,7 @@ extension FeedProvider {
             description: channel.description,
             iconUrl: channel.image?.url,
             websiteUrl: channel.link,
-            atomFeedUrl: feedUrl
+            feedUrl: feedUrl
         )
         
         let articles = channel.items.compactMap { item -> Article? in
@@ -107,7 +107,7 @@ extension FeedProvider {
             // FIXME: iconUrl
             iconUrl: nil,//parsedFeed.icon?.path,
             websiteUrl: websiteLink.url,
-            atomFeedUrl: feedUrl
+            feedUrl: feedUrl
         )
         
         let articles = parsedFeed.entries
