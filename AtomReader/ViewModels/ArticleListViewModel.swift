@@ -41,4 +41,8 @@ final class ArticleListViewModel {
             print("ERROR: Failed to refresh store -- \(error)")
         }
     }
+    
+    func feed(for article: Article) -> Feed {
+        store.feed(for: article)
+    }
 }

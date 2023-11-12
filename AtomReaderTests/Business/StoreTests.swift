@@ -171,3 +171,13 @@ extension StoreTests {
         XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2, mockFeed3])
     }
 }
+
+extension StoreTests {
+    func test_feedForArticle_whenArticleProvided_returnsCorrectFeed() {
+        let sut = makeTestStore()
+        
+        let feed = sut.feed(for: mockFeed2Article1)
+        
+        XCTAssertEqual(feed, mockFeed2)
+    }
+}

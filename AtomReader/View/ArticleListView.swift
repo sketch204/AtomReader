@@ -16,7 +16,10 @@ struct ArticleListView: View {
     var body: some View {
         List(viewModel.articles) { article in
             AppActionButton(OpenArticleAction(article: article)) {
-                ArticleRowView(article: article)
+                ArticleRowView(
+                    article: article,
+                    feed: viewModel.feed(for: article)
+                )
             }
         }
         .buttonStyle(.plain)
@@ -56,4 +59,5 @@ struct ArticleListView: View {
         )
     )
     .previewStore()
+    .previewAppActions()
 }

@@ -116,3 +116,12 @@ extension Store {
         try await refreshArticles()
     }
 }
+
+extension Store {
+    func feed(for article: Article) -> Feed {
+        guard let output = feeds.first(where: { $0.id == article.feedId }) else {
+            fatalError("An article belongs to a non-existent feed")
+        }
+        return output
+    }
+}
