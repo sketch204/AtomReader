@@ -20,7 +20,7 @@ final class AppActions {
             .eraseToAnyPublisher()
     }
     
-    func submit(_ action: some AppAction) {
+    func perform(_ action: some AppAction) {
         subject.send(action)
     }
 }

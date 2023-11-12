@@ -20,7 +20,7 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItem {
                         Button {
-                            appActions.submit(AddFeedAction())
+                            appActions.perform(AddFeedAction())
                         } label: {
                             Label("Add Feed", systemImage: "plus")
                         }
