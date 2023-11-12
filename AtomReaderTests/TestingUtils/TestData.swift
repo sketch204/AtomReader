@@ -111,8 +111,16 @@ let mockFeed2DataString = """
 """
 let mockFeed2Data = mockFeed2DataString.data(using: .utf8)!
 
+let mockFeed3 = Feed(
+    name: "Some other Feed",
+    description: "Feed for something else",
+    iconUrl: nil,
+    websiteUrl: URL(string: "https://something.else")!,
+    feedUrl: URL(string: "https://something.else")!
+)
 
-let mockFeeds = [mockFeed1, mockFeed2]
+
+let mockFeeds = [mockFeed1, mockFeed2, mockFeed3]
 let mockArticles = [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1]
 
 

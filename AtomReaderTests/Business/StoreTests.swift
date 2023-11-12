@@ -111,3 +111,63 @@ extension StoreTests {
         XCTAssertEqual(sut.articles, [mockFeed2Article1])
     }
 }
+
+extension StoreTests {
+    func test_moveFeeds_whenNonEmptySourceOffsets_moves() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2, mockFeed3]
+        )
+        
+        sut.moveFeeds(at: IndexSet(integer: 1), to: 0)
+        
+        XCTAssertEqual(sut.feeds, [mockFeed2, mockFeed1, mockFeed3])
+    }
+    
+    func test_moveFeeds_whenEmptySourceOffsets_noChangesMade() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2, mockFeed3]
+        )
+        
+        sut.moveFeeds(at: IndexSet(), to: 0)
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2, mockFeed3])
+    }
+}
+
+extension StoreTests {
+    func test_removeFeedsAtOffsets_whenNonEmptyOffsets_removesFeeds() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2, mockFeed3]
+        )
+        
+        sut.removeFeeds(at: IndexSet(integer: 1))
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed3])
+    }
+    
+    func test_removeFeedsAtOffsets_whenNonEmptyOffsets_removesArticles() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2, mockFeed3],
+            articles: [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1]
+        )
+        
+        sut.removeFeeds(at: IndexSet(integer: 1))
+        
+        XCTAssertEqual(sut.articles, [mockFeed1Article1, mockFeed1Article2])
+    }
+    
+    func test_removeFeedsAtOffsets_whenEmptyOffsets_noChangesMade() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2, mockFeed3]
+        )
+        
+        sut.removeFeeds(at: IndexSet())
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2, mockFeed3])
+    }
+}

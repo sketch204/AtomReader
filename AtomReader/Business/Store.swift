@@ -64,9 +64,22 @@ extension Store {
         }
     }
     
+    func moveFeeds(at sourceOffsets: IndexSet, to targetOffset: Int) {
+        feeds.move(fromOffsets: sourceOffsets, toOffset: targetOffset)
+        persistenceManager?.save(feeds)
+    }
+    
     func removeFeed(_ feed: Feed) {
         feeds.removeAll(where: { $0.id == feed.id })
         articles.removeAll(where: { $0.feedId == feed.id })
+        persistenceManager?.save(feeds)
+        persistenceManager?.save(articles)
+    }
+    
+    func removeFeeds(at offsets: IndexSet) {
+        let removedFeedIds = Set(offsets.map({ feeds[$0].id }))
+        feeds.remove(atOffsets: offsets)
+        articles.removeAll(where: { removedFeedIds.contains($0.feedId) })
         persistenceManager?.save(feeds)
         persistenceManager?.save(articles)
     }
