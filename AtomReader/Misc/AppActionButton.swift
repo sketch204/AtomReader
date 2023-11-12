@@ -13,7 +13,7 @@ struct AppActionButton<Action, Content>: View where Action: AppAction, Content: 
     let actionProvider: () -> Action
     let label: () -> Content
 
-    init(actionProvider: @autoclosure @escaping () -> Action, @ViewBuilder label: @escaping () -> Content) {
+    init(_ actionProvider: @autoclosure @escaping () -> Action, @ViewBuilder label: @escaping () -> Content) {
         self.actionProvider = actionProvider
         self.label = label
     }
@@ -25,13 +25,13 @@ struct AppActionButton<Action, Content>: View where Action: AppAction, Content: 
 
 extension AppActionButton where Content == Text {
     init(_ titleKey: LocalizedStringKey, actionProvider: @autoclosure @escaping () -> Action) {
-        self.init(actionProvider: actionProvider()) {
+        self.init(actionProvider()) {
             Text(titleKey)
         }
     }
     
     init<S>(_ title: S, actionProvider: @autoclosure @escaping () -> Action) where S: StringProtocol {
-        self.init(actionProvider: actionProvider()) {
+        self.init(actionProvider()) {
             Text(title)
         }
     }
