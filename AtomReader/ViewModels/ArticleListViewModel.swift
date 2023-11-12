@@ -10,7 +10,7 @@ import Foundation
 @Observable
 final class ArticleListViewModel {
     let store: Store
-    private(set) var filter: ArticleFilter = .none
+    var filter: ArticleFilter = .none
     
     private(set) var isLoading: Bool = false
     

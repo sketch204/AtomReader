@@ -1,5 +1,5 @@
 //
-//  TestingUtils.swift
+//  TestData.swift
 //  AtomReaderTests
 //
 //  Created by Inal Gotov on 2023-11-10.
@@ -41,6 +41,8 @@ let mockFeed1Article2 = Article(
     authors: ["Inal Gotov"],
     feedId: mockFeed1.id
 )
+let mockFeed1Articles = [mockFeed1Article1, mockFeed1Article2]
+
 let mockFeed1DataString = """
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" >
@@ -88,6 +90,7 @@ let mockFeed2Article1 = Article(
     authors: [],
     feedId: mockFeed2.id
 )
+let mockFeed2Articles = [mockFeed2Article1]
 
 let mockFeed2DataString = """
 <?xml version="1.0" encoding="utf-8"?>
@@ -109,36 +112,18 @@ let mockFeed2DataString = """
 let mockFeed2Data = mockFeed2DataString.data(using: .utf8)!
 
 
-struct MockDataProvider: StoreDataProvider {
-    func feed(at url: URL) async throws -> Feed {
-        switch url {
-        case mockFeed1.feedUrl:
-            mockFeed1
-        case mockFeed2.feedUrl:
-            mockFeed2
-        default:
-            throw CocoaError(CocoaError.Code(rawValue: 0))
-        }
-    }
-    
-    func articles(for feed: Feed) async throws -> [Article] {
-        switch feed.id {
-        case mockFeed1.id: [mockFeed1Article1, mockFeed1Article2]
-        case mockFeed2.id: [mockFeed2Article1]
-        default: throw CocoaError(CocoaError.Code(rawValue: 0))
-        }
-    }
-}
+let mockFeeds = [mockFeed1, mockFeed2]
+let mockArticles = [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1]
 
 
-extension Feed: CustomStringConvertible {
-    public var description: String {
-        "\(name) - \(feedUrl)"
-    }
-}
-
-extension Article: CustomStringConvertible {
-    public var description: String {
-        "\(title) - \(articleUrl)"
-    }
+func makeTestStore(
+    dataProvider: StoreDataProvider = MockDataProvider(),
+    feeds: [Feed] = mockFeeds,
+    articles: [Article] = mockArticles
+) -> Store {
+    Store(
+        dataProvider: dataProvider,
+        feeds: feeds,
+        articles: articles
+    )
 }
