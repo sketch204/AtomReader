@@ -9,13 +9,13 @@ import SwiftUI
 import AtomParser
 
 struct ContentView: View {
-    @State private var feedSelection: Feed.ID?
+    @State private var filter: ArticleFilter = .none
     
     @State private var isAddingFeed: Bool = false
     
     var body: some View {
         NavigationSplitView {
-            FeedListView(feedSelection: $feedSelection)
+            ArticleFilterView(filter: $filter)
                 .toolbar {
                     ToolbarItem {
                         Button {
@@ -27,7 +27,7 @@ struct ContentView: View {
                 }
         } detail: {
             NavigationStack {
-                ArticleListView(feed: feedSelection)
+                ArticleListView(filter: filter)
             }
         }
         .sheet(isPresented: $isAddingFeed) {
@@ -38,4 +38,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .previewStore()
 }

@@ -12,13 +12,14 @@ struct ArticleListView: View {
     @Environment(\.openURL) private var openUrl
     @Environment(Store.self) private var store
     
-    var feed: Feed.ID? = nil
+    var filter: ArticleFilter = .none
     
     private var articles: [Article] {
-        if let feed {
-            store.articles(for: feed)
-        } else {
+        switch filter {
+        case .none:
             store.articles
+        case .feed(let feedId):
+            store.articles(for: feedId)
         }
     }
     
@@ -42,4 +43,5 @@ struct ArticleListView: View {
 
 #Preview {
     ArticleListView()
+        .previewStore()
 }
