@@ -26,7 +26,9 @@ struct ContentView: View {
                     }
                 }
         } detail: {
-            ArticleListView(feed: feedSelection)
+            NavigationStack {
+                ArticleListView(feed: feedSelection)
+            }
         }
         .sheet(isPresented: $isAddingFeed) {
             AddFeedView()

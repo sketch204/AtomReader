@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebView
 
 struct ArticleListView: View {
     @Environment(\.openURL) private var openUrl
@@ -23,12 +24,18 @@ struct ArticleListView: View {
     
     var body: some View {
         List(articles) { article in
-            Button {
-                openUrl(article.articleUrl)
-            } label: {
+//            Button {
+//                openUrl(article.articleUrl)
+//            } label: {
+//                ArticleRowView(article: article)
+//            }
+            NavigationLink(value: article.articleUrl) {
                 ArticleRowView(article: article)
             }
-            .buttonStyle(.plain)
+        }
+        .buttonStyle(.plain)
+        .navigationDestination(for: URL.self) { url in
+            WebView(url: url)
         }
     }
 }
