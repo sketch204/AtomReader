@@ -12,7 +12,7 @@
 		2D4D67EF2AFF231E00C8EFAA /* FeedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */; };
 		2D4D67F12AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */; };
 		2D4D67F32AFF2A5900C8EFAA /* FeedProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */; };
-		2D4D67F82AFF2FAF00C8EFAA /* FeedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F72AFF2FAF00C8EFAA /* FeedListView.swift */; };
+		2D4D67F82AFF2FAF00C8EFAA /* ForEachFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67F72AFF2FAF00C8EFAA /* ForEachFeed.swift */; };
 		2D4D67FC2AFF307100C8EFAA /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67FB2AFF307100C8EFAA /* FeedRowView.swift */; };
 		2D4D67FE2AFF31B100C8EFAA /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67FD2AFF31B100C8EFAA /* ArticleListView.swift */; };
 		2D4D68002AFF31EB00C8EFAA /* ArticleRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D67FF2AFF31EB00C8EFAA /* ArticleRowView.swift */; };
@@ -38,6 +38,7 @@
 		2D4D683B2B014CAE00C8EFAA /* AddFeedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */; };
 		2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */; };
 		2D4D683F2B0151BA00C8EFAA /* OpenArticleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */; };
+		2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -74,7 +75,7 @@
 		2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProvider.swift; sourceTree = "<group>"; };
 		2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionBasedNetworkInterface.swift; sourceTree = "<group>"; };
 		2D4D67F22AFF2A5900C8EFAA /* FeedProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderTests.swift; sourceTree = "<group>"; };
-		2D4D67F72AFF2FAF00C8EFAA /* FeedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListView.swift; sourceTree = "<group>"; };
+		2D4D67F72AFF2FAF00C8EFAA /* ForEachFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachFeed.swift; sourceTree = "<group>"; };
 		2D4D67FB2AFF307100C8EFAA /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
 		2D4D67FD2AFF31B100C8EFAA /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		2D4D67FF2AFF31EB00C8EFAA /* ArticleRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRowView.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedAction.swift; sourceTree = "<group>"; };
 		2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActionButton.swift; sourceTree = "<group>"; };
 		2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenArticleAction.swift; sourceTree = "<group>"; };
+		2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFeedAction.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 			children = (
 				2D4D68392B014C9E00C8EFAA /* Actions */,
 				2DAA20382AFEC39D0098222E /* ContentView.swift */,
-				2D4D67F72AFF2FAF00C8EFAA /* FeedListView.swift */,
+				2D4D67F72AFF2FAF00C8EFAA /* ForEachFeed.swift */,
 				2D4D67FB2AFF307100C8EFAA /* FeedRowView.swift */,
 				2D4D68042B00669E00C8EFAA /* AddFeedView.swift */,
 				2D4D67FD2AFF31B100C8EFAA /* ArticleListView.swift */,
@@ -248,6 +250,7 @@
 			children = (
 				2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */,
 				2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */,
+				2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -473,8 +476,9 @@
 				2DAA20692AFEFD1C0098222E /* Store.swift in Sources */,
 				2D4D68242B0138A900C8EFAA /* Article+Preview.swift in Sources */,
 				2D4D680C2B00795300C8EFAA /* ArticleDTO.swift in Sources */,
-				2D4D67F82AFF2FAF00C8EFAA /* FeedListView.swift in Sources */,
+				2D4D67F82AFF2FAF00C8EFAA /* ForEachFeed.swift in Sources */,
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
+				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,
 				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,
 				2D4D683B2B014CAE00C8EFAA /* AddFeedAction.swift in Sources */,
 				2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */,
