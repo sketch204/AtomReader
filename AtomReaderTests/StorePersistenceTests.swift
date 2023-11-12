@@ -98,6 +98,10 @@ class MockPersistenceManager: StorePersistenceManager {
         self.articles = articles
     }
     
+    func load() async -> (feeds: [Feed], articles: [Article]) {
+        (feeds, articles)
+    }
+    
     func save(_ feeds: [Feed]) {
         saveFeedsCalls.append(Call(arguments: feeds))
     }
@@ -106,3 +110,5 @@ class MockPersistenceManager: StorePersistenceManager {
         saveArticlesCalls.append(Call(arguments: articles))
     }
 }
+
+extension MockPersistenceManager.Call: Equatable where Arguments: Equatable {}

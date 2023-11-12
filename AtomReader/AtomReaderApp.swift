@@ -12,7 +12,8 @@ struct AtomReaderApp: App {
     private let store = Store(
         dataProvider: FeedProvider(
             networkInterface: URLSessionBasedNetworkInterface()
-        )
+        ),
+        persistenceManager: FileBasePersistenceManager()
     )
     
     var body: some Scene {

@@ -13,8 +13,7 @@ protocol StoreDataProvider {
 }
 
 protocol StorePersistenceManager {
-    var feeds: [Feed] { get async }
-    var articles: [Article] { get async }
+    func load() async -> (feeds: [Feed], articles: [Article])
     
     func save(_ feeds: [Feed])
     func save(_ articles: [Article])
@@ -44,8 +43,9 @@ final class Store {
         self.persistenceManager = persistenceManager
         
         Task {
-            feeds = await persistenceManager.feeds
-            articles = await persistenceManager.articles
+            let persistedData = await persistenceManager.load()
+            feeds = persistedData.feeds
+            articles = persistedData.articles
         }
     }
 }
