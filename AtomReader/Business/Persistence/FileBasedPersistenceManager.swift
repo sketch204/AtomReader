@@ -1,5 +1,5 @@
 //
-//  FileBasePersistenceManager.swift
+//  FileBasedPersistenceManager.swift
 //  AtomReader
 //
 //  Created by Inal Gotov on 2023-11-11.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FileBasePersistenceManager {
+class FileBasedPersistenceManager {
     private static let feedsFileName: String = "feeds"
     private static let articlesFileName: String = "articles"
 
@@ -74,7 +74,7 @@ class FileBasePersistenceManager {
     }
 }
 
-extension FileBasePersistenceManager: StorePersistenceManager {
+extension FileBasedPersistenceManager: StorePersistenceManager {
     func load() async -> (feeds: [Feed], articles: [Article]) {
         let feeds = read(
             [FeedDTO].self,

@@ -13,7 +13,7 @@ struct AtomReaderApp: App {
         dataProvider: FeedProvider(
             networkInterface: URLSessionBasedNetworkInterface()
         ),
-        persistenceManager: FileBasePersistenceManager()
+        persistenceManager: FileBasedPersistenceManager()
     )
     
     var body: some Scene {
