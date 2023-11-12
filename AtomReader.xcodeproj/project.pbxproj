@@ -37,6 +37,7 @@
 		2D4D68382B014AD000C8EFAA /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68372B014AD000C8EFAA /* AppActions.swift */; };
 		2D4D683B2B014CAE00C8EFAA /* AddFeedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */; };
 		2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */; };
+		2D4D683F2B0151BA00C8EFAA /* OpenArticleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		2D4D68372B014AD000C8EFAA /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
 		2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedAction.swift; sourceTree = "<group>"; };
 		2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActionButton.swift; sourceTree = "<group>"; };
+		2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenArticleAction.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */,
+				2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			files = (
 				2D4D68072B00716500C8EFAA /* FileBasedPersistenceManager.swift in Sources */,
 				2D4D68162B0134D100C8EFAA /* ArticleFilter.swift in Sources */,
+				2D4D683F2B0151BA00C8EFAA /* OpenArticleAction.swift in Sources */,
 				2D4D67FC2AFF307100C8EFAA /* FeedRowView.swift in Sources */,
 				2D4D68052B00669E00C8EFAA /* AddFeedView.swift in Sources */,
 				2D4D68222B01383500C8EFAA /* Feed+Preview.swift in Sources */,

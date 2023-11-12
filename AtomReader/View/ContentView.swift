@@ -13,6 +13,7 @@ struct ContentView: View {
     @Environment(Store.self) private var store
     
     @State private var filter: ArticleFilter = .none
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
         NavigationSplitView {
@@ -25,7 +26,7 @@ struct ContentView: View {
                     }
                 }
         } detail: {
-            NavigationStack {
+            NavigationStack(path: $navigationPath) {
                 ArticleListView(
                     viewModel: ArticleListViewModel(
                         store: store,
@@ -33,6 +34,7 @@ struct ContentView: View {
                     )
                 )
             }
+            .handleOpenArticleAction(navigationPath: $navigationPath)
         }
     }
 }

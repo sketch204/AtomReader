@@ -15,12 +15,7 @@ struct ArticleListView: View {
     
     var body: some View {
         List(viewModel.articles) { article in
-//            Button {
-//                openUrl(article.articleUrl)
-//            } label: {
-//                ArticleRowView(article: article)
-//            }
-            NavigationLink(value: article.articleUrl) {
+            AppActionButton(OpenArticleAction(article: article)) {
                 ArticleRowView(article: article)
             }
         }
