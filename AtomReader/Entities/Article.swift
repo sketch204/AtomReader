@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Article: Equatable {
+struct Article: Hashable {
     let title: String
     let excerpt: String?
     let articleUrl: URL
