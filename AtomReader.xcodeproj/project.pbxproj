@@ -41,6 +41,7 @@
 		2D4D68432B016A0000C8EFAA /* AppActions+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68422B016A0000C8EFAA /* AppActions+Preview.swift */; };
 		2D4D68462B0176B500C8EFAA /* WebView in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4D68452B0176B500C8EFAA /* WebView */; };
 		2D4D68492B017A2A00C8EFAA /* AtomParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4D68482B017A2A00C8EFAA /* AtomParser */; };
+		2D4D684F2B01D17400C8EFAA /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D684E2B01D17400C8EFAA /* Logging.swift */; };
 		2D4D68512B01D1D600C8EFAA /* Bundle+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68502B01D1D600C8EFAA /* Bundle+Helpers.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
@@ -96,6 +97,7 @@
 		2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFeedAction.swift; sourceTree = "<group>"; };
 		2D4D68422B016A0000C8EFAA /* AppActions+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppActions+Preview.swift"; sourceTree = "<group>"; };
 		2D4D684A2B017A6E00C8EFAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2D4D684E2B01D17400C8EFAA /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		2D4D68502B01D1D600C8EFAA /* Bundle+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Helpers.swift"; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 				2D4D68152B0134D100C8EFAA /* ArticleFilter.swift */,
 				2D4D68372B014AD000C8EFAA /* AppActions.swift */,
 				2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */,
+				2D4D684E2B01D17400C8EFAA /* Logging.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D4D68072B00716500C8EFAA /* FileBasedPersistenceManager.swift in Sources */,
+				2D4D684F2B01D17400C8EFAA /* Logging.swift in Sources */,
 				2D4D68162B0134D100C8EFAA /* ArticleFilter.swift in Sources */,
 				2D4D683F2B0151BA00C8EFAA /* OpenArticleAction.swift in Sources */,
 				2D4D68512B01D1D600C8EFAA /* Bundle+Helpers.swift in Sources */,
