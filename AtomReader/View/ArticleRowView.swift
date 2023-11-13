@@ -60,7 +60,7 @@ struct ArticleRowView: View {
                 articleUrl: URL(string: "https://feed.xml/articles/1")!,
                 publishedAt: Date(),
                 authors: ["Cool Dude"],
-                feedId: Feed.ID(atomFeedUrl: URL(string: "https://feed.xml")!)
+                feedId: Feed.ID(feedUrl: URL(string: "https://feed.xml")!)
             ),
             feed: .previewFeed2
         )

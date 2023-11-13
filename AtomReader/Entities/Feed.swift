@@ -19,14 +19,14 @@ struct Feed: Equatable {
 
 extension Feed: Identifiable {
     struct ID: Hashable {
-        let atomFeedUrl: URL
+        let feedUrl: URL
         
-        init(atomFeedUrl: URL) {
-            self.atomFeedUrl = atomFeedUrl
+        init(feedUrl: URL) {
+            self.feedUrl = feedUrl
         }
         
         init(feed: Feed) {
-            self.init(atomFeedUrl: feed.feedUrl)
+            self.init(feedUrl: feed.feedUrl)
         }
     }
     

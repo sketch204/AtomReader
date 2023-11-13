@@ -21,7 +21,7 @@ struct ArticleDTO: Codable {
         self.articleUrl = article.articleUrl
         self.publishedAt = article.publishedAt
         self.authors = article.authors
-        self.feedId = article.feedId.atomFeedUrl
+        self.feedId = article.feedId.feedUrl
     }
 }
 
@@ -32,6 +32,6 @@ extension Article {
         self.articleUrl = dto.articleUrl
         self.publishedAt = dto.publishedAt
         self.authors = dto.authors
-        self.feedId = Feed.ID(atomFeedUrl: dto.feedId)
+        self.feedId = Feed.ID(feedUrl: dto.feedId)
     }
 }
