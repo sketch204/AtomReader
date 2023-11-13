@@ -52,6 +52,11 @@ struct AddFeedView: View {
                     feedUrlString = "https://inalgotov.com/feed.xml"
                     addFeed()
                 }
+                
+                Button("9to5 Mac") {
+                    feedUrlString = "https://9to5mac.com/feed"
+                    addFeed()
+                }
             }
         }
         #if os(macOS)
