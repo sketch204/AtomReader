@@ -34,7 +34,7 @@ class FileBasedPersistenceManager {
             create: true
         )
         
-        print("Initialized FileBasedPersistenceManager. Application Support URL \(applicationSupportUrl.absoluteString)")
+        Logger.persistence.trace("Initialized FileBasedPersistenceManager. Application Support URL \(self.applicationSupportUrl.absoluteString, privacy: .public)")
     }
     
     func read<Value, DTO>(
@@ -48,7 +48,7 @@ class FileBasedPersistenceManager {
             return mapper(dto)
         } catch {
             if !isNoSuchFileError(error) {
-                print("ERROR: Failed to read file at \(url) -- \(error)")
+                Logger.persistence.critical("Failed to read file at \(url) -- \(error, privacy: .public)")
             }
             return nil
         }
@@ -64,7 +64,7 @@ class FileBasedPersistenceManager {
             let data = try encoder.encode(dto)
             try data.write(to: url)
         } catch {
-            print("ERROR: Failed to write file with contents \(value), at \(url) -- \(error)")
+            Logger.persistence.critical("ERROR: Failed to write file with contents \(String(describing: value)), at \(url) -- \(error, privacy: .public)")
         }
     }
     

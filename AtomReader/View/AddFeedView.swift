@@ -74,7 +74,7 @@ struct AddFeedView: View {
                 try await store.addFeed(at: feedUrl)
                 dismiss()
             } catch {
-                print("ERROR: Failed to add feed. \(error)")
+                Logger.app.critical("Failed to add feed -- \(error)")
             }
         }
     }

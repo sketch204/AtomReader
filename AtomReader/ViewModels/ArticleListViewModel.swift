@@ -40,7 +40,7 @@ final class ArticleListViewModel {
         do {
             try await store.refresh()
         } catch {
-            print("ERROR: Failed to refresh store -- \(error)")
+            Logger.app.error("Failed to refresh store -- \(error)")
         }
     }
     

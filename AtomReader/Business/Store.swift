@@ -59,7 +59,7 @@ extension Store {
             do {
                 try await refreshArticles()
             } catch {
-                print("ERROR: \(error)")
+                Logger.app.error("Failed to refresh store -- \(error)")
             }
         }
     }
