@@ -27,6 +27,8 @@ extension FeedProvider: StoreDataProvider {
     struct UnrecognizedFeedFormat: Error {}
     
     func feed(at url: URL) async throws -> Feed {
+        Logger.network.trace("Fetching feed at \(url)")
+        
         let data = try await networkInterface.data(from: url)
         let parser = try FeedParser(data: data)
         let parsedFeed = try parser.parse()
@@ -50,6 +52,8 @@ extension FeedProvider: StoreDataProvider {
     }
     
     func articles(for feed: Feed) async throws -> [Article] {
+        Logger.network.trace("Fetching articles for \(feed.id.feedUrl)")
+        
         if let articles = self.articles[feed.id] {
             return articles
         }
