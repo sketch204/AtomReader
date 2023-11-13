@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ArticleRowView: View {
+    @AppStorage("articlePreviewMaxNumberOfLines")
+    private var articlePreviewMaxNumberOfLines: Int = 5
+    
     let article: Article
     let feed: Feed
     
@@ -38,6 +41,7 @@ struct ArticleRowView: View {
             
             if let excerpt = article.excerpt {
                 Text(excerpt)
+                    .lineLimit(articlePreviewMaxNumberOfLines)
             }
         }
         .padding(.vertical, 8)
