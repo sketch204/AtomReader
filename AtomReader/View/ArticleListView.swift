@@ -23,9 +23,6 @@ struct ArticleListView: View {
             }
         }
         .buttonStyle(.plain)
-        .navigationDestination(for: URL.self) { url in
-            WebView(url: url)
-        }
         .refreshable {
             await viewModel.refresh()
         }
