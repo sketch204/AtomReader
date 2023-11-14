@@ -18,7 +18,7 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
     @AppStorage("shouldOpenArticleInApp") private var shouldOpenArticleInApp: Bool = true
     @AppStorage("shouldOpenArticlesInSheet") private var shouldOpenArticlesInSheet: Bool = false
     
-    @Environment(AppActions.self) private var appActions
+    @Environment(\.appActions) private var appActions
     @Environment(\.openURL) private var openUrl
     
     @State private var viewedArticle: Article?

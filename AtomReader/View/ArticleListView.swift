@@ -74,5 +74,4 @@ struct ArticleListView: View {
         )
     )
     .previewStore()
-    .previewAppActions()
 }

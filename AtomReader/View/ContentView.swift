@@ -9,7 +9,6 @@ import SwiftUI
 import AtomParser
 
 struct ContentView: View {
-    @Environment(AppActions.self) private var appActions
     @Environment(Store.self) private var store
     
     @State private var filter: ArticleFilter? = ArticleFilter.none
@@ -45,5 +44,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .previewStore()
-        .previewAppActions()
 }

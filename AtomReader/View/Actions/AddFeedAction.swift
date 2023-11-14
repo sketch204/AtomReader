@@ -10,7 +10,7 @@ import SwiftUI
 struct AddFeedAction: AppAction {}
 
 fileprivate struct AddFeedActionHandler: ViewModifier {
-    @Environment(AppActions.self) private var appActions
+    @Environment(\.appActions) private var appActions
     
     @State private var isAddingFeed = false
     

@@ -9,8 +9,6 @@ import SwiftUI
 
 @main
 struct AtomReaderApp: App {
-    private let appActions = AppActions()
-    
     private let store = Store(
         dataProvider: FeedProvider(
             networkInterface: URLSessionBasedNetworkInterface()
@@ -25,6 +23,5 @@ struct AtomReaderApp: App {
                 .handleRemoveFeedAction()
         }
         .environment(store)
-        .environment(appActions)
     }
 }

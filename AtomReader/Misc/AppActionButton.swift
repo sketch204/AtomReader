@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AppActionButton<Action, Content>: View where Action: AppAction, Content: View {
-    @Environment(AppActions.self) private var appActions
+    @Environment(\.appActions) private var appActions
     
     let action: Action
     let label: () -> Content

@@ -12,7 +12,7 @@ struct RemoveFeedAction: AppAction {
 }
 
 fileprivate struct RemoveFeedActionHandler: ViewModifier {
-    @Environment(AppActions.self) private var appActions
+    @Environment(\.appActions) private var appActions
     @Environment(Store.self) private var store
     
     @State private var isShowingConfirmationDialog: Bool = false
