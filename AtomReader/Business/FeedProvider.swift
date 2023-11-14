@@ -7,6 +7,7 @@
 
 import Foundation
 import AtomParser
+import RegexBuilder
 
 protocol FeedProviderNetworkInterface {
     func data(from url: URL) async throws -> Data
@@ -78,14 +79,13 @@ extension FeedProvider {
     
     func articles(from rss: AtomParser.RSS, feedUrl: URL) -> [Article] {
         rss.channel.items.compactMap { item -> Article? in
-            #warning("TODO: Optional fields")
             guard let link = item.link,
                   let publishedAt = item.pubDate
             else { return nil }
             
             return Article(
-                title: item.title ?? "Untitled",
-                summary: item.description,
+                title: item.title.map(removeHtml(from:)) ?? "Untitled",
+                summary: item.description.map(removeHtml(from:)),
                 articleUrl: link,
                 publishedAt: publishedAt,
                 authors: [item.author].compactMap({ $0 }),
@@ -120,13 +120,19 @@ extension FeedProvider {
         parsedFeed.entries
             .map { entry in
                 Article(
-                    title: entry.title.content,
-                    summary: entry.summary?.content,
+                    title: removeHtml(from: entry.title.content),
+                    summary: entry.summary.map({ removeHtml(from: $0.content) }),
                     articleUrl: entry.uri,
                     publishedAt: entry.published ?? entry.updated,
                     authors: entry.authors.map(\.name),
                     feedId: Feed.ID(feedUrl: feedUrl)
                 )
             }
+    }
+}
+
+extension FeedProvider {
+    func removeHtml(from input: String) -> String {
+        input.replacing(/\<.*?\>/, with: "")
     }
 }

@@ -223,6 +223,58 @@ final class FeedProviderAtomParsingTests: XCTestCase {
         
         XCTAssertEqual(articles, expectedArticles)
     }
+    
+    func test_articlesFrom_whenHtmlPresentInString_removesHtml() {
+        let feedUrl = URL(string: "https://hello.mock")!
+        let publishedAt1 = Date()
+        let publishedAt2 = Date()
+        
+        let atom = atomFeed(
+            title: "A title",
+            description: "A description",
+            websiteUrl: "https://hello.mock",
+            entries: [
+                atomEntry(
+                    title: "Entry <i>1</i>",
+                    summary: "<p>Description 1</p>",
+                    articleUrl: "https://hello.mock/1",
+                    publishedAt: nil,
+                    updatedAt: publishedAt1,
+                    authors: []
+                ),
+                atomEntry(
+                    title: "Entry <i>2</i>",
+                    summary: "<p>Description 2</p>",
+                    articleUrl: "https://hello.mock/2",
+                    publishedAt: nil,
+                    updatedAt: publishedAt1,
+                    authors: []
+                ),
+            ]
+        )
+        
+        let articles = sut.articles(from: atom, feedUrl: feedUrl)
+        let expectedArticles = [
+            Article(
+                title: "Entry 1",
+                summary: "Description 1",
+                articleUrl: URL(string: "https://hello.mock/1")!,
+                publishedAt: publishedAt1,
+                authors: [],
+                feedId: Feed.ID(feedUrl: URL(string: "https://hello.mock")!)
+            ),
+            Article(
+                title: "Entry 2",
+                summary: "Description 2",
+                articleUrl: URL(string: "https://hello.mock/2")!,
+                publishedAt: publishedAt2,
+                authors: [],
+                feedId: Feed.ID(feedUrl: feedUrl)
+            ),
+        ]
+        
+        XCTAssertEqual(articles, expectedArticles)
+    }
 }
 
 extension FeedProviderAtomParsingTests {

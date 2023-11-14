@@ -230,6 +230,56 @@ final class FeedProviderRSSParsingTests: XCTestCase {
         
         XCTAssertEqual(articles, expectedArticles)
     }
+    
+    func test_articlesFrom_whenHtmlPresentInString_removesHtml() {
+        let publishDate1 = Date()
+        let publishDate2 = Date()
+        let feedId = Feed.ID(feedUrl: URL(string: "https://hello.mock")!)
+        
+        let rss = rssFeed(
+            title: "A channel",
+            description: "A really awesome channel",
+            link: "https://hello.mock",
+            items: [
+                rssItem(
+                    title: "Item <bold>1</bold>",
+                    description: "Description <bold>1</bold>",
+                    articleUrl: "https://hello.mock/1",
+                    publishedAt: publishDate1,
+                    author: nil
+                ),
+                rssItem(
+                    title: "Item <bold>2</bold>",
+                    description: "Description <bold>2</bold>",
+                    articleUrl: "https://hello.mock/2",
+                    publishedAt: publishDate2,
+                    author: nil
+                ),
+            ]
+        )
+        
+        let articles = sut.articles(from: rss, feedUrl: feedId.feedUrl)
+        let expectedArticles = [
+            Article(
+                title: "Item 1",
+                summary: "Description 1",
+                articleUrl: URL(string: "https://hello.mock/1")!,
+                publishedAt: publishDate1,
+                authors: [],
+                feedId: feedId
+            ),
+            Article(
+                title: "Item 2",
+                summary: "Description 2",
+                articleUrl: URL(string: "https://hello.mock/2")!,
+                publishedAt: publishDate2,
+                authors: [],
+                feedId: feedId
+            ),
+        ]
+        
+        XCTAssertEqual(articles, expectedArticles)
+    }
 }
 
 extension FeedProviderRSSParsingTests {
