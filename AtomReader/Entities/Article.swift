@@ -9,7 +9,7 @@ import Foundation
 
 struct Article: Hashable {
     let title: String
-    let excerpt: String?
+    let summary: String?
     let articleUrl: URL
     let publishedAt: Date
     let authors: [String]

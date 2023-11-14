@@ -27,7 +27,7 @@ let mockFeed1 = Feed(
 )
 let mockFeed1Article1 = Article(
     title: "Hello Feed Article 1",
-    excerpt: nil,
+    summary: nil,
     articleUrl: URL(string: "https://hello.mock/1")!,
     publishedAt: formatter.date(from: "2023-09-07T00:00:00+00:00")!,
     authors: ["Inal Gotov"],
@@ -35,7 +35,7 @@ let mockFeed1Article1 = Article(
 )
 let mockFeed1Article2 = Article(
     title: "Hello Feed Article 2",
-    excerpt: nil,
+    summary: nil,
     articleUrl: URL(string: "https://hello.mock/2")!,
     publishedAt: formatter.date(from: "2023-09-07T00:00:00+00:00")!,
     authors: ["Inal Gotov"],
@@ -84,7 +84,7 @@ let mockFeed2 = Feed(
 )
 let mockFeed2Article1 = Article(
     title: "Goodbye Feed Article 1",
-    excerpt: nil,
+    summary: nil,
     articleUrl: URL(string: "https://goodbye.mock/1")!,
     publishedAt: formatter.date(from: "2023-09-07T00:00:00+00:00")!,
     authors: [],

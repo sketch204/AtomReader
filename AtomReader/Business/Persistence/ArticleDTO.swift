@@ -17,7 +17,7 @@ struct ArticleDTO: Codable {
     
     init(from article: Article) {
         self.title = article.title
-        self.excerpt = article.excerpt
+        self.excerpt = article.summary
         self.articleUrl = article.articleUrl
         self.publishedAt = article.publishedAt
         self.authors = article.authors
@@ -28,7 +28,7 @@ struct ArticleDTO: Codable {
 extension Article {
     init(from dto: ArticleDTO) {
         self.title = dto.title
-        self.excerpt = dto.excerpt
+        self.summary = dto.excerpt
         self.articleUrl = dto.articleUrl
         self.publishedAt = dto.publishedAt
         self.authors = dto.authors

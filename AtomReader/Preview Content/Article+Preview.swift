@@ -10,7 +10,7 @@ import Foundation
 extension Article {
     static let previewFeed1Article1 = Self(
         title: "Something happened!",
-        excerpt: "Something happened and we gotta act serious about it!",
+        summary: "Something happened and we gotta act serious about it!",
         articleUrl: URL(string: "https://super.serious/1")!,
         publishedAt: Date(),
         authors: ["Super serious dude"],
@@ -19,7 +19,7 @@ extension Article {
     
     static let previewFeed1Article2 = Self(
         title: "Something else happened!",
-        excerpt: "Some other thing happened and we gotta act even more serious about it! You must care!",
+        summary: "Some other thing happened and we gotta act even more serious about it! You must care!",
         articleUrl: URL(string: "https://super.serious/2")!,
         publishedAt: Date(),
         authors: ["Super serious dude"],
@@ -30,7 +30,7 @@ extension Article {
     
     static let previewFeed2Article1 = Self(
         title: "I think I thing happened?",
-        excerpt: "Did something happen? Idk. We're super chill here.",
+        summary: "Did something happen? Idk. We're super chill here.",
         articleUrl: URL(string: "https://super.chill/1")!,
         publishedAt: Date(),
         authors: ["Some dude"],

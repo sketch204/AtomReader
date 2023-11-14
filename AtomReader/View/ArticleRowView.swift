@@ -39,7 +39,7 @@ struct ArticleRowView: View {
                     .font(.caption)
             }
             
-            if let excerpt = article.excerpt {
+            if let excerpt = article.summary {
                 Text(excerpt)
                     .lineLimit(articlePreviewMaxNumberOfLines)
             }
@@ -56,7 +56,7 @@ struct ArticleRowView: View {
         ArticleRowView(
                 article: Article(
                 title: "An article",
-                excerpt: "A show excerpt of the article. This is a really long excerpt. It has to span multiple lines. The more the better. This way I can test how a long excerpt will look in a list of feeds. It's not long enough! Make it longer. It must be three lines at the least.",
+                summary: "A show excerpt of the article. This is a really long excerpt. It has to span multiple lines. The more the better. This way I can test how a long excerpt will look in a list of feeds. It's not long enough! Make it longer. It must be three lines at the least.",
                 articleUrl: URL(string: "https://feed.xml/articles/1")!,
                 publishedAt: Date(),
                 authors: ["Cool Dude"],

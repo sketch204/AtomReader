@@ -83,7 +83,7 @@ extension FeedProvider {
             
             return Article(
                 title: item.title ?? "Untitled",
-                excerpt: item.description,
+                summary: item.description,
                 articleUrl: link,
                 publishedAt: publishedAt,
                 authors: [item.author].compactMap({ $0 }),
@@ -118,7 +118,7 @@ extension FeedProvider {
             .map { entry in
                 Article(
                     title: entry.title.content,
-                    excerpt: entry.summary?.content,
+                    summary: entry.summary?.content,
                     articleUrl: entry.uri,
                     publishedAt: entry.published ?? entry.updated,
                     authors: entry.authors.map(\.name),
