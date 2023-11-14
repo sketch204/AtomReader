@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import AtomReader
+@testable import AtomParser
 
 final class FeedProviderTests: XCTestCase {
     var sut: FeedProvider!
@@ -25,16 +26,5 @@ final class FeedProviderTests: XCTestCase {
         let articles = try await sut.articles(for: mockFeed1)
         
         XCTAssertEqual(articles, [mockFeed1Article1, mockFeed1Article2])
-    }
-}
-
-
-struct MockFeedProviderNetworkInterface: FeedProviderNetworkInterface {
-    func data(from url: URL) async throws -> Data {
-        switch url {
-        case mockFeed1.feedUrl: mockFeed1Data
-        case mockFeed2.feedUrl: mockFeed2Data
-        default: throw CocoaError(CocoaError.Code(rawValue: 0))
-        }
     }
 }
