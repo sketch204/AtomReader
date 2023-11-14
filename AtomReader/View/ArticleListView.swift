@@ -21,8 +21,13 @@ struct ArticleListView: View {
                     feed: viewModel.feed(for: article)
                 )
             }
+            .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
+        .overlay {
+            if viewModel.doesUserHaveNoFeeds {
+                noFeedsView
+            }
+        }
         .refreshable {
             await viewModel.refresh()
         }
@@ -49,7 +54,17 @@ struct ArticleListView: View {
         }
     }
     
-    
+    var noFeedsView: some View {
+        ContentUnavailableView {
+            Text("No Feeds")
+        } description: {
+            Text("Add a feed to start tracking its articles")
+        } actions: {
+            AppActionButton(AddFeedAction()) {
+                Label("Add Feed", systemImage: "plus")
+            }
+        }
+    }
 }
 
 #Preview {

@@ -9,8 +9,12 @@ import Foundation
 
 @Observable
 final class ArticleListViewModel {
-    let store: Store
+    private let store: Store
     var filter: ArticleFilter = .none
+    
+    var doesUserHaveNoFeeds: Bool {
+        store.feeds.isEmpty
+    }
     
     private(set) var isLoading: Bool = false
     
