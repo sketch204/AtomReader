@@ -10,28 +10,28 @@ import SwiftUI
 struct AppActionButton<Action, Content>: View where Action: AppAction, Content: View {
     @Environment(AppActions.self) private var appActions
     
-    let actionProvider: () -> Action
+    let action: Action
     let label: () -> Content
 
-    init(_ actionProvider: @autoclosure @escaping () -> Action, @ViewBuilder label: @escaping () -> Content) {
-        self.actionProvider = actionProvider
+    init(_ action: Action, @ViewBuilder label: @escaping () -> Content) {
+        self.action = action
         self.label = label
     }
     
     var body: some View {
-        Button(action: { appActions.perform(actionProvider()) }, label: label)
+        Button(action: { appActions.perform(action) }, label: label)
     }
 }
 
 extension AppActionButton where Content == Text {
-    init(_ titleKey: LocalizedStringKey, actionProvider: @autoclosure @escaping () -> Action) {
-        self.init(actionProvider()) {
+    init(_ titleKey: LocalizedStringKey, action: Action) {
+        self.init(action) {
             Text(titleKey)
         }
     }
     
-    init<S>(_ title: S, actionProvider: @autoclosure @escaping () -> Action) where S: StringProtocol {
-        self.init(actionProvider()) {
+    init<S>(_ title: S, action: Action) where S: StringProtocol {
+        self.init(action) {
             Text(title)
         }
     }
