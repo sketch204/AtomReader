@@ -45,6 +45,6 @@ final class ArticleListViewModel {
     }
     
     func feed(for article: Article) -> Feed {
-        store.feed(for: article)
+        store.feed(for: article) ?? .unknown
     }
 }

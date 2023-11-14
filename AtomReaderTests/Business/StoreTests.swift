@@ -180,4 +180,20 @@ extension StoreTests {
         
         XCTAssertEqual(feed, mockFeed2)
     }
+    
+    func test_feedForArticle_whenArticleFromNonExistentFeedProvided_returnsNil() {
+        let sut = makeTestStore()
+        
+        let article = Article(
+            title: "Title",
+            summary: nil,
+            articleUrl: URL(string: "non-existent")!,
+            publishedAt: Date(),
+            authors: [],
+            feedId: Feed.ID(feedUrl: URL(string: "non-existent")!)
+        )
+        let feed = sut.feed(for: article)
+        
+        XCTAssertNil(feed)
+    }
 }

@@ -70,16 +70,16 @@ extension Store {
     }
     
     func removeFeed(_ feed: Feed) {
-        feeds.removeAll(where: { $0.id == feed.id })
         articles.removeAll(where: { $0.feedId == feed.id })
+        feeds.removeAll(where: { $0.id == feed.id })
         persistenceManager?.save(feeds)
         persistenceManager?.save(articles)
     }
     
     func removeFeeds(at offsets: IndexSet) {
         let removedFeedIds = Set(offsets.map({ feeds[$0].id }))
-        feeds.remove(atOffsets: offsets)
         articles.removeAll(where: { removedFeedIds.contains($0.feedId) })
+        feeds.remove(atOffsets: offsets)
         persistenceManager?.save(feeds)
         persistenceManager?.save(articles)
     }
@@ -118,10 +118,7 @@ extension Store {
 }
 
 extension Store {
-    func feed(for article: Article) -> Feed {
-        guard let output = feeds.first(where: { $0.id == article.feedId }) else {
-            fatalError("An article belongs to a non-existent feed")
-        }
-        return output
+    func feed(for article: Article) -> Feed? {
+        feeds.first(where: { $0.id == article.feedId })
     }
 }
