@@ -108,8 +108,9 @@ extension FeedProvider {
         return Feed(
             name: parsedFeed.title.content,
             description: parsedFeed.subtitle?.content,
-            // FIXME: iconUrl
-            iconUrl: nil,//parsedFeed.icon?.path,
+            iconUrl: parsedFeed.icon
+                .map(\.path)
+                .map({ websiteLink.url.appending(path: $0) }),
             websiteUrl: websiteLink.url,
             feedUrl: feedUrl
         )
