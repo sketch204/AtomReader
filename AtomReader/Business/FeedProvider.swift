@@ -33,22 +33,24 @@ extension FeedProvider: StoreDataProvider {
         let parser = try FeedParser(data: data)
         let parsedFeed = try parser.parse()
         
-        let results: (feed: Feed, articles: [Article])
+        let feed: Feed, articles: [Article]
         
-        if let parsedFeed = parsedFeed as? AtomParser.Feed {
-            results = try self.data(from: parsedFeed, feedUrl: url)
+        if let atomFeed = parsedFeed as? AtomParser.Feed {
+            feed = try self.feed(from: atomFeed, feedUrl: url)
+            articles = self.articles(from: atomFeed, feedUrl: url)
         }
-        else if let parsedFeed = parsedFeed as? AtomParser.RSS {
-            results = try self.data(from: parsedFeed, feedUrl: url)
+        else if let rss = parsedFeed as? AtomParser.RSS {
+            feed = self.feed(from: rss, feedUrl: url)
+            articles = self.articles(from: rss, feedUrl: url)
         }
         else {
             throw UnrecognizedFeedFormat()
         }
         
-        self.feeds[results.feed.id] = results.feed
-        self.articles[results.feed.id] = results.articles
+        self.feeds[feed.id] = feed
+        self.articles[feed.id] = articles
         
-        return results.feed
+        return feed
     }
     
     func articles(for feed: Feed) async throws -> [Article] {
@@ -64,18 +66,18 @@ extension FeedProvider: StoreDataProvider {
 }
 
 extension FeedProvider {
-    func data(from rss: AtomParser.RSS, feedUrl: URL) throws -> (feed: Feed, articles: [Article]) {
-        let channel = rss.channel
-        
-        let feed = Feed(
-            name: channel.title,
-            description: channel.description,
-            iconUrl: channel.image?.url,
-            websiteUrl: channel.link,
+    func feed(from rss: AtomParser.RSS, feedUrl: URL) -> Feed {
+        Feed(
+            name: rss.channel.title,
+            description: rss.channel.description,
+            iconUrl: rss.channel.image?.url,
+            websiteUrl: rss.channel.link,
             feedUrl: feedUrl
         )
-        
-        let articles = channel.items.compactMap { item -> Article? in
+    }
+    
+    func articles(from rss: AtomParser.RSS, feedUrl: URL) -> [Article] {
+        rss.channel.items.compactMap { item -> Article? in
             #warning("TODO: Optional fields")
             guard let link = item.link,
                   let publishedAt = item.pubDate
@@ -87,11 +89,9 @@ extension FeedProvider {
                 articleUrl: link,
                 publishedAt: publishedAt,
                 authors: [item.author].compactMap({ $0 }),
-                feedId: feed.id
+                feedId: Feed.ID(feedUrl: feedUrl)
             )
         }
-        
-        return (feed, articles)
     }
 }
 
@@ -99,13 +99,13 @@ extension FeedProvider {
 extension FeedProvider {
     struct RequiredLinksNotFound: Error {}
     
-    func data(from parsedFeed: AtomParser.Feed, feedUrl: URL) throws -> (feed: Feed, articles: [Article]) {
+    func feed(from parsedFeed: AtomParser.Feed, feedUrl: URL) throws -> Feed {
         guard let websiteLink = parsedFeed.links.first(where: { $0.relationship == .alternate })
         else {
             throw RequiredLinksNotFound()
         }
         
-        let feed = Feed(
+        return Feed(
             name: parsedFeed.title.content,
             description: parsedFeed.subtitle?.content,
             // FIXME: iconUrl
@@ -113,8 +113,10 @@ extension FeedProvider {
             websiteUrl: websiteLink.url,
             feedUrl: feedUrl
         )
-        
-        let articles = parsedFeed.entries
+    }
+    
+    func articles(from parsedFeed: AtomParser.Feed, feedUrl: URL) -> [Article] {
+        parsedFeed.entries
             .map { entry in
                 Article(
                     title: entry.title.content,
@@ -122,10 +124,8 @@ extension FeedProvider {
                     articleUrl: entry.uri,
                     publishedAt: entry.published ?? entry.updated,
                     authors: entry.authors.map(\.name),
-                    feedId: feed.id
+                    feedId: Feed.ID(feedUrl: feedUrl)
                 )
             }
-        
-        return (feed, articles)
     }
 }
