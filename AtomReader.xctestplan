@@ -23,15 +23,6 @@
         "identifier" : "2DAA20432AFEC39F0098222E",
         "name" : "AtomReaderTests"
       }
-    },
-    {
-      "enabled" : false,
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:AtomReader.xcodeproj",
-        "identifier" : "2DAA204D2AFEC39F0098222E",
-        "name" : "AtomReaderUITests"
-      }
     }
   ],
   "version" : 1
