@@ -51,6 +51,9 @@
 		2D4D68622B05756F00C8EFAA /* RenameFeedAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68612B05756F00C8EFAA /* RenameFeedAction.swift */; };
 		2D4D68662B0576B700C8EFAA /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68652B0576B700C8EFAA /* FeedRowView.swift */; };
 		2D4D68682B05770C00C8EFAA /* Feed+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68672B05770C00C8EFAA /* Feed+View.swift */; };
+		2D4D686B2B05851A00C8EFAA /* ReadingHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D686A2B05851A00C8EFAA /* ReadingHistoryStore.swift */; };
+		2D4D686D2B0585A600C8EFAA /* ReadArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D686C2B0585A600C8EFAA /* ReadArticle.swift */; };
+		2D4D686F2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D686E2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -115,6 +118,9 @@
 		2D4D68612B05756F00C8EFAA /* RenameFeedAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameFeedAction.swift; sourceTree = "<group>"; };
 		2D4D68652B0576B700C8EFAA /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
 		2D4D68672B05770C00C8EFAA /* Feed+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+View.swift"; sourceTree = "<group>"; };
+		2D4D686A2B05851A00C8EFAA /* ReadingHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryStore.swift; sourceTree = "<group>"; };
+		2D4D686C2B0585A600C8EFAA /* ReadArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadArticle.swift; sourceTree = "<group>"; };
+		2D4D686E2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryStoreTests.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 			children = (
 				2DAA20642AFEFB320098222E /* Article.swift */,
 				2DAA20662AFEFB900098222E /* Feed.swift */,
+				2D4D686C2B0585A600C8EFAA /* ReadArticle.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -165,6 +172,7 @@
 			children = (
 				2D4D68082B0078EE00C8EFAA /* Persistence */,
 				2DAA20682AFEFD1C0098222E /* Store.swift */,
+				2D4D686A2B05851A00C8EFAA /* ReadingHistoryStore.swift */,
 				2D4D67EE2AFF231E00C8EFAA /* FeedProvider.swift */,
 				2D4D67F02AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift */,
 			);
@@ -230,6 +238,7 @@
 			children = (
 				2DAA206A2AFEFF110098222E /* StoreTests.swift */,
 				2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */,
+				2D4D686E2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift */,
 				2D4D68522B030C0600C8EFAA /* FeedProvider */,
 			);
 			path = Business;
@@ -470,6 +479,7 @@
 				2D4D68162B0134D100C8EFAA /* ArticleFilter.swift in Sources */,
 				2D4D683F2B0151BA00C8EFAA /* OpenArticleAction.swift in Sources */,
 				2D4D68512B01D1D600C8EFAA /* Bundle+Helpers.swift in Sources */,
+				2D4D686B2B05851A00C8EFAA /* ReadingHistoryStore.swift in Sources */,
 				2D4D68622B05756F00C8EFAA /* RenameFeedAction.swift in Sources */,
 				2D4D68052B00669E00C8EFAA /* AddFeedView.swift in Sources */,
 				2D4D68222B01383500C8EFAA /* Feed+Preview.swift in Sources */,
@@ -484,6 +494,7 @@
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
 				2D4D68662B0576B700C8EFAA /* FeedRowView.swift in Sources */,
 				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,
+				2D4D686D2B0585A600C8EFAA /* ReadArticle.swift in Sources */,
 				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,
 				2D4D683B2B014CAE00C8EFAA /* AddFeedAction.swift in Sources */,
 				2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */,
@@ -518,6 +529,7 @@
 				2D4D68542B030C2500C8EFAA /* FeedProviderRSSParsingTests.swift in Sources */,
 				2D4D68582B030C8300C8EFAA /* FeedProviderAtomParsingTests.swift in Sources */,
 				2D4D685A2B0313BD00C8EFAA /* FeedProviderUtilsTests.swift in Sources */,
+				2D4D686F2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift in Sources */,
 				2D2EE08C2AFF0600006C4E14 /* StorePersistenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
