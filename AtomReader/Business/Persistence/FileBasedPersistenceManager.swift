@@ -8,18 +8,8 @@
 import Foundation
 
 class FileBasedPersistenceManager {
-    private static let feedsFileName: String = "feeds"
-    private static let articlesFileName: String = "articles"
-
     private let fileManager: FileManager
     private let applicationSupportUrl: URL
-    
-    private var feedsFileUrl: URL {
-        applicationSupportUrl.appending(component: Self.feedsFileName)
-    }
-    private var articlesFileUrl: URL {
-        applicationSupportUrl.appending(component: Self.articlesFileName)
-    }
     
     private var decoder = JSONDecoder()
     private var encoder = JSONEncoder()
@@ -75,6 +65,13 @@ class FileBasedPersistenceManager {
 }
 
 extension FileBasedPersistenceManager: StorePersistenceManager {
+    private var feedsFileUrl: URL {
+        applicationSupportUrl.appending(component: "feeds")
+    }
+    private var articlesFileUrl: URL {
+        applicationSupportUrl.appending(component: "articles")
+    }
+    
     func load() async -> (feeds: [Feed], articles: [Article]) {
         let feeds = read(
             [FeedDTO].self,
@@ -103,5 +100,19 @@ extension FileBasedPersistenceManager: StorePersistenceManager {
     
     func save(_ articles: [Article]) {
         write(articles, at: articlesFileUrl, mapper: { $0.map(ArticleDTO.init(from:)) })
+    }
+}
+
+extension FileBasedPersistenceManager: ReadingHistoryStorePersistenceManager {
+    private var readArticlesFileUrl: URL {
+        applicationSupportUrl.appending(component: "readingHistory")
+    }
+    
+    func load() async -> [ReadArticle] {
+        read([ReadArticleDTO].self, at: readArticlesFileUrl, mapper: { $0.map(ReadArticle.init(from:)) }) ?? []
+    }
+    
+    func save(_ articles: [ReadArticle]) {
+        write(articles, at: readArticlesFileUrl, mapper: { $0.map(ReadArticleDTO.init(from:)) })
     }
 }
