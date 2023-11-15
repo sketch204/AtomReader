@@ -10,7 +10,7 @@ import XCTest
 
 final class StorePersistenceTests: XCTestCase {
     func test_init_loadsFeeds_whenFeedsAvailable() async {
-        let manager = MockPersistenceManager(feeds: [mockFeed1, mockFeed2])
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1, mockFeed2])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
         
         try? await Task.sleep(for: .milliseconds(100))
@@ -19,7 +19,7 @@ final class StorePersistenceTests: XCTestCase {
     }
     
     func test_addFeed_savesFeeds() async {
-        let manager = MockPersistenceManager(feeds: [mockFeed1])
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
         
         try? await Task.sleep(for: .milliseconds(100))
@@ -31,7 +31,7 @@ final class StorePersistenceTests: XCTestCase {
     }
     
     func test_removeFeed_savesFeeds() async {
-        let manager = MockPersistenceManager(feeds: [mockFeed1, mockFeed2])
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1, mockFeed2])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
         
         try? await Task.sleep(for: .milliseconds(100))
@@ -43,7 +43,7 @@ final class StorePersistenceTests: XCTestCase {
     }
     
     func test_removeFeed_savesArticles() async {
-        let manager = MockPersistenceManager(
+        let manager = MockStorePersistenceManager(
             feeds: [mockFeed1, mockFeed2],
             articles: [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1]
         )
@@ -58,7 +58,7 @@ final class StorePersistenceTests: XCTestCase {
     }
     
     func test_refreshFeeds_savesFeeds() async throws {
-        let manager = MockPersistenceManager(feeds: [mockFeed1Old])
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1Old])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
         
         try await Task.sleep(for: .milliseconds(100))
@@ -70,7 +70,7 @@ final class StorePersistenceTests: XCTestCase {
     }
     
     func test_refreshArticles_savesArticles() async throws {
-        let manager = MockPersistenceManager(feeds: [mockFeed1])
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
         
         try await Task.sleep(for: .milliseconds(100))
@@ -82,7 +82,7 @@ final class StorePersistenceTests: XCTestCase {
     }
 }
 
-class MockPersistenceManager: StorePersistenceManager {
+class MockStorePersistenceManager: StorePersistenceManager {
     struct Call<Arguments> {
         var arguments: Arguments
     }
@@ -111,4 +111,4 @@ class MockPersistenceManager: StorePersistenceManager {
     }
 }
 
-extension MockPersistenceManager.Call: Equatable where Arguments: Equatable {}
+extension MockStorePersistenceManager.Call: Equatable where Arguments: Equatable {}
