@@ -15,6 +15,8 @@ struct Feed: Equatable {
     
     let websiteUrl: URL
     let feedUrl: URL
+    
+    var nameOverride: String?
 }
 
 extension Feed: Identifiable {
