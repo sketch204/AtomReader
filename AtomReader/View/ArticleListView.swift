@@ -47,9 +47,6 @@ struct ArticleListView: View {
             .help("Refresh all channels (⌘ R)")
             #endif
         }
-        .task {
-            await viewModel.refresh()
-        }
     }
     
     var noFeedsView: some View {

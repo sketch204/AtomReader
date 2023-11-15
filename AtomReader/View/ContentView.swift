@@ -9,6 +9,7 @@ import SwiftUI
 import AtomParser
 
 struct ContentView: View {
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(Store.self) private var store
     
     @State private var filter: ArticleFilter? = ArticleFilter.none
@@ -37,6 +38,17 @@ struct ContentView: View {
                 .navigationTitle("Articles")
             }
             .handleOpenArticleAction(navigationPath: $navigationPath)
+        }
+        .onChange(of: scenePhase) { oldValue, newValue in
+            if newValue == .active {
+                Task {
+                    do {
+                        try await store.refresh()
+                    } catch {
+                        Logger.app.critical("Failed to refresh store -- \(error)")
+                    }
+                }
+            }
         }
     }
 }
