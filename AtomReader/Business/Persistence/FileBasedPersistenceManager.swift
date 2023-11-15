@@ -7,24 +7,25 @@
 
 import Foundation
 
-class FileBasedPersistenceManager {
-    private let fileManager: FileManager
-    private let applicationSupportUrl: URL
+protocol PersistenceManagerIO {
+    var persistenceUrl: URL { get }
+    func readData(at url: URL) throws -> Data
+    func writeData(_ data: Data, to url: URL) throws
+}
+
+struct FileBasedPersistenceManager {
+    private let io: PersistenceManagerIO
+    private var persistenceUrl: URL {
+        io.persistenceUrl
+    }
     
     private var decoder = JSONDecoder()
     private var encoder = JSONEncoder()
         
-    init(fileManager: FileManager = .default) {
-        self.fileManager = fileManager
+    init(io: PersistenceManagerIO = DefaultPersistenceManagerIO()) {
+        self.io = io
         
-        self.applicationSupportUrl = try! fileManager.url(
-            for: .applicationSupportDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        )
-        
-        Logger.persistence.trace("Initialized FileBasedPersistenceManager. Application Support URL \(self.applicationSupportUrl.absoluteString, privacy: .public)")
+        Logger.persistence.trace("Initialized FileBasedPersistenceManager. Persistence URL \(io.persistenceUrl.absoluteString, privacy: .public)")
     }
     
     func read<Value, DTO>(
@@ -33,7 +34,7 @@ class FileBasedPersistenceManager {
         mapper: (DTO) -> Value
     ) -> Value? where DTO: Decodable {
         do {
-            let data = try Data(contentsOf: url)
+            let data = try io.readData(at: url)
             let dto = try decoder.decode(dtoType, from: data)
             return mapper(dto)
         } catch {
@@ -52,13 +53,13 @@ class FileBasedPersistenceManager {
         do {
             let dto = mapper(value)
             let data = try encoder.encode(dto)
-            try data.write(to: url)
+            try io.writeData(data, to: url)
         } catch {
-            Logger.persistence.critical("ERROR: Failed to write file with contents \(String(describing: value)), at \(url) -- \(error, privacy: .public)")
+            Logger.persistence.critical("Failed to write file with contents \(String(describing: value)), at \(url) -- \(error, privacy: .public)")
         }
     }
     
-    func isNoSuchFileError(_ error: Error) -> Bool {
+    private func isNoSuchFileError(_ error: Error) -> Bool {
         (error as NSError).domain == "NSCocoaErrorDomain"
         && (error as NSError).code == 260
     }
@@ -66,10 +67,10 @@ class FileBasedPersistenceManager {
 
 extension FileBasedPersistenceManager: StorePersistenceManager {
     private var feedsFileUrl: URL {
-        applicationSupportUrl.appending(component: "feeds")
+        persistenceUrl.appending(component: "feeds")
     }
     private var articlesFileUrl: URL {
-        applicationSupportUrl.appending(component: "articles")
+        persistenceUrl.appending(component: "articles")
     }
     
     func load() async -> (feeds: [Feed], articles: [Article]) {
@@ -105,7 +106,7 @@ extension FileBasedPersistenceManager: StorePersistenceManager {
 
 extension FileBasedPersistenceManager: ReadingHistoryStorePersistenceManager {
     private var readArticlesFileUrl: URL {
-        applicationSupportUrl.appending(component: "readingHistory")
+        persistenceUrl.appending(component: "readingHistory")
     }
     
     func load() async -> [ReadArticle] {
