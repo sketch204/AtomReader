@@ -17,7 +17,7 @@ struct ArticleFilterView: View {
             
             Section {
                 ForEachFeed { feed in
-                    Text(feed.name)
+                    FeedRowView(feed: feed)
                         .tag(ArticleFilter.feed(feed.id))
                 }
             }

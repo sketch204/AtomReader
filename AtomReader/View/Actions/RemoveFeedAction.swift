@@ -20,7 +20,7 @@ fileprivate struct RemoveFeedActionHandler: ViewModifier {
     
     private var confirmationDialogTitle: LocalizedStringKey {
         if let removeAction {
-            "Are you sure you want to remove \(removeAction.feed.name)?"
+            "Are you sure you want to remove \(removeAction.feed.displayName)?"
         } else {
             "Are you sure you want to remove this feed?"
         }

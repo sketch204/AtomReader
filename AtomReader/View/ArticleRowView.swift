@@ -34,7 +34,7 @@ struct ArticleRowView: View {
                         .multilineTextAlignment(.trailing)
                 }
                 
-                Text(feed.name)
+                Text(feed.displayName)
                     .foregroundStyle(.secondary)
                     .font(.caption)
             }
