@@ -47,6 +47,7 @@
 		2D4D68582B030C8300C8EFAA /* FeedProviderAtomParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68572B030C8300C8EFAA /* FeedProviderAtomParsingTests.swift */; };
 		2D4D685A2B0313BD00C8EFAA /* FeedProviderUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68592B0313BD00C8EFAA /* FeedProviderUtilsTests.swift */; };
 		2D4D685C2B031FB700C8EFAA /* Feed+Unknown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D685B2B031FB700C8EFAA /* Feed+Unknown.swift */; };
+		2D4D685F2B056D0B00C8EFAA /* RenameFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D685E2B056D0B00C8EFAA /* RenameFeedView.swift */; };
 		2D4D68662B0576B700C8EFAA /* FeedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68652B0576B700C8EFAA /* FeedRowView.swift */; };
 		2D4D68682B05770C00C8EFAA /* Feed+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68672B05770C00C8EFAA /* Feed+View.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
@@ -109,6 +110,7 @@
 		2D4D68572B030C8300C8EFAA /* FeedProviderAtomParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderAtomParsingTests.swift; sourceTree = "<group>"; };
 		2D4D68592B0313BD00C8EFAA /* FeedProviderUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedProviderUtilsTests.swift; sourceTree = "<group>"; };
 		2D4D685B2B031FB700C8EFAA /* Feed+Unknown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Unknown.swift"; sourceTree = "<group>"; };
+		2D4D685E2B056D0B00C8EFAA /* RenameFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameFeedView.swift; sourceTree = "<group>"; };
 		2D4D68652B0576B700C8EFAA /* FeedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowView.swift; sourceTree = "<group>"; };
 		2D4D68672B05770C00C8EFAA /* Feed+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+View.swift"; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */,
+				2D4D68602B05756000C8EFAA /* RenameFeed */,
 				2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */,
 				2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */,
 			);
@@ -271,6 +274,14 @@
 				2D4D68592B0313BD00C8EFAA /* FeedProviderUtilsTests.swift */,
 			);
 			path = FeedProvider;
+			sourceTree = "<group>";
+		};
+		2D4D68602B05756000C8EFAA /* RenameFeed */ = {
+			isa = PBXGroup;
+			children = (
+				2D4D685E2B056D0B00C8EFAA /* RenameFeedView.swift */,
+			);
+			path = RenameFeed;
 			sourceTree = "<group>";
 		};
 		2DAA202A2AFEC39D0098222E = {
@@ -466,6 +477,7 @@
 				2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */,
 				2D4D68002AFF31EB00C8EFAA /* ArticleRowView.swift in Sources */,
 				2D4D68262B01397A00C8EFAA /* PreviewStoreDataProvider.swift in Sources */,
+				2D4D685F2B056D0B00C8EFAA /* RenameFeedView.swift in Sources */,
 				2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */,
 				2D4D67F12AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift in Sources */,
 				2D4D67EF2AFF231E00C8EFAA /* FeedProvider.swift in Sources */,
