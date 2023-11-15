@@ -95,8 +95,10 @@ extension Store {
 extension Store {
     func refreshFeeds() async throws {
         var feeds = [Feed]()
-        for feed in self.feeds {
-            feeds.append(try await dataProvider.feed(at: feed.feedUrl))
+        for oldFeed in self.feeds {
+            var newFeed = try await dataProvider.feed(at: oldFeed.feedUrl)
+            newFeed.nameOverride = oldFeed.nameOverride
+            feeds.append(newFeed)
         }
         self.feeds = feeds
         persistenceManager?.save(feeds)
@@ -120,5 +122,18 @@ extension Store {
 extension Store {
     func feed(for article: Article) -> Feed? {
         feeds.first(where: { $0.id == article.feedId })
+    }
+}
+
+extension Store {
+    func rename(feedId: Feed.ID, to newName: String?) {
+        guard let index = feeds.firstIndex(where: { $0.id == feedId }) else { return }
+        
+        if newName?.isEmpty ?? true {
+            feeds[index].nameOverride = nil
+        } else {
+            feeds[index].nameOverride = newName
+        }
+        persistenceManager?.save(feeds)
     }
 }

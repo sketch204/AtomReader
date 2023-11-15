@@ -70,6 +70,20 @@ extension StoreTests {
         XCTAssertEqual(sut.feeds, [mockFeed1])
     }
     
+    func test_refreshFeeds_preservesOldNameOverrides() async throws {
+        let nameOverride = "Some custom name"
+        var oldFeed = mockFeed1Old
+        oldFeed.nameOverride = nameOverride
+        let sut = Store(dataProvider: MockDataProvider(), feeds: [oldFeed])
+        
+        try await sut.refreshFeeds()
+        
+        var expectedFeed = mockFeed1
+        expectedFeed.nameOverride = nameOverride
+        
+        XCTAssertEqual(sut.feeds, [expectedFeed])
+    }
+    
     func test_refreshArticles_pullsNewArticles() async throws {
         let sut = Store(dataProvider: MockDataProvider(), feeds: [mockFeed1])
         
@@ -195,5 +209,49 @@ extension StoreTests {
         let feed = sut.feed(for: article)
         
         XCTAssertNil(feed)
+    }
+}
+
+extension StoreTests {
+    func test_renameFeed_whenRenamingNonExistentFeed_makesNoChange() {
+        let sut = makeTestStore()
+        
+        let feedId = Feed.ID(feedUrl: URL(string: "non-existent")!)
+        sut.rename(feedId: feedId, to: "some name")
+        
+        XCTAssertEqual(sut.feeds, mockFeeds)
+    }
+    
+    func test_renameFeed_whenRenamingExistingFeedWithName_renamesFeed() {
+        let sut = makeTestStore()
+        let newName = "Mock feed 1 new name"
+        
+        sut.rename(feedId: mockFeed1.id, to: newName)
+        var expectedFeed = mockFeed1
+        expectedFeed.nameOverride = newName
+        
+        XCTAssertEqual(sut.feeds.first(where: { $0.id == mockFeed1.id }), expectedFeed)
+    }
+    
+    func test_renameFeed_whenRenamingExistingFeedWithNil_resetFeedName() {
+        var renamedFeed = mockFeed1
+        renamedFeed.nameOverride = "Mock feed 1 new name"
+        
+        let sut = makeTestStore(feeds: [renamedFeed, mockFeed2])
+        
+        sut.rename(feedId: mockFeed1.id, to: nil)
+        
+        XCTAssertEqual(sut.feeds.first(where: { $0.id == mockFeed1.id }), mockFeed1)
+    }
+    
+    func test_renameFeed_whenRenamingExistingFeedWithEmptyString_resetFeedName() {
+        var renamedFeed = mockFeed1
+        renamedFeed.nameOverride = "Mock feed 1 new name"
+        
+        let sut = makeTestStore(feeds: [renamedFeed, mockFeed2])
+        
+        sut.rename(feedId: mockFeed1.id, to: "")
+        
+        XCTAssertEqual(sut.feeds.first(where: { $0.id == mockFeed1.id }), mockFeed1)
     }
 }
