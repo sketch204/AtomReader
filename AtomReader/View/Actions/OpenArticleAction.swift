@@ -35,7 +35,7 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
                 handleAction(action)
             }
             .sheet(item: $viewedArticle) { article in
-                WebView(url: article.articleUrl)
+                ArticleView(article: article)
                     .frame(minWidth: 800, minHeight: 600)
                     .toolbar {
                         Button("Close") {
@@ -44,7 +44,7 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
                     }
             }
             .navigationDestination(for: OpenArticleAction.self) { action in
-                WebView(url: action.article.articleUrl)
+                ArticleView(article: action.article)
                     .ignoresSafeArea(.container, edges: .bottom)
                     #if os(iOS)
                     .navigationBarTitleDisplayMode(.inline)
@@ -64,6 +64,45 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
             }
         } else {
             openUrl(action.article.articleUrl)
+        }
+    }
+}
+
+extension OpenArticleActionHandler {
+    fileprivate struct ArticleView: View {
+        @Environment(\.openURL) private var openUrl
+        
+        let article: Article
+        
+        private var placement: ToolbarItemPlacement {
+            #if os(macOS)
+            .automatic
+            #elseif os(iOS)
+            .bottomBar
+            #endif
+        }
+        
+        var body: some View {
+            WebView(url: article.articleUrl)
+                .toolbar {
+                    ToolbarItemGroup(placement: placement) {
+                        #if os(iOS)
+                        Spacer()
+                        #endif
+                        
+                        ShareLink(item: article.articleUrl, message: Text(article.title))
+                        
+                        #if os(iOS)
+                        Spacer()
+                        #endif
+                        
+                        Button {
+                            openUrl(article.articleUrl)
+                        } label: {
+                            Label("Open in Safari", systemImage: "safari")
+                        }
+                    }
+                }
         }
     }
 }
