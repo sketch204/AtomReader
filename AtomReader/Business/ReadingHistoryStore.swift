@@ -45,3 +45,9 @@ extension ReadingHistoryStore {
         persistenceManager?.save(readArticles)
     }
 }
+
+extension ReadingHistoryStore {
+    func isArticleRead(_ article: Article) -> Bool {
+        readArticles.contains(where: { $0.article == article })
+    }
+}

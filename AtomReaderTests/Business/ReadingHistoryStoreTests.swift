@@ -23,7 +23,9 @@ final class ReadingHistoryStoreTests: XCTestCase {
     override func setUp() {
         sut = ReadingHistoryStore(readArticles: [mockReadFeed1Article1, mockReadFeed2Article1])
     }
-    
+}
+
+extension ReadingHistoryStoreTests {
     func test_markArticleRead_whenNewArticleRead_setRecentDateForNewReadArticle() throws {
         let newArticle = mockFeed1Article2
         
@@ -77,5 +79,19 @@ final class ReadingHistoryStoreTests: XCTestCase {
         sut.mark(article: newArticle, read: false)
        
         XCTAssertEqual(sut.readArticles, [mockReadFeed2Article1])
+    }
+}
+
+extension ReadingHistoryStoreTests {
+    func test_isArticleRead_whenReadArticleProvided() {
+        let isRead = sut.isArticleRead(mockFeed1Article1)
+        
+        XCTAssertTrue(isRead)
+    }
+    
+    func test_isArticleRead_whenUnreadArticleProvided() {
+        let isRead = sut.isArticleRead(mockFeed1Article2)
+        
+        XCTAssertFalse(isRead)
     }
 }
