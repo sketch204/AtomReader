@@ -16,6 +16,10 @@ struct ForEachFeed<Content>: View where Content: View {
         ForEach(store.feeds) { feed in
             content(feed)
                 .contextMenu {
+                    AppActionButton(RenameFeedAction(feed: feed)) {
+                        Label("Rename", systemImage: "pencil.line")
+                    }
+                    
                     AppActionButton(RemoveFeedAction(feed: feed)) {
                         Label("Remove", systemImage: "trash")
                     }
