@@ -178,7 +178,6 @@
 				2DAA20382AFEC39D0098222E /* ContentView.swift */,
 				2D4D67F72AFF2FAF00C8EFAA /* ForEachFeed.swift */,
 				2D4D68652B0576B700C8EFAA /* FeedRowView.swift */,
-				2D4D68042B00669E00C8EFAA /* AddFeedView.swift */,
 				2D4D67FD2AFF31B100C8EFAA /* ArticleListView.swift */,
 				2D4D67FF2AFF31EB00C8EFAA /* ArticleRowView.swift */,
 				2D4D681D2B01374A00C8EFAA /* ArticleFilterView.swift */,
@@ -259,7 +258,7 @@
 		2D4D68392B014C9E00C8EFAA /* Actions */ = {
 			isa = PBXGroup;
 			children = (
-				2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */,
+				2D4D68692B0579DB00C8EFAA /* AddFeed */,
 				2D4D68602B05756000C8EFAA /* RenameFeed */,
 				2D4D683E2B0151BA00C8EFAA /* OpenArticleAction.swift */,
 				2D4D68402B01670D00C8EFAA /* RemoveFeedAction.swift */,
@@ -285,6 +284,15 @@
 				2D4D68612B05756F00C8EFAA /* RenameFeedAction.swift */,
 			);
 			path = RenameFeed;
+			sourceTree = "<group>";
+		};
+		2D4D68692B0579DB00C8EFAA /* AddFeed */ = {
+			isa = PBXGroup;
+			children = (
+				2D4D683A2B014CAE00C8EFAA /* AddFeedAction.swift */,
+				2D4D68042B00669E00C8EFAA /* AddFeedView.swift */,
+			);
+			path = AddFeed;
 			sourceTree = "<group>";
 		};
 		2DAA202A2AFEC39D0098222E = {
