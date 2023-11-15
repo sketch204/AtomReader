@@ -9,8 +9,6 @@ import SwiftUI
 import WebView
 
 struct ArticleListView: View {
-    @Environment(\.openURL) private var openUrl
-    
     let viewModel: ArticleListViewModel
     
     var body: some View {
