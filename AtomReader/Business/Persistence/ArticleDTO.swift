@@ -27,11 +27,13 @@ struct ArticleDTO: Codable {
 
 extension Article {
     init(from dto: ArticleDTO) {
-        self.title = dto.title
-        self.summary = dto.excerpt
-        self.articleUrl = dto.articleUrl
-        self.publishedAt = dto.publishedAt
-        self.authors = dto.authors
-        self.feedId = Feed.ID(feedUrl: dto.feedId)
+        self.init(
+            title: dto.title,
+            summary: dto.excerpt,
+            articleUrl: dto.articleUrl,
+            publishedAt: dto.publishedAt,
+            authors: dto.authors,
+            feedId: Feed.ID(feedUrl: dto.feedId)
+        )
     }
 }

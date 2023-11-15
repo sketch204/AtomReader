@@ -25,10 +25,12 @@ struct FeedDTO: Codable {
 
 extension Feed {
     init(from dto: FeedDTO) {
-        self.name = dto.name
-        self.description = dto.description
-        self.iconUrl = dto.iconUrl
-        self.websiteUrl = dto.websiteUrl
-        self.feedUrl = dto.feedUrl
+        self.init(
+            name: dto.name,
+            description: dto.description,
+            iconUrl: dto.iconUrl,
+            websiteUrl: dto.websiteUrl,
+            feedUrl: dto.feedUrl
+        )
     }
 }
