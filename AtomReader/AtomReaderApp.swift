@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct AtomReaderApp: App {
+    private static let persistenceManager = FileBasedPersistenceManager()
+    private let readingHistory = ReadingHistoryStore(persistenceManager: Self.persistenceManager)
     private let store = Store(
         dataProvider: FeedProvider(
             networkInterface: URLSessionBasedNetworkInterface()
         ),
-        persistenceManager: FileBasedPersistenceManager()
+        persistenceManager: Self.persistenceManager
     )
     
     var body: some Scene {
@@ -24,5 +26,6 @@ struct AtomReaderApp: App {
                 .handleFeedRenameAction()
         }
         .environment(store)
+        .environment(readingHistory)
     }
 }
