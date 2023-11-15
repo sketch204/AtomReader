@@ -18,6 +18,15 @@ final class StorePersistenceTests: XCTestCase {
         XCTAssertEqual(sut.feeds, manager.feeds)
     }
     
+    func test_init_loadsArticles_whenArticlesAvailable() async {
+        let manager = MockStorePersistenceManager(feeds: [mockFeed1, mockFeed2], articles: mockArticles)
+        let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
+        
+        try? await Task.sleep(for: .milliseconds(100))
+        
+        XCTAssertEqual(sut.articles, manager.articles)
+    }
+    
     func test_addFeed_savesFeeds() async {
         let manager = MockStorePersistenceManager(feeds: [mockFeed1])
         let sut = Store(dataProvider: MockDataProvider(), persistenceManager: manager)
