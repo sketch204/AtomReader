@@ -18,6 +18,7 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
     @AppStorage("shouldOpenArticleInApp") private var shouldOpenArticleInApp: Bool = true
     @AppStorage("shouldOpenArticlesInSheet") private var shouldOpenArticlesInSheet: Bool = false
     
+    @Environment(ReadingHistoryStore.self) private var readingHistory
     @Environment(\.appActions) private var appActions
     @Environment(\.openURL) private var openUrl
     
@@ -65,6 +66,8 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
         } else {
             openUrl(action.article.articleUrl)
         }
+        
+        readingHistory.mark(article: action.article, read: true)
     }
 }
 

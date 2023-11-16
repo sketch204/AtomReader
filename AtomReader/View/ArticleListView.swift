@@ -9,17 +9,31 @@ import SwiftUI
 import WebView
 
 struct ArticleListView: View {
+    @Environment(ReadingHistoryStore.self) private var readingHistory
     let viewModel: ArticleListViewModel
     
     var body: some View {
         List(viewModel.articles) { article in
+            let isRead = readingHistory.isArticleRead(article)
+            
             AppActionButton(OpenArticleAction(article: article)) {
                 ArticleRowView(
                     article: article,
-                    feed: viewModel.feed(for: article)
+                    feed: viewModel.feed(for: article),
+                    isRead: isRead
                 )
             }
             .buttonStyle(.plain)
+            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                Button {
+                    readingHistory.mark(article: article, read: !isRead)
+                } label: {
+                    Label(
+                        isRead ? "Mark Unread" : "Mark Read",
+                        systemImage: isRead ? "eyeglasses.slash" : "eyeglasses"
+                    )
+                }
+            }
         }
         .overlay {
             if viewModel.doesUserHaveNoFeeds {

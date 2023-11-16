@@ -13,6 +13,7 @@ struct ArticleRowView: View {
     
     let article: Article
     let feed: Feed
+    var isRead: Bool = false
     
     private var dateString: String {
         article.publishedAt
@@ -44,7 +45,10 @@ struct ArticleRowView: View {
                     .lineLimit(articlePreviewMaxNumberOfLines)
             }
         }
+        .opacity(isRead ? 0.7 : 1)
         .padding(.vertical, 8)
+        .contentShape(Rectangle())
+        .animation(.default, value: isRead)
     }
 }
 
