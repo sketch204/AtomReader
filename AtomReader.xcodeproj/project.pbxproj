@@ -57,6 +57,10 @@
 		2D4D68712B058BE200C8EFAA /* ReadingHistoryStorePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68702B058BE200C8EFAA /* ReadingHistoryStorePersistenceTests.swift */; };
 		2D4D68732B058E9F00C8EFAA /* ReadArticleDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68722B058E9F00C8EFAA /* ReadArticleDTO.swift */; };
 		2D4D68752B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68742B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift */; };
+		2D4D689F2B0955BA00C8EFAA /* AppIconDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D689D2B0955BA00C8EFAA /* AppIconDark@2x.png */; };
+		2D4D68A02B0955BA00C8EFAA /* AppIconDark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D689E2B0955BA00C8EFAA /* AppIconDark@3x.png */; };
+		2D4D68A42B09571E00C8EFAA /* AppIconLight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D68A22B09571E00C8EFAA /* AppIconLight@3x.png */; };
+		2D4D68A52B09571E00C8EFAA /* AppIconLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D68A32B09571E00C8EFAA /* AppIconLight@2x.png */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -127,6 +131,12 @@
 		2D4D68702B058BE200C8EFAA /* ReadingHistoryStorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryStorePersistenceTests.swift; sourceTree = "<group>"; };
 		2D4D68722B058E9F00C8EFAA /* ReadArticleDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadArticleDTO.swift; sourceTree = "<group>"; };
 		2D4D68742B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPersistenceManagerIO.swift; sourceTree = "<group>"; };
+		2D4D68992B09423D00C8EFAA /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
+		2D4D689D2B0955BA00C8EFAA /* AppIconDark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDark@2x.png"; sourceTree = "<group>"; };
+		2D4D689E2B0955BA00C8EFAA /* AppIconDark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconDark@3x.png"; sourceTree = "<group>"; };
+		2D4D68A12B09561400C8EFAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2D4D68A22B09571E00C8EFAA /* AppIconLight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconLight@3x.png"; sourceTree = "<group>"; };
+		2D4D68A32B09571E00C8EFAA /* AppIconLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconLight@2x.png"; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -225,6 +235,7 @@
 		2D4D68142B0134C100C8EFAA /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				2D4D689C2B09557A00C8EFAA /* AppIcons */,
 				2D4D68152B0134D100C8EFAA /* ArticleFilter.swift */,
 				2D4D68372B014AD000C8EFAA /* AppActions.swift */,
 				2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */,
@@ -313,6 +324,25 @@
 			path = AddFeed;
 			sourceTree = "<group>";
 		};
+		2D4D689B2B09501300C8EFAA /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				2D4D68992B09423D00C8EFAA /* AppIconView.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		2D4D689C2B09557A00C8EFAA /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				2D4D689D2B0955BA00C8EFAA /* AppIconDark@2x.png */,
+				2D4D689E2B0955BA00C8EFAA /* AppIconDark@3x.png */,
+				2D4D68A32B09571E00C8EFAA /* AppIconLight@2x.png */,
+				2D4D68A22B09571E00C8EFAA /* AppIconLight@3x.png */,
+			);
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 		2DAA202A2AFEC39D0098222E = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +366,7 @@
 		2DAA20352AFEC39D0098222E /* AtomReader */ = {
 			isa = PBXGroup;
 			children = (
+				2D4D68A12B09561400C8EFAA /* Info.plist */,
 				2D4D67F42AFF2F7300C8EFAA /* Entities */,
 				2D4D67F52AFF2F8200C8EFAA /* Business */,
 				2D4D68292B013DA300C8EFAA /* ViewModels */,
@@ -346,6 +377,7 @@
 				2DAA203A2AFEC39F0098222E /* Assets.xcassets */,
 				2DAA203C2AFEC39F0098222E /* AtomReader.entitlements */,
 				2DAA203D2AFEC39F0098222E /* Preview Content */,
+				2D4D689B2B09501300C8EFAA /* Debug */,
 			);
 			path = AtomReader;
 			sourceTree = "<group>";
@@ -464,7 +496,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D4D68A02B0955BA00C8EFAA /* AppIconDark@3x.png in Resources */,
+				2D4D68A42B09571E00C8EFAA /* AppIconLight@3x.png in Resources */,
+				2D4D68A52B09571E00C8EFAA /* AppIconLight@2x.png in Resources */,
 				2DAA203F2AFEC39F0098222E /* Preview Assets.xcassets in Resources */,
+				2D4D689F2B0955BA00C8EFAA /* AppIconDark@2x.png in Resources */,
 				2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,6 +720,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AtomReader/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Atom Reader";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -723,6 +760,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AtomReader/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Atom Reader";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
