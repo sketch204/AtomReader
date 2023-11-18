@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ArticleRowView: View {
     @AppStorage(SettingKeys.articlePreviewMaxNumberOfLines)
-    private var articlePreviewMaxNumberOfLines: Int = 5
+    private var articlePreviewMaxNumberOfLines: Int = 3
     
     let article: Article
     let feed: Feed
@@ -40,7 +40,7 @@ struct ArticleRowView: View {
                     .font(.caption)
             }
             
-            if let excerpt = article.summary {
+            if let excerpt = article.summary, articlePreviewMaxNumberOfLines > 0 {
                 Text(excerpt)
                     .lineLimit(articlePreviewMaxNumberOfLines)
             }
