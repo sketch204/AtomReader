@@ -5,8 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sketch204/AtomParser",
       "state" : {
-        "revision" : "1da00c043cf29eaabf409e0e29cb5a46c7474b6d",
-        "version" : "1.0.1"
+        "revision" : "2a7e87737354abcc8af12cb0c246bdda3796d615",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "atomxml",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sketch204/AtomXML",
+      "state" : {
+        "revision" : "7897a0cd99a34aef841f67db9fa627354a6d34e0",
+        "version" : "1.0.0"
       }
     },
     {
