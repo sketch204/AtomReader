@@ -27,5 +27,11 @@ struct AtomReaderApp: App {
         }
         .environment(store)
         .environment(readingHistory)
+        
+        #if os(macOS)
+        Settings {
+            SettingsView()
+        }
+        #endif
     }
 }

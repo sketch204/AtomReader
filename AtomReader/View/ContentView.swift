@@ -15,6 +15,8 @@ struct ContentView: View {
     @State private var filter: ArticleFilter? = ArticleFilter.none
     @State private var navigationPath = NavigationPath()
     
+    @State private var isViewingSettings = false
+    
     var body: some View {
         NavigationSplitView {
             ArticleFilterView(filter: $filter)
@@ -24,6 +26,16 @@ struct ContentView: View {
                             Label("Add Feed", systemImage: "plus")
                         }
                     }
+                    
+                    #if os(iOS)
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            isViewingSettings = true
+                        } label: {
+                            Label("Settings", systemImage: "gear")
+                        }
+                    }
+                    #endif
                 }
                 .navigationSplitViewColumnWidth(min: 180, ideal: 200)
                 .navigationTitle("Feeds")
@@ -50,6 +62,18 @@ struct ContentView: View {
                 }
             }
         }
+        #if os(iOS)
+        .sheet(isPresented: $isViewingSettings) {
+            NavigationStack {
+                SettingsView()
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") { isViewingSettings = false }
+                        }
+                    }
+            }
+        }
+        #endif
     }
 }
 
