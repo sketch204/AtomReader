@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppIconView: View {
 //    @Environment(\.colorScheme) 
-    private var colorScheme: ColorScheme = .dark
+    private var colorScheme: ColorScheme = .light
     
     private var foregroundColor: Color {
         switch colorScheme {
@@ -51,15 +51,15 @@ struct AppIconView: View {
                     .rotationEffect(.degrees(Double(120 * index)))
                 }
             }
-//            .shadow(color: foregroundColor, radius: 2)
+//            .shadow(radius: 10, x: 10, y: 10)
+            .background {
+                RoundedRectangle(cornerRadius: width * 0.1810546875)
+                    .fill(backgroundColor.gradient)
+            }
         }
         .aspectRatio(1, contentMode: .fit)
         .foregroundStyle(foregroundColor.gradient)
-//        .background {
-//            RoundedRectangle(cornerRadius: 25.0)
-//                .fill(backgroundColor.gradient)
-//        }
-        .background(backgroundColor.gradient)
+//        .background(backgroundColor.gradient)
     }
 }
 
@@ -117,6 +117,7 @@ struct AppIconExporterView: View {
     func createAppIcon() -> AppIcon? {
         let rendered = ImageRenderer(
             content: AppIconView()
+                .padding(100)
                 .frame(width: 1024)
         )
         return rendered.nsImage.map({ AppIcon(image: $0, size: CGSize(width: 1024, height: 1024)) })
