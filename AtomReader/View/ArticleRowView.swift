@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArticleRowView: View {
-    @AppStorage("articlePreviewMaxNumberOfLines")
+    @AppStorage(SettingKeys.articlePreviewMaxNumberOfLines)
     private var articlePreviewMaxNumberOfLines: Int = 5
     
     let article: Article

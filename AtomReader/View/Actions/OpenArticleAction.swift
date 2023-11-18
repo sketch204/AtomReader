@@ -15,8 +15,10 @@ struct OpenArticleAction: AppAction, Hashable {
 }
 
 fileprivate struct OpenArticleActionHandler: ViewModifier {
-    @AppStorage("shouldOpenArticleInApp") private var shouldOpenArticleInApp: Bool = true
-    @AppStorage("shouldOpenArticlesInSheet") private var shouldOpenArticlesInSheet: Bool = false
+    @AppStorage(SettingKeys.shouldOpenArticleInApp)
+    private var shouldOpenArticleInApp: Bool = true
+    @AppStorage(SettingKeys.shouldOpenArticlesInSheet)
+    private var shouldOpenArticlesInSheet: Bool = false
     
     @Environment(ReadingHistoryStore.self) private var readingHistory
     @Environment(\.appActions) private var appActions

@@ -61,6 +61,7 @@
 		2D4D68A02B0955BA00C8EFAA /* AppIconDark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D689E2B0955BA00C8EFAA /* AppIconDark@3x.png */; };
 		2D4D68A42B09571E00C8EFAA /* AppIconLight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D68A22B09571E00C8EFAA /* AppIconLight@3x.png */; };
 		2D4D68A52B09571E00C8EFAA /* AppIconLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D4D68A32B09571E00C8EFAA /* AppIconLight@2x.png */; };
+		2D4D68AB2B095DDB00C8EFAA /* SettingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68AA2B095DDB00C8EFAA /* SettingKeys.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -137,6 +138,7 @@
 		2D4D68A12B09561400C8EFAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2D4D68A22B09571E00C8EFAA /* AppIconLight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconLight@3x.png"; sourceTree = "<group>"; };
 		2D4D68A32B09571E00C8EFAA /* AppIconLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIconLight@2x.png"; sourceTree = "<group>"; };
+		2D4D68AA2B095DDB00C8EFAA /* SettingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingKeys.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				2D4D68372B014AD000C8EFAA /* AppActions.swift */,
 				2D4D683C2B014FE500C8EFAA /* AppActionButton.swift */,
 				2D4D684E2B01D17400C8EFAA /* Logging.swift */,
+				2D4D68AA2B095DDB00C8EFAA /* SettingKeys.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				2D4D67F82AFF2FAF00C8EFAA /* ForEachFeed.swift in Sources */,
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
 				2D4D68662B0576B700C8EFAA /* FeedRowView.swift in Sources */,
+				2D4D68AB2B095DDB00C8EFAA /* SettingKeys.swift in Sources */,
 				2D4D68752B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift in Sources */,
 				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,
 				2D4D686D2B0585A600C8EFAA /* ReadArticle.swift in Sources */,
