@@ -14,6 +14,10 @@ struct SettingsView: View {
     @AppStorage(SettingKeys.shouldOpenArticleInApp)
     private var shouldOpenArticleInApp: Bool = true
     
+    #if os(iOS)
+    @State private var appIcon: AppIcon = .current
+    #endif
+    
     var body: some View {
         Form {
             Picker("Article Preview", selection: $articlePreviewMaxNumberOfLines) {
@@ -33,6 +37,22 @@ struct SettingsView: View {
                 Text("In Browser")
                     .tag(false)
             }
+            
+            #if os(iOS)
+            Section("App Icon") {
+                NavigationLink {
+                    AppIconPickerView(appIcon: $appIcon)
+                } label: {
+                    HStack {
+                        Text(appIcon.displayName)
+                        
+                        Spacer()
+                        
+                        appIcon.image
+                    }
+                }
+            }
+            #endif
         }
         #if os(iOS)
         .navigationTitle("Settings")
@@ -45,5 +65,11 @@ struct SettingsView: View {
 }
 
 #Preview {
+    #if os(macOS)
     SettingsView()
+    #elseif os(iOS)
+    NavigationStack {
+        SettingsView()
+    }
+    #endif
 }
