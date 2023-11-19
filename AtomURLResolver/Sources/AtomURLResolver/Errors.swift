@@ -1,1 +1,1 @@
-struct InvalidHTML: Error {}
+public struct InvalidHTML: Error {}
