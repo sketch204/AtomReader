@@ -15,6 +15,8 @@ struct MockDataProvider {
             mockFeed1
         case mockFeed2.feedUrl:
             mockFeed2
+        case mockFeed3.feedUrl:
+            mockFeed3
         default:
             throw CocoaError(CocoaError.Code(rawValue: 0))
         }

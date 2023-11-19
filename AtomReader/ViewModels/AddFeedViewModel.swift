@@ -25,9 +25,13 @@ final class AddFeedViewModel {
             }
         }
     }
-    private(set) var isLoading: Bool = false
+    var isLoading: Bool {
+        previewsTask != nil
+    }
+    var selectedFeeds: Set<Feed.ID> = []
     private(set) var feedPreviews: [Feed] = []
     
+    private var previewsTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
     
     private let feedUrlStringSubject = CurrentValueSubject<String, Never>("")
@@ -61,24 +65,32 @@ final class AddFeedViewModel {
 
 extension AddFeedViewModel {
     private func previewFeeds(at url: URL) {
-        isLoading = true
-        Task {
+        previewsTask?.cancel()
+        previewsTask = Task {
             do {
                 try await previewFeeds(at: url)
             } catch {
                 Logger.app.critical("Failed to load feed previews at \(url) -- \(error)")
             }
-            isLoading = false
+            
+            if !Task.isCancelled {
+                previewsTask = nil
+            }
         }
     }
     
     private func previewFeeds(at url: URL) async throws {
-        feedPreviews = try await feedPreviewer.previewFeeds(at: url)
+        let feeds = try await feedPreviewer.previewFeeds(at: url)
+        guard !Task.isCancelled else { return }
+        feedPreviews = feeds
+        selectedFeeds = Set(feeds.map(\.id))
     }
 }
 
 extension AddFeedViewModel {
-    func addFeeds(_ feeds: [Feed]) {
+    func addFeeds() {
+        let feeds = feedPreviews.filter({ selectedFeeds.contains($0.id) })
+        
         store.addFeeds(feeds)
     }
     

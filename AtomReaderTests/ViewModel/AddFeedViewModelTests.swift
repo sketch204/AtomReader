@@ -84,9 +84,34 @@ final class AddFeedViewModelTests: XCTestCase {
         XCTAssertTrue(isAdded)
     }
     
-    func test_addFeeds_addsFeeds() {
-        sut.addFeeds([mockFeed1])
+    func test_addFeeds_whenFeedsSelected_addsFeeds() async {
+        sut.feedUrlString = mockFeed1.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(500))
+        
+        sut.selectedFeeds = [mockFeed1.id]
+        sut.addFeeds()
         
         XCTAssertEqual(store.feeds, [mockFeed2, mockFeed1])
+    }
+    
+    func test_addFeeds_whenNoFeedsSelected_noChangesMade() {
+        sut.addFeeds()
+        
+        XCTAssertEqual(store.feeds, [mockFeed2])
+    }
+    
+    func test_selectedFeeds_afterChangingPreviews_resetSelectedFeeds() async {
+        sut.feedUrlString = mockFeed1.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(400))
+        
+        XCTAssertEqual(sut.selectedFeeds, [mockFeed1.id])
+        
+        sut.feedUrlString = mockFeed3.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(400))
+        
+        XCTAssertEqual(sut.selectedFeeds, [mockFeed3.id])
     }
 }

@@ -13,6 +13,7 @@ struct MockNetworkInterface {
         switch url {
         case mockFeed1.feedUrl: mockFeed1Data
         case mockFeed2.feedUrl: mockFeed2Data
+        case mockFeed3.feedUrl: mockFeed3Data
             
         case mockFeed1.websiteUrl:
             """
@@ -32,6 +33,18 @@ struct MockNetworkInterface {
             <html>
             <head>
             <link rel="alternate" type="application/rss+xml" title="Goodbye Feed" href="https://goodbye.mock/feed" />
+            </head>
+            <body>
+            </body>
+            </html>
+            """.data(using: .utf8)!
+            
+        case mockFeed3.websiteUrl:
+            """
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <link rel="alternate" type="application/rss+xml" title="Some other Feed" href="https://something.else/feed" />
             </head>
             <body>
             </body>

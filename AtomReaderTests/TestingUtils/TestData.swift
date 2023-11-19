@@ -118,6 +118,18 @@ let mockFeed3 = Feed(
     websiteUrl: URL(string: "https://something.else")!,
     feedUrl: URL(string: "https://something.else/feed")!
 )
+let mockFeed3DataString = """
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" >
+    <link href="https://something.else/feed" rel="self" type="application/atom+xml" />
+    <link href="https://something.else" rel="alternate" type="text/html" />
+    <updated>2023-10-17T01:24:18+00:00</updated>
+    <id>https://something.else</id>
+    <title type="html">Some other Feed</title>
+    <subtitle>Feed for something else</subtitle>
+</feed>
+"""
+let mockFeed3Data = mockFeed3DataString.data(using: .utf8)!
 
 
 let mockFeeds = [mockFeed1, mockFeed2, mockFeed3]
