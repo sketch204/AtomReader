@@ -3,13 +3,15 @@ import AtomXML
 
 struct HTMLLinkParser {
     private let parser: AtomXMLParser
+    private let url: URL
     
-    private init(parser: AtomXMLParser) {
+    private init(parser: AtomXMLParser, url: URL) {
         self.parser = parser
+        self.url = url
     }
     
-    init(data: Data) {
-        self.init(parser: AtomXMLParser(data: data))
+    init(data: Data, url: URL) {
+        self.init(parser: AtomXMLParser(data: data), url: url)
     }
 }
 
@@ -37,8 +39,15 @@ extension HTMLLinkParser {
             }
             .compactMap { node -> Link? in
                 guard let urlString = node.attributes["href"],
-                      let url = URL(string: urlString)
+                      var url = URL(string: urlString)
                 else { return nil }
+                
+                if url.scheme == nil {
+                    var comps = URLComponents(url: self.url, resolvingAgainstBaseURL: false)
+                    comps?.path = url.path()
+                    guard let newUrl = comps?.url else { return nil }
+                    url = newUrl
+                }
                 
                 return Link(
                     url: url,

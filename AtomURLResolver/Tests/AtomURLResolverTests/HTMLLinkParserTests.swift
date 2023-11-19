@@ -2,11 +2,7 @@ import XCTest
 @testable import AtomURLResolver
 
 final class HTMLLinkParserTests: XCTestCase {
-    // Find no link tags inside of head
-    // Find single link tag inside of head
-    // Find multiple link tags inside of head
-    
-    // Find no link tags in head, but an anchor tag with RSS in contents inside of body
+    let mockRootUrl = URL(string: "https://hello.mock/")!
     
     private func createHtml(head: String) -> String {
         """
@@ -31,7 +27,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         let expectedLinks = [Link(url: "https://hello.mock/feed/", title: "Hello Feed")]
@@ -48,10 +44,44 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         let expectedLinks = [Link(url: "https://hello.mock/feed/", title: nil)]
+        
+        XCTAssertEqual(links, expectedLinks)
+    }
+    
+    func test_findLinks_whenRssLinkWithRelativeUrlProvided_findsLink() throws {
+        let html = createHtml(
+            head: """
+            <meta charset="UTF-8" />
+            <link rel="canonical" href="https://hello.mock/" />
+            <link rel="alternate" type="application/rss+xml" href="/feed" />
+            """
+        )
+        
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
+        
+        let links = try sut.findLinks()
+        let expectedLinks = [Link(url: "https://hello.mock/feed", title: nil)]
+        
+        XCTAssertEqual(links, expectedLinks)
+    }
+    
+    func test_findLinks_whenRssLinkWithRelativeUrlAndNotRootUrlProvided_findsLink() throws {
+        let html = createHtml(
+            head: """
+            <meta charset="UTF-8" />
+            <link rel="canonical" href="https://hello.mock/" />
+            <link rel="alternate" type="application/rss+xml" href="/feed" />
+            """
+        )
+        
+        let sut = HTMLLinkParser(string: html, url: URL(string: "https://hello.mock/articles/1")!)
+        
+        let links = try sut.findLinks()
+        let expectedLinks = [Link(url: "https://hello.mock/feed", title: nil)]
         
         XCTAssertEqual(links, expectedLinks)
     }
@@ -65,7 +95,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         let expectedLinks = [Link(url: "https://hello.mock/feed/", feedType: .atom, title: nil)]
@@ -82,7 +112,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         
@@ -98,7 +128,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         
@@ -114,7 +144,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         
@@ -132,7 +162,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         let expectedLinks = [
@@ -155,7 +185,7 @@ final class HTMLLinkParserTests: XCTestCase {
             """
         )
         
-        let sut = HTMLLinkParser(string: html)
+        let sut = HTMLLinkParser(string: html, url: mockRootUrl)
         
         let links = try sut.findLinks()
         let expectedLinks = [
@@ -182,8 +212,8 @@ extension Link: Equatable {
 }
 
 extension HTMLLinkParser {
-    init(string: String) {
+    init(string: String, url: URL) {
         let data = string.data(using: .utf8)!
-        self.init(data: data)
+        self.init(data: data, url: url)
     }
 }
