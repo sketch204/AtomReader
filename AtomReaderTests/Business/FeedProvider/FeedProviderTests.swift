@@ -13,7 +13,7 @@ final class FeedProviderTests: XCTestCase {
     var sut: FeedProvider!
     
     override func setUp() {
-        sut = FeedProvider(networkInterface: MockFeedProviderNetworkInterface())
+        sut = FeedProvider(networkInterface: MockNetworkInterface())
     }
     
     func test_feedAt_returnsFeed() async throws {

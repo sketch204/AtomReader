@@ -13,7 +13,7 @@ final class FeedProviderRSSParsingTests: XCTestCase {
     var sut: FeedProvider!
     
     override func setUp() {
-        sut = FeedProvider(networkInterface: MockFeedProviderNetworkInterface())
+        sut = FeedProvider(networkInterface: MockNetworkInterface())
     }
     
     func test_feedFrom_whenRssFeedWithoutImageProvided_parses() {

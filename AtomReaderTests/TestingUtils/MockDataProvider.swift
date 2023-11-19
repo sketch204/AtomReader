@@ -8,7 +8,7 @@
 import Foundation
 @testable import AtomReader
 
-struct MockDataProvider: StoreDataProvider {
+struct MockDataProvider {
     func feed(at url: URL) async throws -> Feed {
         switch url {
         case mockFeed1.feedUrl:
@@ -28,3 +28,6 @@ struct MockDataProvider: StoreDataProvider {
         }
     }
 }
+
+extension MockDataProvider: StoreDataProvider {}
+extension MockDataProvider: FeedPreviewerDataProvider {}

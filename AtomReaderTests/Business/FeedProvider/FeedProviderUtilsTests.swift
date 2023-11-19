@@ -12,7 +12,7 @@ final class FeedProviderUtilsTests: XCTestCase {
     var sut: FeedProvider!
     
     override func setUp() {
-        sut = FeedProvider(networkInterface: MockFeedProviderNetworkInterface())
+        sut = FeedProvider(networkInterface: MockNetworkInterface())
     }
     
     func test_removeHtml_whenNoHtmlInString_sameStringReturned() {
