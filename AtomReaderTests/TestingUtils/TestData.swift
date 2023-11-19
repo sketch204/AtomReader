@@ -135,3 +135,13 @@ func makeTestStore(
         articles: articles
     )
 }
+
+func makeTestFeedPreviewer(
+    feedProvider: FeedPreviewerDataProvider = MockDataProvider(),
+    networkInterface: FeedPreviewerNetworkInterface = MockNetworkInterface()
+) -> FeedPreviewer {
+    FeedPreviewer(
+        feedProvider: feedProvider,
+        networkInterface: networkInterface
+    )
+}

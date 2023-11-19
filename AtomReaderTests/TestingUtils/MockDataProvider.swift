@@ -22,8 +22,9 @@ struct MockDataProvider {
     
     func articles(for feed: Feed) async throws -> [Article] {
         switch feed.id {
-        case mockFeed1.id: [mockFeed1Article1, mockFeed1Article2]
-        case mockFeed2.id: [mockFeed2Article1]
+        case mockFeed1.id: mockFeed1Articles
+        case mockFeed2.id: mockFeed2Articles
+        case mockFeed3.id: []
         default: throw CocoaError(CocoaError.Code(rawValue: 0))
         }
     }

@@ -33,6 +33,39 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(sut.feeds, [mockFeed1])
     }
     
+    func test_addFeeds_whenAddingEmpty_doesNothing() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed2]
+        )
+        
+        sut.addFeeds([])
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2])
+    }
+    
+    func test_addFeeds_whenAddingFeeds_addsFeeds() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1]
+        )
+        
+        sut.addFeeds([mockFeed2, mockFeed3])
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2, mockFeed3])
+    }
+    
+    func test_addFeeds_whenAddingExistingFeeds_ignoredDuplicates() {
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [mockFeed1, mockFeed3]
+        )
+        
+        sut.addFeeds([mockFeed2, mockFeed3])
+        
+        XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed3, mockFeed2])
+    }
+    
     func test_removeFeed_whenNonEmpty_removesFeed() {
         let sut = Store(dataProvider: MockDataProvider(), feeds: [mockFeed1])
         
@@ -113,6 +146,16 @@ extension StoreTests {
         XCTAssertEqual(sut.articles, [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1])
     }
     
+    func test_addFeeds_refreshesArticles() async {
+        let sut = Store(dataProvider: MockDataProvider(), feeds: [mockFeed1])
+        
+        sut.addFeeds([mockFeed2, mockFeed3])
+        
+        try? await Task.sleep(for: .milliseconds(100))
+        
+        XCTAssertEqual(sut.articles, [mockFeed1Article1, mockFeed1Article2, mockFeed2Article1])
+    }
+    
     func test_removeFeed_removesArticles() {
         let sut = Store(
             dataProvider: MockDataProvider(),
@@ -187,6 +230,26 @@ extension StoreTests {
 }
 
 extension StoreTests {
+    func test_feedForId_whenExistingFeedProvided_findsFeed() {
+        let sut = makeTestStore()
+        
+        let feed = sut.feed(for: mockFeed1.id)
+        
+        XCTAssertEqual(feed, mockFeed1)
+    }
+    
+    func test_feedForId_whenNonExistingFeedProvided_returnsNil() {
+        let sut = makeTestStore()
+        
+        let feed = sut.feed(
+            for: Feed.ID(
+                feedUrl: URL(string: "non-existent")!
+            )
+        )
+        
+        XCTAssertNil(feed)
+    }
+    
     func test_feedForArticle_whenArticleProvided_returnsCorrectFeed() {
         let sut = makeTestStore()
         
