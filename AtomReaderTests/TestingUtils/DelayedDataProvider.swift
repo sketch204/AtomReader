@@ -8,7 +8,7 @@
 import Foundation
 @testable import AtomReader
 
-struct DelayedDataProvider: StoreDataProvider {
+struct DelayedDataProvider {
     private let provider = MockDataProvider()
     var delay: TimeInterval = 0.3
     
@@ -26,3 +26,6 @@ struct DelayedDataProvider: StoreDataProvider {
         try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
     }
 }
+
+extension DelayedDataProvider: StoreDataProvider {}
+extension DelayedDataProvider: FeedPreviewerDataProvider {}

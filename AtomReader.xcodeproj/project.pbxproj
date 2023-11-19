@@ -67,6 +67,8 @@
 		2D4D68AF2B0968FF00C8EFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68AE2B0968FF00C8EFAA /* AppIcon.swift */; };
 		2D4D68B12B09696700C8EFAA /* AppIcon+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68B02B09696700C8EFAA /* AppIcon+Image.swift */; };
 		2D4D68B82B099CCB00C8EFAA /* AtomURLResolver in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4D68B72B099CCB00C8EFAA /* AtomURLResolver */; };
+		2D4D68BA2B09B7F300C8EFAA /* AddFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68B92B09B7F300C8EFAA /* AddFeedViewModel.swift */; };
+		2D4D68BC2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68BB2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift */; };
 		2D4D68BE2B09BB9400C8EFAA /* FeedPreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68BD2B09BB9400C8EFAA /* FeedPreviewer.swift */; };
 		2D4D68C12B0A60C500C8EFAA /* FeedPreviewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C02B0A60C500C8EFAA /* FeedPreviewerTests.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
@@ -151,6 +153,8 @@
 		2D4D68AE2B0968FF00C8EFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		2D4D68B02B09696700C8EFAA /* AppIcon+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppIcon+Image.swift"; sourceTree = "<group>"; };
 		2D4D68B52B099C9B00C8EFAA /* AtomURLResolver */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AtomURLResolver; sourceTree = "<group>"; };
+		2D4D68B92B09B7F300C8EFAA /* AddFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedViewModel.swift; sourceTree = "<group>"; };
+		2D4D68BB2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedViewModelTests.swift; sourceTree = "<group>"; };
 		2D4D68BD2B09BB9400C8EFAA /* FeedPreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPreviewer.swift; sourceTree = "<group>"; };
 		2D4D68C02B0A60C500C8EFAA /* FeedPreviewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPreviewerTests.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D682A2B013DB800C8EFAA /* ArticleListViewModel.swift */,
+				2D4D68B92B09B7F300C8EFAA /* AddFeedViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D682E2B01426400C8EFAA /* ArticleListViewModelTests.swift */,
+				2D4D68BB2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,
 				2D4D686D2B0585A600C8EFAA /* ReadArticle.swift in Sources */,
 				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,
+				2D4D68BA2B09B7F300C8EFAA /* AddFeedViewModel.swift in Sources */,
 				2D4D683B2B014CAE00C8EFAA /* AddFeedAction.swift in Sources */,
 				2D4D68A92B095D8000C8EFAA /* SettingsView.swift in Sources */,
 				2D4D683D2B014FE500C8EFAA /* AppActionButton.swift in Sources */,
@@ -616,6 +623,7 @@
 				2D2EE08E2AFF0611006C4E14 /* TestData.swift in Sources */,
 				2D4D68322B01457400C8EFAA /* MockDataProvider.swift in Sources */,
 				2D4D68542B030C2500C8EFAA /* FeedProviderRSSParsingTests.swift in Sources */,
+				2D4D68BC2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift in Sources */,
 				2D4D68582B030C8300C8EFAA /* FeedProviderAtomParsingTests.swift in Sources */,
 				2D4D685A2B0313BD00C8EFAA /* FeedProviderUtilsTests.swift in Sources */,
 				2D4D686F2B05876F00C8EFAA /* ReadingHistoryStoreTests.swift in Sources */,
