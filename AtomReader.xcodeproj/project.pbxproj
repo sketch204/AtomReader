@@ -71,6 +71,8 @@
 		2D4D68BC2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68BB2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift */; };
 		2D4D68BE2B09BB9400C8EFAA /* FeedPreviewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68BD2B09BB9400C8EFAA /* FeedPreviewer.swift */; };
 		2D4D68C12B0A60C500C8EFAA /* FeedPreviewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C02B0A60C500C8EFAA /* FeedPreviewerTests.swift */; };
+		2D4D68C32B0A72CC00C8EFAA /* PreviewNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C22B0A72CC00C8EFAA /* PreviewNetworkInterface.swift */; };
+		2D4D68C52B0A743000C8EFAA /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C42B0A743000C8EFAA /* Misc.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -157,6 +159,8 @@
 		2D4D68BB2B09B9EA00C8EFAA /* AddFeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeedViewModelTests.swift; sourceTree = "<group>"; };
 		2D4D68BD2B09BB9400C8EFAA /* FeedPreviewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPreviewer.swift; sourceTree = "<group>"; };
 		2D4D68C02B0A60C500C8EFAA /* FeedPreviewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPreviewerTests.swift; sourceTree = "<group>"; };
+		2D4D68C22B0A72CC00C8EFAA /* PreviewNetworkInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewNetworkInterface.swift; sourceTree = "<group>"; };
+		2D4D68C42B0A743000C8EFAA /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -429,7 +433,9 @@
 				2D4D68272B013A3100C8EFAA /* View+PreviewStore.swift */,
 				2D4D68212B01383500C8EFAA /* Feed+Preview.swift */,
 				2D4D68232B0138A900C8EFAA /* Article+Preview.swift */,
+				2D4D68C42B0A743000C8EFAA /* Misc.swift */,
 				2D4D68252B01397A00C8EFAA /* PreviewStoreDataProvider.swift */,
+				2D4D68C22B0A72CC00C8EFAA /* PreviewNetworkInterface.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -592,12 +598,14 @@
 				2D4D68002AFF31EB00C8EFAA /* ArticleRowView.swift in Sources */,
 				2D4D68BE2B09BB9400C8EFAA /* FeedPreviewer.swift in Sources */,
 				2D4D68262B01397A00C8EFAA /* PreviewStoreDataProvider.swift in Sources */,
+				2D4D68C52B0A743000C8EFAA /* Misc.swift in Sources */,
 				2D4D685F2B056D0B00C8EFAA /* RenameFeedView.swift in Sources */,
 				2D4D68AD2B09671600C8EFAA /* AppIconPickerView.swift in Sources */,
 				2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */,
 				2D4D67F12AFF29E500C8EFAA /* URLSessionBasedNetworkInterface.swift in Sources */,
 				2D4D67EF2AFF231E00C8EFAA /* FeedProvider.swift in Sources */,
 				2D4D68202B01380C00C8EFAA /* Store+Previews.swift in Sources */,
+				2D4D68C32B0A72CC00C8EFAA /* PreviewNetworkInterface.swift in Sources */,
 				2D4D68032AFF32A600C8EFAA /* Store+View.swift in Sources */,
 				2D4D685C2B031FB700C8EFAA /* Feed+Unknown.swift in Sources */,
 				2DAA20652AFEFB320098222E /* Article.swift in Sources */,

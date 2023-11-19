@@ -9,7 +9,7 @@ import Foundation
 
 extension Store {
     static func preview(
-        dataProvider: StoreDataProvider = PreviewStoreDataProvider(),
+        dataProvider: StoreDataProvider = .preview,
         feeds: [Feed] = Feed.previewFeeds,
         articles: [Article] = Article.previewArticles
     ) -> Self {
