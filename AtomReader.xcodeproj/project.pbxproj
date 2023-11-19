@@ -66,6 +66,7 @@
 		2D4D68AD2B09671600C8EFAA /* AppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68AC2B09671600C8EFAA /* AppIconPickerView.swift */; };
 		2D4D68AF2B0968FF00C8EFAA /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68AE2B0968FF00C8EFAA /* AppIcon.swift */; };
 		2D4D68B12B09696700C8EFAA /* AppIcon+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68B02B09696700C8EFAA /* AppIcon+Image.swift */; };
+		2D4D68B82B099CCB00C8EFAA /* AtomURLResolver in Frameworks */ = {isa = PBXBuildFile; productRef = 2D4D68B72B099CCB00C8EFAA /* AtomURLResolver */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -147,6 +148,7 @@
 		2D4D68AC2B09671600C8EFAA /* AppIconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconPickerView.swift; sourceTree = "<group>"; };
 		2D4D68AE2B0968FF00C8EFAA /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		2D4D68B02B09696700C8EFAA /* AppIcon+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppIcon+Image.swift"; sourceTree = "<group>"; };
+		2D4D68B52B099C9B00C8EFAA /* AtomURLResolver */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AtomURLResolver; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			files = (
 				2D4D68492B017A2A00C8EFAA /* AtomParser in Frameworks */,
 				2D4D68462B0176B500C8EFAA /* WebView in Frameworks */,
+				2D4D68B82B099CCB00C8EFAA /* AtomURLResolver in Frameworks */,
 				2D4D68132B012F7500C8EFAA /* WebView in Frameworks */,
 				2DAA20632AFEC5EA0098222E /* AtomParser in Frameworks */,
 			);
@@ -358,14 +361,23 @@
 			path = AppIcons;
 			sourceTree = "<group>";
 		};
+		2D4D68B62B099CCB00C8EFAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2DAA202A2AFEC39D0098222E = {
 			isa = PBXGroup;
 			children = (
 				2D52E61D2AFF02410089294A /* AtomReader.xctestplan */,
 				2D4D684A2B017A6E00C8EFAA /* README.md */,
+				2D4D68B52B099C9B00C8EFAA /* AtomURLResolver */,
 				2DAA20352AFEC39D0098222E /* AtomReader */,
 				2DAA20472AFEC39F0098222E /* AtomReaderTests */,
 				2DAA20342AFEC39D0098222E /* Products */,
+				2D4D68B62B099CCB00C8EFAA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -441,6 +453,7 @@
 				2D4D68122B012F7500C8EFAA /* WebView */,
 				2D4D68452B0176B500C8EFAA /* WebView */,
 				2D4D68482B017A2A00C8EFAA /* AtomParser */,
+				2D4D68B72B099CCB00C8EFAA /* AtomURLResolver */,
 			);
 			productName = AtomReader;
 			productReference = 2DAA20332AFEC39D0098222E /* AtomReader.app */;
@@ -918,6 +931,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2D4D68472B017A2A00C8EFAA /* XCRemoteSwiftPackageReference "AtomParser" */;
 			productName = AtomParser;
+		};
+		2D4D68B72B099CCB00C8EFAA /* AtomURLResolver */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AtomURLResolver;
 		};
 		2DAA20622AFEC5EA0098222E /* AtomParser */ = {
 			isa = XCSwiftPackageProductDependency;
