@@ -28,6 +28,9 @@ final class AddFeedViewModel {
     var isLoading: Bool {
         previewsTask != nil
     }
+    var canAddFeed: Bool {
+        !feedPreviews.isEmpty && !selectedFeeds.isEmpty
+    }
     var selectedFeeds: Set<Feed.ID> = []
     private(set) var feedPreviews: [Feed] = []
     
@@ -47,6 +50,7 @@ final class AddFeedViewModel {
         feedUrlStringSubject
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .removeDuplicates()
+            .filter({ !$0.isEmpty })
             .compactMap(url(from:))
             .sink { [weak self] feedUrl in
                 self?.previewFeeds(at: feedUrl)
@@ -80,6 +84,9 @@ extension AddFeedViewModel {
     }
     
     private func previewFeeds(at url: URL) async throws {
+        feedPreviews = []
+        selectedFeeds = []
+        
         let feeds = try await feedPreviewer.previewFeeds(at: url)
         guard !Task.isCancelled else { return }
         feedPreviews = feeds
@@ -96,5 +103,19 @@ extension AddFeedViewModel {
     
     func isFeedAlreadyAdded(_ feed: Feed) -> Bool {
         store.feed(for: feed.id) != nil
+    }
+}
+
+extension AddFeedViewModel {
+    func isFeedSelected(_ feed: Feed) -> Bool {
+        selectedFeeds.contains(feed.id)
+    }
+    
+    func toggleFeedSelection(_ feed: Feed) {
+        if isFeedSelected(feed) {
+            selectedFeeds.remove(feed.id)
+        } else {
+            selectedFeeds.insert(feed.id)
+        }
     }
 }

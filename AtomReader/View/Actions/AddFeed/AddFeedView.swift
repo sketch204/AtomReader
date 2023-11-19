@@ -9,77 +9,111 @@ import SwiftUI
 
 struct AddFeedView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(Store.self) private var store
     
-    @State private var feedUrlString: String = ""
-    
-    @State private var isLoading: Bool = false
-    
-    var feedUrl: URL? {
-        URL(string: feedUrlString)
-    }
+    @Bindable var viewModel: AddFeedViewModel
     
     var body: some View {
         Form {
-            Section("Enter the feed's URL") {
-                TextField("Feed URL", text: $feedUrlString, prompt: Text("https://www.nytimes.com/feed.xml"))
+            Section("New Feed URL") {
+                TextField("Feed URL", text: $viewModel.feedUrlString, prompt: Text("Website or feed URL"))
                     .textContentType(.URL)
+                    .labelsHidden()
             }
             
-            Button {
-                addFeed()
-            } label: {
-                if isLoading {
-                    ProgressView()
-                } else {
-                    Text("Add Feed")
+            Section {
+                ForEach(viewModel.feedPreviews) { feed in
+                    Button {
+                        viewModel.toggleFeedSelection(feed)
+                    } label: {
+                        HStack {
+                            Text(feed.displayName)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            if viewModel.isFeedSelected(feed) {
+                                Spacer()
+                                
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    #if os(iOS)
+                    .foregroundStyle(.primary)
+                    #elseif os(macOS)
+                    .buttonStyle(.plain)
+                    #endif
+                }
+            } header: {
+                if viewModel.isLoading {
+                    ProgressView("Loading Feeds")
+                } else if !viewModel.feedPreviews.isEmpty {
+                    Text("Found Feeds")
                 }
             }
-            .disabled(feedUrl == nil)
+
             
-            Section("Popular Feeds") {
-                Button("Donny Wals") {
-                    feedUrlString = "https://donnywals.com/feed"
-                    addFeed()
+//            Section("Popular Feeds") {
+//                Button("Donny Wals") {
+//                    feedUrlString = "https://donnywals.com/feed"
+//                    addFeed()
+//                }
+//                
+//                Button("Swift by Sundell") {
+//                    feedUrlString = "https://swiftbysundell.com/rss"
+//                    addFeed()
+//                }
+//                
+//                Button("Inal Gotov") {
+//                    feedUrlString = "https://inalgotov.com/feed.xml"
+//                    addFeed()
+//                }
+//                
+//                Button("9to5 Mac") {
+//                    feedUrlString = "https://9to5mac.com/feed"
+//                    addFeed()
+//                }
+//            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Add") {
+                    viewModel.addFeeds()
+                    dismiss()
                 }
-                
-                Button("Swift by Sundell") {
-                    feedUrlString = "https://swiftbysundell.com/rss"
-                    addFeed()
-                }
-                
-                Button("Inal Gotov") {
-                    feedUrlString = "https://inalgotov.com/feed.xml"
-                    addFeed()
-                }
-                
-                Button("9to5 Mac") {
-                    feedUrlString = "https://9to5mac.com/feed"
-                    addFeed()
+                .disabled(!viewModel.canAddFeed)
+            }
+            
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel", role: .cancel) {
+                    dismiss()
                 }
             }
         }
         #if os(macOS)
         .padding()
+        .frame(minWidth: 300)
+        #elseif os(iOS)
+        .navigationTitle("Add Feed")
         #endif
-    }
-    
-    func addFeed() {
-        guard let feedUrl else { return }
-        
-        isLoading = true
-        
-        Task {
-            do {
-                try await store.addFeed(at: feedUrl)
-                dismiss()
-            } catch {
-                Logger.app.critical("Failed to add feed -- \(error)")
-            }
-        }
     }
 }
 
 #Preview {
-    AddFeedView()
+    let view = AddFeedView(
+        viewModel: AddFeedViewModel(
+            store: .preview(),
+            feedPreviewer: FeedPreviewer(
+                feedProvider: .preview,
+                networkInterface: .preview
+            )
+        )
+    )
+    
+    #if os(macOS)
+    return view
+    #elseif os(iOS)
+    return NavigationStack {
+        view
+    }
+    #endif
 }

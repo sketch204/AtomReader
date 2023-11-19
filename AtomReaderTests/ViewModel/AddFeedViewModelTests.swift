@@ -52,6 +52,43 @@ final class AddFeedViewModelTests: XCTestCase {
         XCTAssertEqual(sut.feedPreviews, [mockFeed1])
     }
     
+    func test_previewFeedFetching_whenEmptyUrlSet_ignoresIt() async {
+        let sut = AddFeedViewModel(
+            store: store,
+            feedPreviewer: FeedPreviewer(
+                feedProvider: DelayedDataProvider(),
+                networkInterface: MockNetworkInterface()
+            )
+        )
+        
+        sut.feedUrlString = ""
+        
+        try? await Task.sleep(for: .milliseconds(250))
+        
+        XCTAssertFalse(sut.isLoading)
+    }
+    
+    func test_previewFeedFetching_rightAfterChangingPreviews_resetFeeds() async {
+        let sut = AddFeedViewModel(
+            store: store,
+            feedPreviewer: FeedPreviewer(
+                feedProvider: DelayedDataProvider(),
+                networkInterface: MockNetworkInterface()
+            )
+        )
+        
+        sut.feedUrlString = mockFeed1.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(600))
+        
+        sut.feedUrlString = mockFeed3.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(300))
+        
+        XCTAssertEqual(sut.feedPreviews, [])
+        XCTAssertEqual(sut.selectedFeeds, [])
+    }
+    
     func test_previewFeedFetching_whenFetching_setIsLoadingCorrectly() async {
         let sut = AddFeedViewModel(
             store: store,

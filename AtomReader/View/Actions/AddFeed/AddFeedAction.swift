@@ -11,6 +11,7 @@ struct AddFeedAction: AppAction {}
 
 fileprivate struct AddFeedActionHandler: ViewModifier {
     @Environment(\.appActions) private var appActions
+    @Environment(Store.self) private var store
     
     @State private var isAddingFeed = false
     
@@ -20,7 +21,17 @@ fileprivate struct AddFeedActionHandler: ViewModifier {
                 isAddingFeed = true
             }
             .sheet(isPresented: $isAddingFeed) {
-                AddFeedView()
+                let networkInterface = URLSessionBasedNetworkInterface()
+                
+                AddFeedView(
+                    viewModel: AddFeedViewModel(
+                        store: store,
+                        feedPreviewer: FeedPreviewer(
+                            feedProvider: FeedProvider(networkInterface: networkInterface),
+                            networkInterface: networkInterface
+                        )
+                    )
+                )
             }
     }
 }
