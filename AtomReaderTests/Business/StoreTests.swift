@@ -55,7 +55,7 @@ final class StoreTests: XCTestCase {
         XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed2, mockFeed3])
     }
     
-    func test_addFeeds_whenAddingExistingFeeds_ignoredDuplicates() {
+    func test_addFeeds_whenAddingExistingFeeds_ignoresDuplicates() {
         let sut = Store(
             dataProvider: MockDataProvider(),
             feeds: [mockFeed1, mockFeed3]
@@ -64,6 +64,19 @@ final class StoreTests: XCTestCase {
         sut.addFeeds([mockFeed2, mockFeed3])
         
         XCTAssertEqual(sut.feeds, [mockFeed1, mockFeed3, mockFeed2])
+    }
+    
+    func test_addFeeds_whenAddingExistingFeedsWithNameOverride_ignoresDuplicates() {
+        var feed1 = mockFeed1
+        feed1.nameOverride = "Name Override"
+        let sut = Store(
+            dataProvider: MockDataProvider(),
+            feeds: [feed1, mockFeed3]
+        )
+        
+        sut.addFeeds([mockFeed2, mockFeed1])
+        
+        XCTAssertEqual(sut.feeds, [feed1, mockFeed3, mockFeed2])
     }
     
     func test_removeFeed_whenNonEmpty_removesFeed() {

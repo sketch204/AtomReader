@@ -23,7 +23,7 @@ fileprivate struct AddFeedActionHandler: ViewModifier {
             .sheet(isPresented: $isAddingFeed) {
                 let networkInterface = URLSessionBasedNetworkInterface()
                 
-                AddFeedView(
+                let view = AddFeedView(
                     viewModel: AddFeedViewModel(
                         store: store,
                         feedPreviewer: FeedPreviewer(
@@ -32,6 +32,14 @@ fileprivate struct AddFeedActionHandler: ViewModifier {
                         )
                     )
                 )
+                
+                #if os(macOS)
+                view
+                #elseif os(iOS)
+                NavigationStack {
+                    view
+                }
+                #endif
             }
     }
 }

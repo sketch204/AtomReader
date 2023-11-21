@@ -29,7 +29,9 @@ final class AddFeedViewModel {
         previewsTask != nil
     }
     var canAddFeed: Bool {
-        !feedPreviews.isEmpty && !selectedFeeds.isEmpty
+        !feedPreviews.isEmpty
+        && !selectedFeeds.isEmpty
+        && selectedFeeds.contains(where: { !isFeedAlreadyAdded($0) })
     }
     var selectedFeeds: Set<Feed.ID> = []
     private(set) var feedPreviews: [Feed] = []
@@ -96,13 +98,17 @@ extension AddFeedViewModel {
 
 extension AddFeedViewModel {
     func addFeeds() {
-        let feeds = feedPreviews.filter({ selectedFeeds.contains($0.id) })
+        let feeds = feedPreviews.filter({ selectedFeeds.contains($0.id) && !isFeedAlreadyAdded($0) })
         
         store.addFeeds(feeds)
     }
     
     func isFeedAlreadyAdded(_ feed: Feed) -> Bool {
-        store.feed(for: feed.id) != nil
+        isFeedAlreadyAdded(feed.id)
+    }
+    
+    func isFeedAlreadyAdded(_ feedId: Feed.ID) -> Bool {
+        store.feed(for: feedId) != nil
     }
 }
 
@@ -116,6 +122,14 @@ extension AddFeedViewModel {
             selectedFeeds.remove(feed.id)
         } else {
             selectedFeeds.insert(feed.id)
+        }
+    }
+    
+    func setFeed(_ feed: Feed, selected: Bool) {
+        if selected {
+            selectedFeeds.insert(feed.id)
+        } else {
+            selectedFeeds.remove(feed.id)
         }
     }
 }

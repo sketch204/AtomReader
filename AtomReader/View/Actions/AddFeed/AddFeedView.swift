@@ -16,63 +16,30 @@ struct AddFeedView: View {
         Form {
             Section("New Feed URL") {
                 TextField("Feed URL", text: $viewModel.feedUrlString, prompt: Text("Website or feed URL"))
-                    .textContentType(.URL)
                     .labelsHidden()
+                    .textContentType(.URL)
+                    .autocorrectionDisabled()
+                    #if os(iOS)
+                    .keyboardType(.URL)
+                    .textInputAutocapitalization(.never)
+                    #endif
             }
             
             Section {
                 ForEach(viewModel.feedPreviews) { feed in
-                    Button {
-                        viewModel.toggleFeedSelection(feed)
-                    } label: {
-                        HStack {
-                            Text(feed.displayName)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            if viewModel.isFeedSelected(feed) {
-                                Spacer()
-                                
-                                Image(systemName: "checkmark")
-                            }
-                        }
-                        .contentShape(Rectangle())
-                    }
-                    #if os(iOS)
-                    .foregroundStyle(.primary)
-                    #elseif os(macOS)
-                    .buttonStyle(.plain)
-                    #endif
+                    feedView(for: feed, isSelected: Binding {
+                        viewModel.isFeedSelected(feed)
+                    } set: { newValue in
+                        viewModel.setFeed(feed, selected: newValue)
+                    })
+                    .disabled(viewModel.isFeedAlreadyAdded(feed))
                 }
             } header: {
-                if viewModel.isLoading {
-                    ProgressView("Loading Feeds")
-                } else if !viewModel.feedPreviews.isEmpty {
+                if !viewModel.feedPreviews.isEmpty {
                     Text("Found Feeds")
                 }
             }
-
-            
-//            Section("Popular Feeds") {
-//                Button("Donny Wals") {
-//                    feedUrlString = "https://donnywals.com/feed"
-//                    addFeed()
-//                }
-//                
-//                Button("Swift by Sundell") {
-//                    feedUrlString = "https://swiftbysundell.com/rss"
-//                    addFeed()
-//                }
-//                
-//                Button("Inal Gotov") {
-//                    feedUrlString = "https://inalgotov.com/feed.xml"
-//                    addFeed()
-//                }
-//                
-//                Button("9to5 Mac") {
-//                    feedUrlString = "https://9to5mac.com/feed"
-//                    addFeed()
-//                }
-//            }
+            .animation(.default, value: viewModel.feedPreviews)
         }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
@@ -94,6 +61,29 @@ struct AddFeedView: View {
         .frame(minWidth: 300)
         #elseif os(iOS)
         .navigationTitle("Add Feed")
+        #endif
+    }
+    
+    func feedView(for feed: Feed, isSelected: Binding<Bool>) -> some View {
+        #if os(macOS)
+        Toggle(feed.displayName, isOn: isSelected)
+            .toggleStyle(.checkbox)
+        #elseif os(iOS)
+        Button {
+            isSelected.wrappedValue.toggle()
+        } label: {
+            HStack {
+                Text(feed.displayName)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                if isSelected.wrappedValue {
+                    Spacer()
+                    
+                    Image(systemName: "checkmark")
+                }
+            }
+            .contentShape(Rectangle())
+        }
         #endif
     }
 }
