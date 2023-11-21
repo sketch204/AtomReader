@@ -1,59 +1,95 @@
 import Foundation
 import AtomXML
+import RegexBuilder
 
 public struct AtomURLResolver {
-    private let parser: AtomXMLParser
+    private let string: String
     private let url: URL
     
-    private init(parser: AtomXMLParser, url: URL) {
-        self.parser = parser
+    public init(string: String, url: URL) {
+        self.string = string
         self.url = url
     }
     
-    public init(data: Data, url: URL) {
-        self.init(parser: AtomXMLParser(data: data), url: url)
+    public init?(data: Data, url: URL) {
+        guard let string = String(data: data, encoding: .utf8) else { return nil }
+        self.init(string: string, url: url)
     }
 }
 
 extension AtomURLResolver {
     public func findLinks() throws -> [Link] {
-        let tree = try parse()
-        
-        guard let head = tree.childNode(name: "head") else {
-            throw InvalidHTML()
+        let linksRegex = Regex {
+            "<link"
+            
+            OneOrMore {
+                CharacterClass.whitespace
+            }
+            
+            ZeroOrMore {
+                CharacterClass.anyOf(">").inverted
+            }
+            
+            ">"
         }
         
-        return findLinksIn(head: head)
-    }
-    
-    private func parse() throws -> AtomXMLNode {
-        try parser.parse()
-    }
-    
-    private func findLinksIn(head: AtomXMLNode) -> [Link] {
-        head.children
-            .filter { node in
-                node.name == "link"
-                && node.attributes["rel"] == "alternate"
-                && (node.attributes["type"] == "application/rss+xml" || node.attributes["type"] == "application/atom+xml")
+        let rawLinks = string.matches(of: linksRegex)
+        
+        return rawLinks
+            .map(\.output)
+            .map(String.init)
+            .filter { link in
+                link.contains(#"rel="alternate""#)
+                && (link.contains(#"type="application/rss+xml""#) || link.contains(#"type="application/atom+xml"#))
             }
-            .compactMap { node -> Link? in
-                guard let urlString = node.attributes["href"],
-                      var url = URL(string: urlString)
-                else { return nil }
-                
-                if url.scheme == nil {
-                    var comps = URLComponents(url: self.url, resolvingAgainstBaseURL: false)
-                    comps?.path = url.path()
-                    guard let newUrl = comps?.url else { return nil }
-                    url = newUrl
+            .compactMap { rawLink -> Link? in
+                extractLink(from: rawLink)
+            }
+    }
+    
+    private func extractLink(from rawLink: String) -> Link? {
+        func captureRegex(for attributeName: String) -> Regex<(Substring, Substring)> {
+            Regex<(Substring, Substring)> {
+                attributeName
+                "="
+                "\""
+                Capture {
+                    ZeroOrMore(.reluctant) {
+                        CharacterClass.any
+                    }
                 }
-                
-                return Link(
-                    url: url,
-                    feedType: node.attributes["type"] == "application/rss+xml" ? .rss : .atom,
-                    title: node.attributes["title"]
-                )
+                "\""
             }
+        }
+        
+        guard let urlStringMatch = rawLink.firstMatch(of: captureRegex(for: "href")),
+              let url = URL(string: String(urlStringMatch.1))
+        else {
+            return nil
+        }
+        
+        var title: String?
+        if let titleStringMatch = rawLink.firstMatch(of: captureRegex(for: "title")) {
+            title = String(titleStringMatch.1)
+        }
+        
+        let resolvedUrl = resolveIfNeeded(url: url, baseUrl: self.url)
+        
+        return Link(
+            url: resolvedUrl,
+            feedType: rawLink.contains(#"type="application/rss+xml""#) ? .rss : .atom,
+            title: title
+        )
+    }
+    
+    func resolveIfNeeded(url: URL, baseUrl: URL) -> URL {
+        guard url.scheme == nil else { return url }
+        
+        var comps = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false)
+        comps?.path = url.path()
+        
+        guard let newUrl = comps?.url else { return url }
+        
+        return newUrl
     }
 }

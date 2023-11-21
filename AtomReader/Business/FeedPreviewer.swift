@@ -51,7 +51,9 @@ extension FeedPreviewer {
     }
     
     private func feedLinks(from htmlData: Data, at url: URL) throws -> [URL] {
-        let resolver = AtomURLResolver(data: htmlData, url: url)
+        guard let resolver = AtomURLResolver(data: htmlData, url: url) else {
+            throw InvalidResponse()
+        }
         
         let links = try resolver.findLinks()
         

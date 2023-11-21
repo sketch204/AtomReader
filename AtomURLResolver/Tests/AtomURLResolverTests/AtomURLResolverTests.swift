@@ -210,10 +210,3 @@ extension Link: Equatable {
         && lhs.title == rhs.title
     }
 }
-
-extension AtomURLResolver {
-    init(string: String, url: URL) {
-        let data = string.data(using: .utf8)!
-        self.init(data: data, url: url)
-    }
-}
