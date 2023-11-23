@@ -66,6 +66,8 @@ extension FeedProvider: StoreDataProvider {
     }
 }
 
+extension FeedProvider: FeedPreviewerDataProvider {}
+
 extension FeedProvider {
     func feed(from rss: AtomParser.RSS, feedUrl: URL) -> Feed {
         Feed(

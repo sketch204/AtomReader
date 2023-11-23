@@ -23,7 +23,7 @@ let mockFeed1 = Feed(
     description: "Feed for hello",
     iconUrl: nil,
     websiteUrl: URL(string: "https://hello.mock")!,
-    feedUrl: URL(string: "https://hello.mock")!
+    feedUrl: URL(string: "https://hello.mock/feed")!
 )
 let mockFeed1Article1 = Article(
     title: "Hello Feed Article 1",
@@ -46,7 +46,7 @@ let mockFeed1Articles = [mockFeed1Article1, mockFeed1Article2]
 let mockFeed1DataString = """
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" >
-    <link href="https://hello.mock" rel="self" type="application/atom+xml" />
+    <link href="https://hello.mock/feed" rel="self" type="application/atom+xml" />
     <link href="https://hello.mock" rel="alternate" type="text/html" />
     <updated>2023-10-17T01:24:18+00:00</updated>
     <id>https://hello.mock</id>
@@ -80,7 +80,7 @@ let mockFeed2 = Feed(
     description: "Feed for goodbye",
     iconUrl: nil,
     websiteUrl: URL(string: "https://goodbye.mock")!,
-    feedUrl: URL(string: "https://goodbye.mock")!
+    feedUrl: URL(string: "https://goodbye.mock/feed")!
 )
 let mockFeed2Article1 = Article(
     title: "Goodbye Feed Article 1",
@@ -95,7 +95,7 @@ let mockFeed2Articles = [mockFeed2Article1]
 let mockFeed2DataString = """
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" >
-    <link href="https://goodbye.mock" rel="self" type="application/atom+xml" />
+    <link href="https://goodbye.mock/feed" rel="self" type="application/atom+xml" />
     <link href="https://goodbye.mock" rel="alternate" type="text/html" />
     <updated>2023-10-17T01:24:18+00:00</updated>
     <id>https://goodbye.mock</id>
@@ -116,8 +116,20 @@ let mockFeed3 = Feed(
     description: "Feed for something else",
     iconUrl: nil,
     websiteUrl: URL(string: "https://something.else")!,
-    feedUrl: URL(string: "https://something.else")!
+    feedUrl: URL(string: "https://something.else/feed")!
 )
+let mockFeed3DataString = """
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" >
+    <link href="https://something.else/feed" rel="self" type="application/atom+xml" />
+    <link href="https://something.else" rel="alternate" type="text/html" />
+    <updated>2023-10-17T01:24:18+00:00</updated>
+    <id>https://something.else</id>
+    <title type="html">Some other Feed</title>
+    <subtitle>Feed for something else</subtitle>
+</feed>
+"""
+let mockFeed3Data = mockFeed3DataString.data(using: .utf8)!
 
 
 let mockFeeds = [mockFeed1, mockFeed2, mockFeed3]
@@ -133,5 +145,15 @@ func makeTestStore(
         dataProvider: dataProvider,
         feeds: feeds,
         articles: articles
+    )
+}
+
+func makeTestFeedPreviewer(
+    feedProvider: FeedPreviewerDataProvider = MockDataProvider(),
+    networkInterface: FeedPreviewerNetworkInterface = MockNetworkInterface()
+) -> FeedPreviewer {
+    FeedPreviewer(
+        feedProvider: feedProvider,
+        networkInterface: networkInterface
     )
 }

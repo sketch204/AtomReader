@@ -52,9 +52,19 @@ final class Store {
 
 extension Store {
     func addFeed(_ feed: Feed) {
-        guard !feeds.contains(where: { $0.id == feed.id }) else { return }
-        feeds.append(feed)
-        persistenceManager?.save(feeds)
+        addFeeds([feed])
+    }
+    
+    func addFeeds(_ feeds: some Sequence<Feed>) {
+        let newFeeds = feeds.filter { newFeed in
+            let alreadyAdded = self.feeds.contains { existingFeed in
+                existingFeed.id == newFeed.id
+            }
+            return !alreadyAdded
+        }
+        
+        self.feeds.append(contentsOf: newFeeds)
+        persistenceManager?.save(self.feeds)
         Task {
             do {
                 try await refreshArticles()
@@ -121,7 +131,11 @@ extension Store {
 
 extension Store {
     func feed(for article: Article) -> Feed? {
-        feeds.first(where: { $0.id == article.feedId })
+        feed(for: article.feedId)
+    }
+    
+    func feed(for id: Feed.ID) -> Feed? {
+        feeds.first(where: { $0.id == id })
     }
 }
 

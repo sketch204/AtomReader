@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct PreviewStoreDataProvider: StoreDataProvider {
-    struct UnsupportedPreviewData: Error {}
-    
+struct PreviewStoreDataProvider {
     func feed(at url: URL) async throws -> Feed {
         switch url {
         case Feed.previewFeed1.feedUrl: .previewFeed1
@@ -25,4 +23,15 @@ struct PreviewStoreDataProvider: StoreDataProvider {
         default: throw UnsupportedPreviewData()
         }
     }
+}
+
+
+extension PreviewStoreDataProvider: StoreDataProvider {}
+extension StoreDataProvider where Self == PreviewStoreDataProvider {
+    static var preview: Self { Self() }
+}
+
+extension PreviewStoreDataProvider: FeedPreviewerDataProvider {}
+extension FeedPreviewerDataProvider where Self == PreviewStoreDataProvider {
+    static var preview: Self { Self() }
 }
