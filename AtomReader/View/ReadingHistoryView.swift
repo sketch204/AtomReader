@@ -21,7 +21,9 @@ struct ReadingHistoryView: View {
                 
                 AppActionButton(action) {
                     Row(entry: entry)
+                        .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
             }
             .onDelete { offsets in
                 let articles = offsets
@@ -31,7 +33,9 @@ struct ReadingHistoryView: View {
             }
         }
         .navigationTitle("History")
+        #if os(iOS)
         .listStyle(.plain)
+        #endif
     }
 }
 
@@ -53,6 +57,8 @@ extension ReadingHistoryView {
                     .foregroundStyle(.secondary)
                     .font(.caption)
             }
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
         }
     }
 }
