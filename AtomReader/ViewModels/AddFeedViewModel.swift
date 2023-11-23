@@ -41,11 +41,15 @@ final class AddFeedViewModel {
     
     private let feedUrlStringSubject = CurrentValueSubject<String, Never>("")
     
-    init(store: Store, feedPreviewer: FeedPreviewer) {
+    init(store: Store, feedPreviewer: FeedPreviewer, url: URL? = nil) {
         self.store = store
         self.feedPreviewer = feedPreviewer
         
         registerPublishers()
+        
+        if let url {
+            feedUrlStringSubject.send(url.absoluteString)
+        }
     }
     
     private func registerPublishers() {
