@@ -82,6 +82,11 @@
 		2DAA20672AFEFB900098222E /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20662AFEFB900098222E /* Feed.swift */; };
 		2DAA20692AFEFD1C0098222E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20682AFEFD1C0098222E /* Store.swift */; };
 		2DAA206B2AFEFF110098222E /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA206A2AFEFF110098222E /* StoreTests.swift */; };
+		2DCCABC42B0FA66D00630093 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCCABC32B0FA66D00630093 /* UniformTypeIdentifiers.framework */; };
+		2DCCABC72B0FA66D00630093 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DCCABC62B0FA66D00630093 /* Media.xcassets */; };
+		2DCCABC92B0FA66D00630093 /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */; };
+		2DCCABCB2B0FA66D00630093 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = 2DCCABCA2B0FA66D00630093 /* Action.js */; };
+		2DCCABCF2B0FA66D00630093 /* AddFeedToAtom.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2DCCABC22B0FA66D00630093 /* AddFeedToAtom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2DEA8A232B0D06C9004E0E54 /* ReadingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +98,28 @@
 			remoteGlobalIDString = 2DAA20322AFEC39D0098222E;
 			remoteInfo = AtomReader;
 		};
+		2DCCABCD2B0FA66D00630093 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DAA202B2AFEC39D0098222E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DCCABC12B0FA66D00630093;
+			remoteInfo = AddFeedToAtom;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2DCCABD02B0FA66D00630093 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2DCCABCF2B0FA66D00630093 /* AddFeedToAtom.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D2EE08B2AFF0600006C4E14 /* StorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePersistenceTests.swift; sourceTree = "<group>"; };
@@ -174,6 +200,12 @@
 		2DAA20662AFEFB900098222E /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		2DAA20682AFEFD1C0098222E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		2DAA206A2AFEFF110098222E /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
+		2DCCABC22B0FA66D00630093 /* AddFeedToAtom.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddFeedToAtom.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DCCABC32B0FA66D00630093 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
+		2DCCABC62B0FA66D00630093 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
+		2DCCABCA2B0FA66D00630093 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
+		2DCCABCC2B0FA66D00630093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +226,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DCCABBF2B0FA66D00630093 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCCABC42B0FA66D00630093 /* UniformTypeIdentifiers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +423,7 @@
 		2D4D68B62B099CCB00C8EFAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2DCCABC32B0FA66D00630093 /* UniformTypeIdentifiers.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -395,6 +436,7 @@
 				2D4D68B52B099C9B00C8EFAA /* AtomURLResolver */,
 				2DAA20352AFEC39D0098222E /* AtomReader */,
 				2DAA20472AFEC39F0098222E /* AtomReaderTests */,
+				2DCCABC52B0FA66D00630093 /* AddFeedToAtom */,
 				2DAA20342AFEC39D0098222E /* Products */,
 				2D4D68B62B099CCB00C8EFAA /* Frameworks */,
 			);
@@ -405,6 +447,7 @@
 			children = (
 				2DAA20332AFEC39D0098222E /* AtomReader.app */,
 				2DAA20442AFEC39F0098222E /* AtomReaderTests.xctest */,
+				2DCCABC22B0FA66D00630093 /* AddFeedToAtom.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,6 +496,17 @@
 			path = AtomReaderTests;
 			sourceTree = "<group>";
 		};
+		2DCCABC52B0FA66D00630093 /* AddFeedToAtom */ = {
+			isa = PBXGroup;
+			children = (
+				2DCCABC62B0FA66D00630093 /* Media.xcassets */,
+				2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */,
+				2DCCABCA2B0FA66D00630093 /* Action.js */,
+				2DCCABCC2B0FA66D00630093 /* Info.plist */,
+			);
+			path = AddFeedToAtom;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -463,10 +517,12 @@
 				2DAA202F2AFEC39D0098222E /* Sources */,
 				2DAA20302AFEC39D0098222E /* Frameworks */,
 				2DAA20312AFEC39D0098222E /* Resources */,
+				2DCCABD02B0FA66D00630093 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2DCCABCE2B0FA66D00630093 /* PBXTargetDependency */,
 			);
 			name = AtomReader;
 			packageProductDependencies = (
@@ -498,6 +554,23 @@
 			productReference = 2DAA20442AFEC39F0098222E /* AtomReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		2DCCABC12B0FA66D00630093 /* AddFeedToAtom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DCCABD32B0FA66D00630093 /* Build configuration list for PBXNativeTarget "AddFeedToAtom" */;
+			buildPhases = (
+				2DCCABBE2B0FA66D00630093 /* Sources */,
+				2DCCABBF2B0FA66D00630093 /* Frameworks */,
+				2DCCABC02B0FA66D00630093 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AddFeedToAtom;
+			productName = AddFeedToAtom;
+			productReference = 2DCCABC22B0FA66D00630093 /* AddFeedToAtom.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -514,6 +587,9 @@
 					2DAA20432AFEC39F0098222E = {
 						CreatedOnToolsVersion = 15.0.1;
 						TestTargetID = 2DAA20322AFEC39D0098222E;
+					};
+					2DCCABC12B0FA66D00630093 = {
+						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -536,6 +612,7 @@
 			targets = (
 				2DAA20322AFEC39D0098222E /* AtomReader */,
 				2DAA20432AFEC39F0098222E /* AtomReaderTests */,
+				2DCCABC12B0FA66D00630093 /* AddFeedToAtom */,
 			);
 		};
 /* End PBXProject section */
@@ -558,6 +635,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DCCABC02B0FA66D00630093 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCCABCB2B0FA66D00630093 /* Action.js in Resources */,
+				2DCCABC72B0FA66D00630093 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +729,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2DCCABBE2B0FA66D00630093 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCCABC92B0FA66D00630093 /* ActionRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -650,6 +744,11 @@
 			isa = PBXTargetDependency;
 			target = 2DAA20322AFEC39D0098222E /* AtomReader */;
 			targetProxy = 2DAA20452AFEC39F0098222E /* PBXContainerItemProxy */;
+		};
+		2DCCABCE2B0FA66D00630093 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DCCABC12B0FA66D00630093 /* AddFeedToAtom */;
+			targetProxy = 2DCCABCD2B0FA66D00630093 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -771,6 +870,7 @@
 		2DAA20592AFEC39F0098222E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AtomReader/AtomReader.entitlements;
@@ -811,6 +911,7 @@
 		2DAA205A2AFEC39F0098222E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AtomReader/AtomReader.entitlements;
@@ -894,6 +995,67 @@
 			};
 			name = Release;
 		};
+		2DCCABD12B0FA66D00630093 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VGG5HAF3L7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddFeedToAtom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddFeedToAtom;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sketch204.AtomReader.AddFeedToAtom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2DCCABD22B0FA66D00630093 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VGG5HAF3L7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddFeedToAtom/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddFeedToAtom;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sketch204.AtomReader.AddFeedToAtom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -920,6 +1082,15 @@
 			buildConfigurations = (
 				2DAA205C2AFEC39F0098222E /* Debug */,
 				2DAA205D2AFEC39F0098222E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DCCABD32B0FA66D00630093 /* Build configuration list for PBXNativeTarget "AddFeedToAtom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DCCABD12B0FA66D00630093 /* Debug */,
+				2DCCABD22B0FA66D00630093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
