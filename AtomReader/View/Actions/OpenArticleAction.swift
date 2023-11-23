@@ -12,6 +12,7 @@ struct OpenArticleAction: AppAction, Hashable {
     let article: Article
     var shouldOpenArticleInApp: Bool?
     var shouldOpenArticlesInSheet: Bool?
+    var shouldSkipHistoryTracking: Bool = false
 }
 
 fileprivate struct OpenArticleActionHandler: ViewModifier {
@@ -69,7 +70,9 @@ fileprivate struct OpenArticleActionHandler: ViewModifier {
             openUrl(action.article.articleUrl)
         }
         
-        readingHistory.mark(article: action.article, read: true)
+        if !action.shouldSkipHistoryTracking {
+            readingHistory.mark(article: action.article, read: true)
+        }
     }
 }
 

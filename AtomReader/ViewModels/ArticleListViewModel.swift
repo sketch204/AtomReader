@@ -21,10 +21,10 @@ final class ArticleListViewModel {
     var articles: [Article] {
         let output =
             switch filter {
-            case .none:
-                store.articles
             case .feed(let feedId):
                 store.articles(for: feedId)
+            case .none, .history:
+                store.articles
             }
         return output.sorted(using: KeyPathComparator(\Article.publishedAt, order: .reverse))
     }

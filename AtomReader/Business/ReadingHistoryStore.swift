@@ -34,13 +34,35 @@ final class ReadingHistoryStore {
 
 extension ReadingHistoryStore {
     func mark(article: Article, read: Bool) {
-        if let index = readArticles.firstIndex(where: { $0.id == article.id }) {
-            readArticles.remove(at: index)
-        }
+        mark(articles: [article], read: read)
+    }
+    
+    func mark(articles: some Sequence<Article>, read: Bool) {
+        let offsets = readArticles
+            .enumerated()
+            .filter({ item in
+                articles.contains(where: { articleToBeMarked in
+                    articleToBeMarked.id == item.element.id
+                })
+            })
+            .map(\.offset)
+        
+        readArticles.remove(atOffsets: IndexSet(offsets))
         
         if read {
-            readArticles.append(ReadArticle(article: article, readAt: Date()))
+            let readAt = Date()
+            readArticles.append(
+                contentsOf: articles.map({ ReadArticle(article: $0, readAt: readAt) })
+            )
         }
+        
+        persistenceManager?.save(readArticles)
+    }
+}
+
+extension ReadingHistoryStore {
+    func clear() {
+        readArticles.removeAll()
         
         persistenceManager?.save(readArticles)
     }
