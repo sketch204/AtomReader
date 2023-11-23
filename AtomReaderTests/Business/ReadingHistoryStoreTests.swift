@@ -187,3 +187,11 @@ extension ReadingHistoryStoreTests {
         XCTAssertFalse(isRead)
     }
 }
+
+extension ReadingHistoryStoreTests {
+    func test_clear_removesAllReadArticles() {
+        sut.clear()
+        
+        XCTAssertTrue(sut.readArticles.isEmpty)
+    }
+}

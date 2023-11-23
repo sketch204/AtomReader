@@ -50,6 +50,51 @@ final class ReadingHistoryStorePersistenceTests: XCTestCase {
         XCTAssertEqual(manager.saveArticlesCalls.count, 1)
         XCTAssertEqual(manager.saveArticlesCalls.first?.arguments, Array(manager.readArticles.dropLast()))
     }
+    
+    func test_markArticlesRead_whenMarkingRead_saves() async {
+        let manager = MockReadingHistoryStorePersistenceManager(
+            articles: [mockFeed1Article1]
+                .map({ ReadArticle(article: $0, readAt: Date()) })
+        )
+        let sut = ReadingHistoryStore(persistenceManager: manager)
+        
+        try? await Task.sleep(for: .milliseconds(100))
+        
+        sut.mark(articles: [mockFeed1Article2], read: true)
+        
+        XCTAssertEqual(manager.saveArticlesCalls.count, 1)
+        XCTAssertEqual(manager.saveArticlesCalls.first?.arguments.count, 2)
+    }
+    
+    func test_markArticlesRead_whenMarkingUnread_saves() async {
+        let manager = MockReadingHistoryStorePersistenceManager(
+            articles: [mockFeed1Article1, mockFeed1Article2]
+                .map({ ReadArticle(article: $0, readAt: Date()) })
+        )
+        let sut = ReadingHistoryStore(persistenceManager: manager)
+        
+        try? await Task.sleep(for: .milliseconds(100))
+        
+        sut.mark(articles: [mockFeed1Article2], read: false)
+        
+        XCTAssertEqual(manager.saveArticlesCalls.count, 1)
+        XCTAssertEqual(manager.saveArticlesCalls.first?.arguments, Array(manager.readArticles.dropLast()))
+    }
+    
+    func test_clear_saves() async {
+        let manager = MockReadingHistoryStorePersistenceManager(
+            articles: [mockFeed1Article1, mockFeed1Article2]
+                .map({ ReadArticle(article: $0, readAt: Date()) })
+        )
+        let sut = ReadingHistoryStore(persistenceManager: manager)
+        
+        try? await Task.sleep(for: .milliseconds(100))
+        
+        sut.clear()
+        
+        XCTAssertEqual(manager.saveArticlesCalls.count, 1)
+        XCTAssertTrue(manager.saveArticlesCalls.first!.arguments.isEmpty)
+    }
 }
 
 class MockReadingHistoryStorePersistenceManager: ReadingHistoryStorePersistenceManager {
