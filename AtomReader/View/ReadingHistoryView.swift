@@ -10,6 +10,8 @@ import SwiftUI
 struct ReadingHistoryView: View {
     @Environment(ReadingHistoryStore.self) private var readingHistory
     
+    @State private var isClearingHistory: Bool = false
+    
     var sortedEntries: [ReadArticle] {
         readingHistory.readArticles.sorted(using: KeyPathComparator(\.readAt, order: .reverse))
     }
@@ -33,6 +35,30 @@ struct ReadingHistoryView: View {
             }
         }
         .navigationTitle("History")
+        .toolbar {
+            ToolbarItem(placement: .destructiveAction) {
+                Button("Clear") {
+                    isClearingHistory = true
+                }
+            }
+        }
+        .confirmationDialog(
+            "Are you sure you want to clear your reading history?",
+            isPresented: $isClearingHistory
+        ) {
+            Button("Clear", role: .destructive) {
+                readingHistory.clear()
+            }
+            
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            #if os(iOS)
+            Text("Are you sure you want to clear your reading history? This action cannot be undone.")
+            #elseif os(macOS)
+            Text("This action cannot be undone.")
+            #endif
+        }
+
         #if os(iOS)
         .listStyle(.plain)
         #endif
