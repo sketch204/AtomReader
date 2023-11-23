@@ -34,6 +34,11 @@ struct ReadingHistoryView: View {
                 readingHistory.mark(articles: articles, read: false)
             }
         }
+        .overlay {
+            if readingHistory.readArticles.isEmpty {
+                emptyReadingHistoryView
+            }
+        }
         .navigationTitle("History")
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
@@ -62,6 +67,14 @@ struct ReadingHistoryView: View {
         #if os(iOS)
         .listStyle(.plain)
         #endif
+    }
+    
+    var emptyReadingHistoryView: some View {
+        ContentUnavailableView {
+            Text("No reading history")
+        } description: {
+            Text("Read some articles. They'll show up here when you do.")
+        }
     }
 }
 
