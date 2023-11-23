@@ -10,6 +10,7 @@ import Foundation
 enum ArticleFilter: Equatable, Hashable {
     case none
     case feed(Feed.ID)
+    case history
 }
 
 extension ArticleFilter: Identifiable {

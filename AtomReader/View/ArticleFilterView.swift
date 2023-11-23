@@ -12,14 +12,21 @@ struct ArticleFilterView: View {
     
     var body: some View {
         List(selection: $filter) {
-            Text("All")
-                .tag(ArticleFilter.none)
+            Section {
+                Text("All")
+                    .tag(ArticleFilter.none)
+            }
             
             Section {
                 ForEachFeed { feed in
                     FeedRowView(feed: feed)
                         .tag(ArticleFilter.feed(feed.id))
                 }
+            }
+            
+            Section {
+                Text("Reading History")
+                    .tag(ArticleFilter.history)
             }
         }
     }

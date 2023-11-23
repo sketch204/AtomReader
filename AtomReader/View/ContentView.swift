@@ -41,13 +41,16 @@ struct ContentView: View {
                 .navigationTitle("Feeds")
         } detail: {
             NavigationStack(path: $navigationPath) {
-                ArticleListView(
-                    viewModel: ArticleListViewModel(
-                        store: store,
-                        filter: filter ?? .none
+                if filter == .history {
+                    ReadingHistoryView()
+                } else {
+                    ArticleListView(
+                        viewModel: ArticleListViewModel(
+                            store: store,
+                            filter: filter ?? .none
+                        )
                     )
-                )
-                .navigationTitle("Articles")
+                }
             }
             .handleOpenArticleAction(navigationPath: $navigationPath)
         }

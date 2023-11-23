@@ -43,8 +43,8 @@ struct ArticleListView: View {
         .refreshable {
             await viewModel.refresh()
         }
+        #if os(macOS)
         .toolbar {
-            #if os(macOS)
             Button {
                 Task {
                     await viewModel.refresh()
@@ -59,8 +59,9 @@ struct ArticleListView: View {
             .disabled(viewModel.isLoading)
             .keyboardShortcut("r")
             .help("Refresh all channels (⌘ R)")
-            #endif
         }
+        #endif
+        .navigationTitle("Articles")
     }
     
     var noFeedsView: some View {
