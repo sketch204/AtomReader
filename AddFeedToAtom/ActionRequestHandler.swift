@@ -5,86 +5,48 @@
 //  Created by Inal Gotov on 2023-11-23.
 //
 
+#if os(iOS)
 import UIKit
 import MobileCoreServices
+#elseif os(macOS)
+import AppKit
+#endif
 import UniformTypeIdentifiers
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
-
-    var extensionContext: NSExtensionContext?
-    
     func beginRequest(with context: NSExtensionContext) {
-        // Do not call super in an Action extension with no user interface
-        self.extensionContext = context
+        Task {
+            let typeIdentifier = UTType.url.identifier
+            
+            let urlItems = context.inputItems
+                .compactMap({ $0 as? NSExtensionItem })
+                .compactMap({ $0.attachments })
+                .flatMap({ $0 })
+                .filter({ $0.hasItemConformingToTypeIdentifier(typeIdentifier) })
         
-        var found = false
-        
-        // Find the item containing the results from the JavaScript preprocessing.
-        outer:
-            for item in context.inputItems as! [NSExtensionItem] {
-                if let attachments = item.attachments {
-                    for itemProvider in attachments {
-                        if itemProvider.hasItemConformingToTypeIdentifier(UTType.propertyList.identifier) {
-                            itemProvider.loadItem(forTypeIdentifier: UTType.propertyList.identifier, options: nil, completionHandler: { (item, error) in
-                                let dictionary = item as! [String: Any]
-                                OperationQueue.main.addOperation {
-                                    self.itemLoadCompletedWithPreprocessingResults(dictionary[NSExtensionJavaScriptPreprocessingResultsKey] as! [String: Any]? ?? [:])
-                                }
-                            })
-                            found = true
-                            break outer
-                        }
+            var urls = [URL]()
+            for itemProvider in urlItems {
+                do {
+                    guard let url = try await itemProvider.loadItem(forTypeIdentifier: typeIdentifier) as? URL else {
+                        continue
                     }
+                    
+                    urls.append(url)
+                } catch {
+                    print("ERROR: Failed to load URL from item provider -- \(error)")
                 }
-        }
-        
-        if !found {
-            self.doneWithResults(nil)
-        }
-    }
-    
-    func itemLoadCompletedWithPreprocessingResults(_ javaScriptPreprocessingResults: [String: Any]) {
-        // Here, do something, potentially asynchronously, with the preprocessing
-        // results.
-        
-        // In this very simple example, the JavaScript will have passed us the
-        // current background color style, if there is one. We will construct a
-        // dictionary to send back with a desired new background color style.
-        let bgColor: Any? = javaScriptPreprocessingResults["currentBackgroundColor"]
-        if bgColor == nil ||  bgColor! as! String == "" {
-            // No specific background color? Request setting the background to red.
-            self.doneWithResults(["newBackgroundColor": "red"])
-        } else {
-            // Specific background color is set? Request replacing it with green.
-            self.doneWithResults(["newBackgroundColor": "green"])
+            }
+            
+            guard let feedUrl = urls.first,
+                  let deepLinkUrl = URL(string: "feed:\(feedUrl.absoluteString)")
+            else {
+                context.completeRequest(returningItems: nil)
+                return
+            }
+            
+            context.completeRequest(returningItems: []) { _ in
+                context.open(deepLinkUrl)
+            }
         }
     }
-    
-    func doneWithResults(_ resultsForJavaScriptFinalizeArg: [String: Any]?) {
-        if let resultsForJavaScriptFinalize = resultsForJavaScriptFinalizeArg {
-            // Construct an NSExtensionItem of the appropriate type to return our
-            // results dictionary in.
-            
-            // These will be used as the arguments to the JavaScript finalize()
-            // method.
-            
-            let resultsDictionary = [NSExtensionJavaScriptFinalizeArgumentKey: resultsForJavaScriptFinalize]
-            
-            let resultsProvider = NSItemProvider(item: resultsDictionary as NSDictionary, typeIdentifier: UTType.propertyList.identifier)
-            
-            let resultsItem = NSExtensionItem()
-            resultsItem.attachments = [resultsProvider]
-            
-            // Signal that we're complete, returning our results.
-            self.extensionContext!.completeRequest(returningItems: [resultsItem], completionHandler: nil)
-        } else {
-            // We still need to signal that we're done even if we have nothing to
-            // pass back.
-            self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-        }
-        
-        // Don't hold on to this after we finished with it.
-        self.extensionContext = nil
-    }
-
 }

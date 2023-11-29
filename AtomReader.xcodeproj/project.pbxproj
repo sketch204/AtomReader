@@ -85,7 +85,6 @@
 		2DCCABC42B0FA66D00630093 /* UniformTypeIdentifiers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCCABC32B0FA66D00630093 /* UniformTypeIdentifiers.framework */; };
 		2DCCABC72B0FA66D00630093 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DCCABC62B0FA66D00630093 /* Media.xcassets */; };
 		2DCCABC92B0FA66D00630093 /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */; };
-		2DCCABCB2B0FA66D00630093 /* Action.js in Resources */ = {isa = PBXBuildFile; fileRef = 2DCCABCA2B0FA66D00630093 /* Action.js */; };
 		2DCCABCF2B0FA66D00630093 /* AddFeedToAtom.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2DCCABC22B0FA66D00630093 /* AddFeedToAtom.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2DEA8A232B0D06C9004E0E54 /* ReadingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */; };
 /* End PBXBuildFile section */
@@ -204,7 +203,6 @@
 		2DCCABC32B0FA66D00630093 /* UniformTypeIdentifiers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UniformTypeIdentifiers.framework; path = System/Library/Frameworks/UniformTypeIdentifiers.framework; sourceTree = SDKROOT; };
 		2DCCABC62B0FA66D00630093 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
-		2DCCABCA2B0FA66D00630093 /* Action.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Action.js; sourceTree = "<group>"; };
 		2DCCABCC2B0FA66D00630093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -501,7 +499,6 @@
 			children = (
 				2DCCABC62B0FA66D00630093 /* Media.xcassets */,
 				2DCCABC82B0FA66D00630093 /* ActionRequestHandler.swift */,
-				2DCCABCA2B0FA66D00630093 /* Action.js */,
 				2DCCABCC2B0FA66D00630093 /* Info.plist */,
 			);
 			path = AddFeedToAtom;
@@ -642,7 +639,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCCABCB2B0FA66D00630093 /* Action.js in Resources */,
 				2DCCABC72B0FA66D00630093 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,7 +999,7 @@
 				DEVELOPMENT_TEAM = VGG5HAF3L7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddFeedToAtom/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AddFeedToAtom;
+				INFOPLIST_KEY_CFBundleDisplayName = "Find feeds in Atom Reader";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1033,7 +1029,7 @@
 				DEVELOPMENT_TEAM = VGG5HAF3L7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AddFeedToAtom/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AddFeedToAtom;
+				INFOPLIST_KEY_CFBundleDisplayName = "Find feeds in Atom Reader";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
