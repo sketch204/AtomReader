@@ -7,14 +7,12 @@
 
 import Foundation
 import AtomParser
-import RegexBuilder
 
 protocol FeedProviderNetworkInterface {
     func data(from url: URL) async throws -> Data
 }
 
 final class FeedProvider {
-    private var feeds = [Feed.ID: Feed]()
     private var articles = [Feed.ID: [Article]]()
     
     private let networkInterface: FeedProviderNetworkInterface
@@ -48,7 +46,6 @@ extension FeedProvider: StoreDataProvider {
             throw UnrecognizedFeedFormat()
         }
         
-        self.feeds[feed.id] = feed
         self.articles[feed.id] = articles
         
         return feed
