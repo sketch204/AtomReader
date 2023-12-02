@@ -104,22 +104,45 @@ extension Store {
 
 extension Store {
     func refreshFeeds() async throws {
-        var feeds = [Feed]()
-        for oldFeed in self.feeds {
-            var newFeed = try await dataProvider.feed(at: oldFeed.feedUrl)
-            newFeed.nameOverride = oldFeed.nameOverride
-            feeds.append(newFeed)
+        let newFeedMap = try await withThrowingTaskGroup(
+            of: Feed.self,
+            returning: [Feed.ID: Feed].self
+        ) { group in
+            for oldFeed in feeds {
+                group.addTask { [dataProvider] in
+                    var newFeed = try await dataProvider.feed(at: oldFeed.feedUrl)
+                    newFeed.nameOverride = oldFeed.nameOverride
+                    return newFeed
+                }
+            }
+            
+            return try await group.reduce(into: [Feed.ID: Feed]()) { partialResult, feed in
+                partialResult[feed.id] = feed
+            }
         }
-        self.feeds = feeds
+        
+        // Retains order
+        feeds = feeds.map { oldFeed in
+            newFeedMap[oldFeed.id] ?? oldFeed
+        }
+        
         persistenceManager?.save(feeds)
     }
     
     func refreshArticles() async throws {
-        var articles = [Article]()
-        for feed in self.feeds {
-            articles.append(contentsOf: try await dataProvider.articles(for: feed))
+        let newArticles = try await withThrowingTaskGroup(of: [Article].self) { group in
+            for feed in feeds {
+                group.addTask { [dataProvider] in
+                    try await dataProvider.articles(for: feed)
+                }
+            }
+            
+            return try await group.reduce(into: [Article]()) { partialResult, articles in
+                partialResult.append(contentsOf: articles)
+            }
         }
-        self.articles = articles
+        
+        articles = newArticles
         persistenceManager?.save(articles)
     }
     
