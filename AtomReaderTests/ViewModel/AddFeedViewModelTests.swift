@@ -151,4 +151,32 @@ final class AddFeedViewModelTests: XCTestCase {
         
         XCTAssertEqual(sut.selectedFeeds, [mockFeed3.id])
     }
+    
+    func test_previewFeed_whenErrorEncountered_errorMessageSet() async {
+        struct CustomError: Error, CustomDebugStringConvertible {
+            let message: String = "Unsupported"
+            var localizedDescription: String { debugDescription }
+            var debugDescription: String { message }
+        }
+        
+        struct ThrowingFeedProvider: FeedPreviewerDataProvider {
+            func feed(at url: URL) async throws -> Feed {
+                throw CustomError()
+            }
+        }
+        
+        let sut = AddFeedViewModel(
+            store: store,
+            feedPreviewer: FeedPreviewer(
+                feedProvider: ThrowingFeedProvider(),
+                networkInterface: MockNetworkInterface()
+            )
+        )
+        
+        sut.feedUrlString = mockFeed1.feedUrl.absoluteString
+        
+        try? await Task.sleep(for: .milliseconds(600))
+        
+        XCTAssertEqual(sut.errorMessage, CustomError().message)
+    }
 }
