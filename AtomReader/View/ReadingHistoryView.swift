@@ -92,7 +92,7 @@ extension ReadingHistoryView {
                 Text(entry.article.title)
                     .font(.title2)
                 
-                Text(dateString)
+                Text("Read \(dateString)")
                     .foregroundStyle(.secondary)
                     .font(.caption)
             }
