@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/sketch204/AtomParser",
       "state" : {
-        "revision" : "cbd001589e03ccf40f7d22ef7b646f23e15de3c8",
-        "version" : "1.1.2"
+        "revision" : "3eb9233c112d28e1091620871332ca45a2e11663",
+        "version" : "1.1.3"
       }
     },
     {
