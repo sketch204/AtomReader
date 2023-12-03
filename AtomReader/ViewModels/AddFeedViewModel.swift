@@ -35,6 +35,7 @@ final class AddFeedViewModel {
     }
     var selectedFeeds: Set<Feed.ID> = []
     private(set) var feedPreviews: [Feed] = []
+    private(set) var errorMessage: String?
     
     private var previewsTask: Task<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
@@ -71,12 +72,19 @@ final class AddFeedViewModel {
 
 extension AddFeedViewModel {
     private func previewFeeds(at url: URL) {
+        errorMessage = nil
+        
         previewsTask?.cancel()
         previewsTask = Task {
             do {
                 try await previewFeeds(at: url)
             } catch {
-                Logger.app.critical("Failed to load feed previews at \(url) -- \(error)")
+                Logger.app.critical("Failed to load feed previews at \(url) -- \(error.localizedDescription)")
+                #if DEBUG
+                errorMessage = (error as CustomDebugStringConvertible).debugDescription
+                #else
+                errorMessage = error.localizedDescription
+                #endif
             }
             
             if !Task.isCancelled {

@@ -38,6 +38,12 @@ struct AddFeedView: View {
                 if !viewModel.feedPreviews.isEmpty {
                     Text("Found Feeds")
                 }
+            } footer: {
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundStyle(.red)
+                        .help(errorMessage)
+                }
             }
             .animation(.default, value: viewModel.feedPreviews)
         }
