@@ -12,15 +12,27 @@ struct ArticleFilterListImage: View {
     
     var imageSize: CGFloat {
         #if os(iOS)
-        return 32
+        return 24
         #elseif os(macOS)
         return 18
         #endif
     }
     
+    private var shape: RoundedRectangle {
+        RoundedRectangle(cornerRadius: imageSize * (4/24))
+    }
+    
     var body: some View {
         Image(systemName: systemName)
             .resizable()
+        #if os(iOS)
+            .padding(imageSize * (4/24))
+            .overlay(
+                shape
+                    .stroke(lineWidth: imageSize * (1/16))
+                    .aspectRatio(contentMode: .fit)
+            )
+        #endif
             .aspectRatio(contentMode: .fill)
             .frame(width: imageSize)
             .fontWeight(.light)
@@ -33,7 +45,7 @@ struct ArticleFilterListImage: View {
         Label {
             Text("All")
         } icon: {
-            ArticleFilterListImage(systemName: "list.bullet.circle")
+            ArticleFilterListImage(systemName: "square.3.stack.3d")
         }
         
         FeedRowView(

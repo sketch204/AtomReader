@@ -12,7 +12,7 @@ struct FeedRowView: View {
     
     private var imageSize: CGFloat {
         #if os(iOS)
-        return 32
+        return 24
         #elseif os(macOS)
         return 16
         #endif

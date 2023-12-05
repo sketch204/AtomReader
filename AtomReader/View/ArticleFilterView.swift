@@ -16,7 +16,7 @@ struct ArticleFilterView: View {
                 Label {
                     Text("All")
                 } icon: {
-                    ArticleFilterListImage(systemName: "list.bullet.circle")
+                    ArticleFilterListImage(systemName: "square.3.stack.3d")
                 }
                 .tag(ArticleFilter.none)
             }
