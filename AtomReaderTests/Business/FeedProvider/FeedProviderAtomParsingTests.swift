@@ -294,7 +294,7 @@ extension FeedProviderAtomParsingTests {
             links: [
                 websiteUrl.flatMap({
                     AtomParser.Link(
-                        url: URL(string: $0)!,
+                        href: .absolute(URL(string: $0)!),
                         relationship: .alternate,
                         type: nil,
                         title: nil,

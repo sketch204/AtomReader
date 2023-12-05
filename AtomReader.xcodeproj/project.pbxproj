@@ -82,6 +82,7 @@
 		2DAA20672AFEFB900098222E /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20662AFEFB900098222E /* Feed.swift */; };
 		2DAA20692AFEFD1C0098222E /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20682AFEFD1C0098222E /* Store.swift */; };
 		2DAA206B2AFEFF110098222E /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA206A2AFEFF110098222E /* StoreTests.swift */; };
+		2DD0FEA32B18E9B700BF1506 /* DebuggingCommandsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD0FEA22B18E9B700BF1506 /* DebuggingCommandsMenu.swift */; };
 		2DEA8A232B0D06C9004E0E54 /* ReadingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		2DAA20662AFEFB900098222E /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		2DAA20682AFEFD1C0098222E /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		2DAA206A2AFEFF110098222E /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
+		2DD0FEA22B18E9B700BF1506 /* DebuggingCommandsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingCommandsMenu.swift; sourceTree = "<group>"; };
 		2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -365,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				2D4D68992B09423D00C8EFAA /* AppIconView.swift */,
+				2DD0FEA22B18E9B700BF1506 /* DebuggingCommandsMenu.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				2D4D67F82AFF2FAF00C8EFAA /* ForEachFeed.swift in Sources */,
 				2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */,
 				2D4D68662B0576B700C8EFAA /* FeedRowView.swift in Sources */,
+				2DD0FEA32B18E9B700BF1506 /* DebuggingCommandsMenu.swift in Sources */,
 				2D4D68AB2B095DDB00C8EFAA /* SettingKeys.swift in Sources */,
 				2D4D68752B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift in Sources */,
 				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,

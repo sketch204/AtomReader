@@ -7,14 +7,12 @@
 
 import Foundation
 import AtomParser
-import RegexBuilder
 
 protocol FeedProviderNetworkInterface {
     func data(from url: URL) async throws -> Data
 }
 
 final class FeedProvider {
-    private var feeds = [Feed.ID: Feed]()
     private var articles = [Feed.ID: [Article]]()
     
     private let networkInterface: FeedProviderNetworkInterface
@@ -48,7 +46,6 @@ extension FeedProvider: StoreDataProvider {
             throw UnrecognizedFeedFormat()
         }
         
-        self.feeds[feed.id] = feed
         self.articles[feed.id] = articles
         
         return feed
@@ -100,6 +97,9 @@ extension FeedProvider {
 
 extension FeedProvider {
     struct RequiredLinksNotFound: Error {}
+    struct FailedToProcessURL: Error {
+        let url: URL
+    }
     
     func feed(from parsedFeed: AtomParser.Feed, feedUrl: URL) throws -> Feed {
         guard let websiteLink = parsedFeed.links.first(where: { $0.relationship == .alternate })
@@ -107,13 +107,22 @@ extension FeedProvider {
             throw RequiredLinksNotFound()
         }
         
+        guard let baseUrl = baseUrl(from: feedUrl) else {
+            throw FailedToProcessURL(url: feedUrl)
+        }
+        
+        let websiteURL = switch websiteLink.href {
+        case .absolute(let url): url
+        case .relative(let path): baseUrl.appending(component: path)
+        }
+        
         return Feed(
             name: parsedFeed.title.content,
             description: parsedFeed.subtitle?.content,
             iconUrl: parsedFeed.icon
                 .map(\.path)
-                .map({ websiteLink.url.appending(path: $0) }),
-            websiteUrl: websiteLink.url,
+                .map({ baseUrl.appending(path: $0) }),
+            websiteUrl: websiteURL,
             feedUrl: feedUrl
         )
     }
@@ -130,6 +139,12 @@ extension FeedProvider {
                     feedId: Feed.ID(feedUrl: feedUrl)
                 )
             }
+    }
+    
+    private func baseUrl(from url: URL) -> URL? {
+        var comps = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        comps?.path = ""
+        return comps?.url
     }
 }
 

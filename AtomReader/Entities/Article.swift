@@ -19,18 +19,22 @@ struct Article: Hashable {
 
 extension Article: Identifiable {
     struct ID: Hashable {
-        let title: String
         let articleUrl: URL
         let publishedAt: Date
+        let feedId: Feed.ID
         
-        init(title: String, articleUrl: URL, publishedAt: Date) {
-            self.title = title
+        init(articleUrl: URL, publishedAt: Date, feedId: Feed.ID) {
             self.articleUrl = articleUrl
             self.publishedAt = publishedAt
+            self.feedId = feedId
         }
         
         init(article: Article) {
-            self.init(title: article.title, articleUrl: article.articleUrl, publishedAt: article.publishedAt)
+            self.init(
+                articleUrl: article.articleUrl,
+                publishedAt: article.publishedAt,
+                feedId: article.feedId
+            )
         }
     }
     

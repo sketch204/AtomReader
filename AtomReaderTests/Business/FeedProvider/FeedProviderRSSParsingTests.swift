@@ -301,7 +301,7 @@ extension FeedProviderRSSParsingTests {
                 generator: nil,
                 image: iconUrl.map({
                     RSSImage(
-                        link: URL(string: link)!,
+                        websiteUrl: URL(string: link)!,
                         title: "Icon",
                         url: URL(string: $0)!,
                         description: nil,
