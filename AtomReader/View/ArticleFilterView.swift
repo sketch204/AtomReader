@@ -13,8 +13,12 @@ struct ArticleFilterView: View {
     var body: some View {
         List(selection: $filter) {
             Section {
-                Text("All")
-                    .tag(ArticleFilter.none)
+                Label {
+                    Text("All")
+                } icon: {
+                    ArticleFilterListImage(systemName: "list.bullet.circle")
+                }
+                .tag(ArticleFilter.none)
             }
             
             Section {
@@ -25,8 +29,12 @@ struct ArticleFilterView: View {
             }
             
             Section {
-                Text("Reading History")
-                    .tag(ArticleFilter.history)
+                Label {
+                    Text("Reading History")
+                } icon: {
+                    ArticleFilterListImage(systemName: "clock")
+                }
+                .tag(ArticleFilter.history)
             }
         }
     }

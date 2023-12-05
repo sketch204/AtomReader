@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedImage: View {
     let url: URL?
+    var size: CGFloat = 32
     
     var body: some View {
         AsyncImage(url: url) { image in
@@ -21,17 +22,17 @@ struct FeedImage: View {
         } placeholder: {
             Image(systemName: "dot.radiowaves.up.forward")
                 .resizable()
-                .offset(x: 1)
-                .padding(9)
+                .offset(x: size * (1/32))
+                .padding(size * (9/32))
                 .background(
                     Circle()
-                        .stroke(lineWidth: 2)
+                        .stroke(lineWidth: size * (2/32))
                 )
-                .foregroundStyle(.accent.gradient.opacity(0.8))
+//                .foregroundStyle(.accent.gradient.opacity(0.8))
                 
         }
         .aspectRatio(contentMode: .fill)
-        .frame(width: 32)
+        .frame(width: size)
         .fixedSize()
     }
 }

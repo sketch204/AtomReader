@@ -74,6 +74,7 @@
 		2D4D68C32B0A72CC00C8EFAA /* PreviewNetworkInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C22B0A72CC00C8EFAA /* PreviewNetworkInterface.swift */; };
 		2D4D68C52B0A743000C8EFAA /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4D68C42B0A743000C8EFAA /* Misc.swift */; };
 		2DAA121C2B1EC79E00082042 /* FeedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA121B2B1EC79E00082042 /* FeedImage.swift */; };
+		2DAA12202B1ECBFC00082042 /* ArticleFilterListImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA121F2B1ECBFC00082042 /* ArticleFilterListImage.swift */; };
 		2DAA20372AFEC39D0098222E /* AtomReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */; };
 		2DAA20392AFEC39D0098222E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA20382AFEC39D0098222E /* ContentView.swift */; };
 		2DAA203B2AFEC39F0098222E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DAA203A2AFEC39F0098222E /* Assets.xcassets */; };
@@ -166,6 +167,7 @@
 		2D4D68C42B0A743000C8EFAA /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		2D52E61D2AFF02410089294A /* AtomReader.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AtomReader.xctestplan; sourceTree = "<group>"; };
 		2DAA121B2B1EC79E00082042 /* FeedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImage.swift; sourceTree = "<group>"; };
+		2DAA121F2B1ECBFC00082042 /* ArticleFilterListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleFilterListImage.swift; sourceTree = "<group>"; };
 		2DAA20332AFEC39D0098222E /* AtomReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtomReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DAA20362AFEC39D0098222E /* AtomReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomReaderApp.swift; sourceTree = "<group>"; };
 		2DAA20382AFEC39D0098222E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				2D4D67FD2AFF31B100C8EFAA /* ArticleListView.swift */,
 				2D4D67FF2AFF31EB00C8EFAA /* ArticleRowView.swift */,
 				2D4D681D2B01374A00C8EFAA /* ArticleFilterView.swift */,
+				2DAA121F2B1ECBFC00082042 /* ArticleFilterListImage.swift */,
 				2D4D68A82B095D8000C8EFAA /* SettingsView.swift */,
 				2D4D68AC2B09671600C8EFAA /* AppIconPickerView.swift */,
 				2DEA8A222B0D06C9004E0E54 /* ReadingHistoryView.swift */,
@@ -600,6 +603,7 @@
 				2D4D68752B0591B700C8EFAA /* DefaultPersistenceManagerIO.swift in Sources */,
 				2D4D68412B01670D00C8EFAA /* RemoveFeedAction.swift in Sources */,
 				2D4D686D2B0585A600C8EFAA /* ReadArticle.swift in Sources */,
+				2DAA12202B1ECBFC00082042 /* ArticleFilterListImage.swift in Sources */,
 				2DAA121C2B1EC79E00082042 /* FeedImage.swift in Sources */,
 				2DEA8A232B0D06C9004E0E54 /* ReadingHistoryView.swift in Sources */,
 				2DAA20672AFEFB900098222E /* Feed.swift in Sources */,

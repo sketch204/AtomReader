@@ -10,11 +10,19 @@ import SwiftUI
 struct FeedRowView: View {
     let feed: Feed
     
+    private var imageSize: CGFloat {
+        #if os(iOS)
+        return 32
+        #elseif os(macOS)
+        return 16
+        #endif
+    }
+    
     var body: some View {
-        HStack {
-            FeedImage(url: feed.iconUrl)
-
+        Label {
             Text(feed.displayName)
+        } icon: {
+            FeedImage(url: feed.iconUrl, size: imageSize)
         }
     }
 }
