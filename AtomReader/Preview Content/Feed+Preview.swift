@@ -11,7 +11,7 @@ extension Feed {
     static let previewFeed1 = Self(
         name: "Super feed",
         description: "This feed is super serious.",
-        iconUrl: nil,
+        iconUrl: URL(string: "https://www.donnywals.com/wp-content/uploads/cropped-site-icon-32x32.png"),
         websiteUrl: URL(string: "https://super.serious")!,
         feedUrl: URL(string: "https://super.serious/feed.xml")!
     )
@@ -59,7 +59,7 @@ extension Feed {
     static let previewFeed2 = Self(
         name: "Chillax",
         description: "This feed is anything but serious. Only good vibes here.",
-        iconUrl: nil,
+        iconUrl: URL(string: "https://9to5mac.com/wp-content/uploads/sites/6/2019/10/cropped-cropped-mac1-1.png?w=32"),
         websiteUrl: URL(string: "https://super.chill")!,
         feedUrl: URL(string: "https://super.chill/feed.rss")!
     )
