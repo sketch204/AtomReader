@@ -27,6 +27,12 @@ struct ContentView: View {
                         }
                     }
                     
+                    ToolbarItem {
+                        AppActionButton(AddCategoryAction()) {
+                            Label("Add Category", systemImage: "tag")
+                        }
+                    }
+                    
                     #if os(iOS)
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {

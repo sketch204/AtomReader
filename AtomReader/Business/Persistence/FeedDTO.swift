@@ -14,7 +14,7 @@ struct FeedDTO: Codable {
     let websiteUrl: URL
     let feedUrl: URL
     let nameOverride: String?
-    let categories: [Category]
+    let categories: Set<Category>
     
     init(from feed: Feed) {
         self.name = feed.name
@@ -34,7 +34,7 @@ struct FeedDTO: Codable {
         self.websiteUrl = try container.decode(URL.self, forKey: .websiteUrl)
         self.feedUrl = try container.decode(URL.self, forKey: .feedUrl)
         self.nameOverride = try container.decodeIfPresent(String.self, forKey: .nameOverride)
-        self.categories = try container.decodeIfPresent([Category].self, forKey: .categories) ?? []
+        self.categories = try container.decodeIfPresent(Set<Category>.self, forKey: .categories) ?? []
     }
 }
 

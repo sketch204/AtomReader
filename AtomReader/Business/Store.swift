@@ -117,6 +117,7 @@ extension Store {
                 group.addTask { [dataProvider] in
                     var newFeed = try await dataProvider.feed(at: oldFeed.feedUrl)
                     newFeed.nameOverride = oldFeed.nameOverride
+                    newFeed.categories = oldFeed.categories
                     return newFeed
                 }
             }
@@ -165,10 +166,6 @@ extension Store {
     func feed(for id: Feed.ID) -> Feed? {
         feeds.first(where: { $0.id == id })
     }
-    
-    func feeds(for category: Category) -> [Feed] {
-        feeds.filter({ $0.categories.contains(category) })
-    }
 }
 
 extension Store {
@@ -181,5 +178,30 @@ extension Store {
             feeds[index].nameOverride = newName
         }
         persistenceManager?.save(feeds)
+    }
+}
+
+// MARK: Category
+
+extension Store {
+    func feeds(for category: Category) -> [Feed] {
+        feeds.filter({ $0.categories.contains(category) })
+    }
+    
+    func setFeeds(_ feedIds: some Sequence<Feed.ID>, for category: Category) {
+        feeds = feeds.map { feed in
+            var feed = feed
+            if feedIds.contains(feed.id) {
+                feed.categories.insert(category)
+            } else {
+                feed.categories.remove(category)
+            }
+            return feed
+        }
+        persistenceManager?.save(feeds)
+    }
+    
+    func removeCategory(_ category: Category) {
+        setFeeds([], for: category)
     }
 }

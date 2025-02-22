@@ -18,25 +18,7 @@ struct Feed: Equatable {
     
     var nameOverride: String?
     
-    let categories: [Category]
-    
-    init(
-        name: String,
-        description: String?,
-        iconUrl: URL?,
-        websiteUrl: URL,
-        feedUrl: URL,
-        nameOverride: String? = nil,
-        categories: [Category] = []
-    ) {
-        self.name = name
-        self.description = description
-        self.iconUrl = iconUrl
-        self.websiteUrl = websiteUrl
-        self.feedUrl = feedUrl
-        self.nameOverride = nameOverride
-        self.categories = categories
-    }
+    var categories: Set<Category> = []
 }
 
 extension Feed: Identifiable {

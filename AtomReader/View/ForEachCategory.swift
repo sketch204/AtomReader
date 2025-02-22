@@ -15,6 +15,15 @@ struct ForEachCategory<Content>: View where Content: View {
     var body: some View {
         ForEach(store.categories) { category in
             content(category)
+                .contextMenu {
+                    AppActionButton(EditCategoryAction(category: category)) {
+                        Label("Edit", systemImage: "pencil")
+                    }
+                    
+                    AppActionButton(RemoveCategoryAction(category: category)) {
+                        Label("Remove", systemImage: "trash")
+                    }
+                }
         }
     }
 }

@@ -24,6 +24,8 @@ struct AtomReaderApp: App {
                 .handleAddFeedAction()
                 .handleRemoveFeedAction()
                 .handleFeedRenameAction()
+                .handleEditCategoryAction()
+                .handleRemoveCategoryAction()
         }
         .environment(store)
         .environment(readingHistory)
