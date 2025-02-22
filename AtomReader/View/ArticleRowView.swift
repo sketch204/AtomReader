@@ -23,9 +23,13 @@ struct ArticleRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             VStack(alignment: .leading) {
+                Text(article.title)
+                    .font(.title2)
+                
                 HStack(alignment: .firstTextBaseline) {
-                    Text(article.title)
-                        .font(.title2)
+                    Text(feed.displayName)
+                        .foregroundStyle(.secondary)
+                        .font(.caption)
                     
                     Spacer()
                     
@@ -34,10 +38,6 @@ struct ArticleRowView: View {
                         .font(.caption)
                         .multilineTextAlignment(.trailing)
                 }
-                
-                Text(feed.displayName)
-                    .foregroundStyle(.secondary)
-                    .font(.caption)
             }
             
             if let excerpt = article.summary, articlePreviewMaxNumberOfLines > 0 {

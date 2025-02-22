@@ -60,6 +60,8 @@ struct ArticleListView: View {
             .keyboardShortcut("r")
             .help("Refresh all channels (⌘ R)")
         }
+        #elseif os(iOS)
+        .listStyle(.plain)
         #endif
         .navigationTitle("Articles")
     }
