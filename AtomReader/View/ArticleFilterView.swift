@@ -18,6 +18,13 @@ struct ArticleFilterView: View {
             }
             
             Section {
+                ForEachCategory { category in
+                    Text(category.rawValue)
+                        .tag(ArticleFilter.category(category))
+                }
+            }
+            
+            Section {
                 ForEachFeed { feed in
                     FeedRowView(feed: feed)
                         .tag(ArticleFilter.feed(feed.id))

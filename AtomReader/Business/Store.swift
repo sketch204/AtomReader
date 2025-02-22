@@ -24,6 +24,11 @@ final class Store {
     private(set) var feeds: [Feed] = []
     private(set) var articles: [Article] = []
     
+    var categories: [Category] {
+        Set(feeds.flatMap(\.categories))
+            .sorted(using: KeyPathComparator(\.rawValue))
+    }
+    
     private let dataProvider: StoreDataProvider
     private let persistenceManager: StorePersistenceManager?
     
@@ -159,6 +164,10 @@ extension Store {
     
     func feed(for id: Feed.ID) -> Feed? {
         feeds.first(where: { $0.id == id })
+    }
+    
+    func feeds(for category: Category) -> [Feed] {
+        feeds.filter({ $0.categories.contains(category) })
     }
 }
 

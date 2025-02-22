@@ -23,6 +23,8 @@ final class ArticleListViewModel {
             switch filter {
             case .feed(let feedId):
                 store.articles(for: feedId)
+            case .category(let category):
+                store.articles(for: category)
             case .none, .history:
                 store.articles
             }
