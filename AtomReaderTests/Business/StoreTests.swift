@@ -331,3 +331,82 @@ extension StoreTests {
         XCTAssertEqual(sut.feeds.first(where: { $0.id == mockFeed1.id }), mockFeed1)
     }
 }
+
+extension StoreTests {
+    func test_categories_addingNewCategory() {
+        let category = Category(rawValue: "cat")
+        
+        let sut = makeTestStore()
+        
+        sut.setFeeds([mockFeed1.id, mockFeed2.id], for: category)
+        
+        var expectedFeed1 = mockFeed1
+        expectedFeed1.categories = [category]
+        var expectedFeed2 = mockFeed2
+        expectedFeed2.categories = [category]
+        
+        let expectedFeeds = [expectedFeed1, expectedFeed2, mockFeed3]
+        
+        XCTAssertEqual(sut.feeds, expectedFeeds)
+    }
+    
+    func test_categories_renamingCategory() {
+        let category = Category(rawValue: "cat")
+        
+        var mockFeed1 = mockFeed1
+        mockFeed1.categories = [category]
+        var mockFeed2 = mockFeed2
+        mockFeed2.categories = [category]
+        
+        let sut = makeTestStore(feeds: [mockFeed1, mockFeed2, mockFeed3])
+        
+        let newCategory = Category(rawValue: "newCategory")
+        
+        sut.removeCategory(category)
+        sut.setFeeds([mockFeed1.id, mockFeed2.id], for: newCategory)
+
+        var expectedFeed1 = mockFeed1
+        expectedFeed1.categories = [newCategory]
+        var expectedFeed2 = mockFeed2
+        expectedFeed2.categories = [newCategory]
+        
+        let expectedFeeds = [expectedFeed1, expectedFeed2, mockFeed3]
+        
+        XCTAssertEqual(sut.feeds, expectedFeeds)
+    }
+    
+    func test_categories_changingCategoryFeeds() {
+        let category = Category(rawValue: "cat")
+        
+        var changedMockFeed1 = mockFeed1
+        changedMockFeed1.categories = [category]
+        var mockFeed2 = mockFeed2
+        mockFeed2.categories = [category]
+        
+        let sut = makeTestStore(feeds: [changedMockFeed1, mockFeed2, mockFeed3])
+        
+        sut.setFeeds([mockFeed2.id, mockFeed3.id], for: category)
+
+        var expectedFeed3 = mockFeed3
+        expectedFeed3.categories = [category]
+        
+        let expectedFeeds = [mockFeed1, mockFeed2, expectedFeed3]
+        
+        XCTAssertEqual(sut.feeds, expectedFeeds)
+    }
+    
+    func test_categories_removingCategory() {
+        let category = Category(rawValue: "cat")
+        
+        var changedMockFeed1 = mockFeed1
+        changedMockFeed1.categories = [category]
+        var changedMockFeed2 = mockFeed2
+        changedMockFeed2.categories = [category]
+        
+        let sut = makeTestStore(feeds: [changedMockFeed1, changedMockFeed2, mockFeed3])
+        
+        sut.removeCategory(category)
+        
+        XCTAssertEqual(sut.feeds, mockFeeds)
+    }
+}
